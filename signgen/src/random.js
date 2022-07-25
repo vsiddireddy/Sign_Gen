@@ -201,3 +201,5 @@ button.addEventListener("click", function(){refresh_default("canvas_f"); });
 button.addEventListener("click", function(){refresh_default("canvas_g"); });
 button.addEventListener("click", function(){refresh_default("canvas_h"); });
 button.addEventListener("click", function(){refresh_default("canvas_i"); });
+
+document.getElementById("testID").style.fontFamily = "Spectral1";
