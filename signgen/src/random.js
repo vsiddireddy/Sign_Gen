@@ -1,7 +1,3 @@
-
-
-//EVERYTHING BELOW THIS COMMENT IS MEANT TO BE DELETED
-
 var word1 = ["big", "jelly", "fun", "blue", "quick", "sweet", "john's", "cyborg", "nexus", "robot", "comic", "dark", "magic", "medical", "legal", "safe", "trippy", "water", "metal", "mars", "space", "dust", "death", "free", "used", "adult", "proton", "salted", "loud", "evil", "boring", "research", "quantum"];
 var word2 = ["fish", "burgers", "antiques", "seafood", "diner", "hut", "shack", "gifts", "vpn", "movies", "sports", "university", "plaza", "medicine", "cyborgs", "spaceships", "rockets", "mining", "coffee", "hovertech", "physics", "universe", "donuts", "phones", "hub", "parking", "code", "tea", "shoes", "cab", "cart", "store", "bar", "books", "music"];
 var word3 = ["open 24/7", "limited offer", "on sale", " ", " ", " "];
