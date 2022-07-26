@@ -202,8 +202,12 @@ async function printJSON() {
     var fullFont = json.corporateArr[index];
     var font = fullFont.split("-")[0];
     console.log("FONT: " + font);
-    new_font = new FontFace(font, 'url(../Fonts/Corporate/' + font + '/' + fullFont + '.ttf)');
-    
+    var newFont = new FontFace(font, 'url(../Fonts/Corporate/' + font + '/' + fullFont + '.ttf)');
+    var element = document.getElementById("testID");
+    var fontURL = '../Fonts/Corporate/' + font + '/' + fullFont + '.ttf';
+    //var css = '@font-face { font-family: ' + ,
+    head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });

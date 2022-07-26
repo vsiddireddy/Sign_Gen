@@ -70,6 +70,10 @@ body{
   src: url();
 }
 
+h2,h3 {
+  color: white;
+}
+
 /*
 @font-face {
   font-family: "BioRhyme1";
