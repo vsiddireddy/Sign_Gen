@@ -74,11 +74,12 @@ h2,h3 {
   color: white;
 }
 
-/*
 @font-face {
   font-family: "BioRhyme1";
   src: url("../Fonts/Corporate/BioRhyme/BioRhyme-Light.ttf") format("truetype");
 }
+
+/*
 
 @font-face {
   font-family: "BioRhyme2";

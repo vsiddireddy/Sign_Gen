@@ -74,7 +74,7 @@ function randomRelation(r, g, b){
 
 }
 
-function refresh_default(canvas) {
+async function refresh_default(canvas) {
     //printJSON();
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
@@ -149,8 +149,14 @@ function refresh_default(canvas) {
         fa_text = "center"; //Change to left later
     }
 
-    ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + fontType[Math.floor(Math.random() * fontType.length)]; 
-    console.log(ctx_a.font);
+    //ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + fontType[Math.floor(Math.random() * fontType.length)]; 
+    ApplyFont().then(
+        value => console.log()
+    );
+    var abc = await ApplyFont();
+    console.log("abc: " + abc);
+    ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + abc; // TODO
+    console.log("ctx_a.font: " + ctx_a.font);
 
     var shadow = getRandomInt(3);
 
@@ -184,7 +190,7 @@ while(i<50){
     i = i+1;
 }
 
-printJSON();
+//printJSON();
 async function printJSON() {
     var index = getRandomInt(50);
     const response = await fetch("../fonts.json");
@@ -199,7 +205,16 @@ async function printJSON() {
 }
 
 async function ApplyFont() {
-    
+    var index = getRandomInt(50);
+    const response = await fetch("../fonts.json");
+    const json = await response.json();
+    var fullFont = json.corporateArr[index];
+    var font = fullFont.split("-")[0];
+    var fontURL = '../Fonts/Corporate/' + font + '/' + fullFont + '.ttf';
+    var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }';
+    var sheet = window.document.styleSheets[0];
+    sheet.insertRule(css);
+    return font;
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
