@@ -197,17 +197,13 @@ async function printJSON() {
     var index = getRandomInt(50);
     const response = await fetch("../fonts.json");
     const json = await response.json();
-    console.log("index: " + index);
-    console.log(json.corporateArr[index]);
     var fullFont = json.corporateArr[index];
     var font = fullFont.split("-")[0];
-    console.log("FONT: " + font);
-    var newFont = new FontFace(font, 'url(../Fonts/Corporate/' + font + '/' + fullFont + '.ttf)');
-    var element = document.getElementById("testID");
     var fontURL = '../Fonts/Corporate/' + font + '/' + fullFont + '.ttf';
-    //var css = '@font-face { font-family: ' + ,
-    head = document.head || document.getElementsByTagName('head')[0],
-    style = document.createElement('style');
+    var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }';
+    var sheet = window.document.styleSheets[0];
+    sheet.insertRule(css);
+    document.getElementById('font-style-sheet').style.fontFamily = font;
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
