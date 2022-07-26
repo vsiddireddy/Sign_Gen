@@ -65,8 +65,16 @@ body{
   background-color: black;
 }
 
-/* Corporate Fonts */
+@font-face {
+  font-family: 'blank';
+  src: url();
+}
 
+h2,h3 {
+  color: white;
+}
+
+/*
 @font-face {
   font-family: "BioRhyme1";
   src: url("../Fonts/Corporate/BioRhyme/BioRhyme-Light.ttf") format("truetype");
@@ -316,12 +324,4 @@ body{
   font-family: "Syne2";
   src: url("../Fonts/Corporate/Syne/Syne-ExtraBold.ttf") format("truetype");
 }
-
-h3 {
-  font-family: 'Proza_Libre1';
-  color: white;
-}
-h2 {
-  font-family: 'Proza_Libre2';
-  color: white;
-}
+*/
