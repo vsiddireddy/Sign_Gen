@@ -75,6 +75,7 @@ function randomRelation(r, g, b){
 }
 
 function refresh_default(canvas) {
+    //printJSON();
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
@@ -191,6 +192,19 @@ while(i<50){
     i = i+1;
 }
 
+printJSON();
+async function printJSON() {
+    var index = getRandomInt(50);
+    const response = await fetch("../fonts.json");
+    const json = await response.json();
+    console.log("index: " + index);
+    console.log(json.corporateArr[index]);
+    var fullFont = json.corporateArr[index];
+    var font = fullFont.split("-")[0];
+    console.log("FONT: " + font);
+    new_font = new FontFace(font, 'url(../Fonts/Corporate/' + font + '/' + fullFont + '.ttf)');
+    
+}
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
 button.addEventListener("click", function(){refresh_default("canvas_b"); });

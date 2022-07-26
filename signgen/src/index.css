@@ -65,6 +65,11 @@ body{
   background-color: black;
 }
 
+@font-face {
+  font-family: 'blank';
+  src: url();
+}
+
 /*
 @font-face {
   font-family: "BioRhyme1";
