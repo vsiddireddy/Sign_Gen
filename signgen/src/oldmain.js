@@ -181,6 +181,14 @@ function refresh_default(canvas) {
 i = 0;
 while(i<50){
     refresh_default("canvas_a");
+    refresh_default("canvas_b");
+    refresh_default("canvas_c");
+    refresh_default("canvas_d");
+    refresh_default("canvas_e");
+    refresh_default("canvas_f");
+    refresh_default("canvas_g");
+    refresh_default("canvas_h");
+    refresh_default("canvas_i");
     i = i+1;
 }
 
@@ -203,3 +211,11 @@ async function ApplyFont() {
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
+button.addEventListener("click", function(){refresh_default("canvas_b"); });
+button.addEventListener("click", function(){refresh_default("canvas_c"); });
+button.addEventListener("click", function(){refresh_default("canvas_d"); });
+button.addEventListener("click", function(){refresh_default("canvas_e"); });
+button.addEventListener("click", function(){refresh_default("canvas_f"); });
+button.addEventListener("click", function(){refresh_default("canvas_g"); });
+button.addEventListener("click", function(){refresh_default("canvas_h"); });
+button.addEventListener("click", function(){refresh_default("canvas_i"); });
