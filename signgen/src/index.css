@@ -75,11 +75,9 @@ h2,h3 {
 }
 
 @font-face {
-  font-family: "BioRhyme1";
+  font-family: "BioRhyme";
   src: url("../Fonts/Corporate/BioRhyme/BioRhyme-Light.ttf") format("truetype");
 }
-
-/*
 
 @font-face {
   font-family: "BioRhyme2";
@@ -90,6 +88,8 @@ h2,h3 {
   font-family: "Chivo1";
   src: url("../Fonts/Corporate/Chivo/Chivo-Light.ttf") format("truetype");
 }
+
+/*
 
 @font-face {
   font-family: "Chivo2";

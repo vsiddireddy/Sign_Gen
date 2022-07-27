@@ -150,9 +150,6 @@ async function refresh_default(canvas) {
     }
 
     //ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + fontType[Math.floor(Math.random() * fontType.length)]; 
-    ApplyFont().then(
-        value => console.log()
-    );
     var abc = await ApplyFont();
     console.log("abc: " + abc);
     ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + abc; // TODO
@@ -179,13 +176,13 @@ async function refresh_default(canvas) {
 
 
     ctx_a.textAlign = "center";
-    ctx_a.font = "20px " + fontType[Math.floor(Math.random() * fontType.length)]; 
+    ctx_a.font = "20px " + abc; 
     ctx_a.font = subFonts[Math.floor(Math.random() * subFonts.length)]; 
     ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
 }
 
 i = 0;
-while(i<50){
+while(i<1){
     refresh_default("canvas_a");
     i = i+1;
 }
