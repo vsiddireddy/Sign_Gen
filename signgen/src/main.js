@@ -152,8 +152,10 @@ async function refresh_default(canvas) {
     //ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + fontType[Math.floor(Math.random() * fontType.length)]; 
     var abc = await ApplyFont();
     console.log("abc: " + abc);
-    ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + abc; // TODO
+    ctx_a.font = "'" + "80px " + abc + "'"; // TODO
     console.log("ctx_a.font: " + ctx_a.font);
+
+    //rasterizeHTML.drawHTML('<div style="font-family: Chivo1;">random code</div>', canvas_a);
 
     var shadow = getRandomInt(3);
 
@@ -176,8 +178,8 @@ async function refresh_default(canvas) {
 
 
     ctx_a.textAlign = "center";
-    ctx_a.font = "20px " + abc; 
-    ctx_a.font = subFonts[Math.floor(Math.random() * subFonts.length)]; 
+    ctx_a.font = "80px " + abc; 
+    ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
     ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
 }
 
