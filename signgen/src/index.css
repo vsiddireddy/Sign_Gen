@@ -74,6 +74,8 @@ h2,h3 {
   color: white;
 }
 
+/*
+
 @font-face {
   font-family: "BioRhyme";
   src: url("../Fonts/Corporate/BioRhyme/BioRhyme-Light.ttf") format("truetype");
@@ -88,8 +90,6 @@ h2,h3 {
   font-family: "Chivo1";
   src: url("../Fonts/Corporate/Chivo/Chivo-Light.ttf") format("truetype");
 }
-
-/*
 
 @font-face {
   font-family: "Chivo2";
