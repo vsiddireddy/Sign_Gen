@@ -1,9 +1,5 @@
 {
-    "corporate_single_word" : ["meet", "green", "crunch", "unit", "paz", "forward", "rise"],
-   
-    "corporate_posessive" : [],
-
-    "corporate_w1" : ["capital", "global", "world", "solar", "unit", "astor", "aurea", "caesar", "dumas", "eurig", "fridman", "gore", "hudson", "inyene", "jae", "kimiko", "luceria", "morgan", "newhouse", "ortega", "paz", "quandt", "rollins", "reyes", "sackler", "taylor", "walton", "ziff", "westside", "eastside", "northside", "southside", "proton", "quantum"],
+    "corporate_w1" : ["meet", "green", "crunch", "unit", "paz", "forward", "rise", "capital", "global", "world", "solar", "unit", "astor", "aurea", "caesar", "dumas", "eurig", "fridman", "gore", "hudson", "inyene", "jae", "kimiko", "luceria", "morgan", "newhouse", "ortega", "paz", "quandt", "rollins", "reyes", "sackler", "taylor", "walton", "ziff", "westside", "eastside", "northside", "southside", "proton", "quantum"],
 
     "corporate_w2" : ["investments", "llc", "fund", "capital", "solutions", "inc", "implants", "studios", "productions", "unit", "flow", "wholesale", "corp", "signature"],
     
@@ -11,5 +7,5 @@
 
     "corporate_prefixes" : ["nu", "win", "ry", "core", "star", "tech", "sys", "vol", "pro", "hexa", "hydro", "west", "nort", "dune", "pop", "tru", "tele", "cyber", "real", "snap", "coin", "power", "insta", "tate", "net", "dis", "face", "solo", "pay", "ear", "eye", "holo", "wal", "petro", "tes", "wyn", "flow", "up", "me"],
 
-    "corporate_suffixes" : ["core", "star", "tech", "whiz", "nest", "lab", "verse", "cord", "flow", "viz", "tron", "well", "com", "zene", "shift", "zone", "book", "chat", "gram", "pint", "ton", "mart", "face", "scan", "board", "car", "mobile", "time", "phone", "lock", "screen", "page", "app", "drive", "gen", "bern", "shop", "bud", "log", "list", "tok"]
+    "corporate_suffixes" : ["core", "corp", "star", "tech", "whiz", "nest", "lab", "verse", "cord", "flow", "viz", "tron", "well", "com", "zene", "shift", "zone", "book", "chat", "gram", "pint", "ton", "mart", "face", "scan", "board", "car", "mobile", "time", "phone", "lock", "screen", "page", "app", "drive", "gen", "bern", "shop", "bud", "log", "list", "tok"]
 }
