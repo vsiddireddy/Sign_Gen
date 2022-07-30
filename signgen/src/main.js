@@ -76,6 +76,7 @@ function randomRelation(r, g, b){
 
 async function refresh_default(canvas) {
     //printJSON();
+    //SelectFontLayout(1,2,3);
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
@@ -214,6 +215,14 @@ async function ApplyFont() {
     var sheet = window.document.styleSheets[0];
     sheet.insertRule(css);
     return font;
+}
+
+async function SelectFontLayout(w1, w2, syb) {
+    const response = await fetch("../fonts.json");
+    const json = await response.json();
+    var fontFamilyName = json.corporateArr[index].split("-")[0];
+    var fontType = json.corporateArr[index];
+
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
