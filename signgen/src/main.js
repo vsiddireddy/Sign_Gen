@@ -217,12 +217,21 @@ async function ApplyFont() {
     return font;
 }
 
-async function SelectFontLayout(w1, w2, syb) {
+async function SelectFontLayout(w1, w2, sub, isPrefix) {
+    var font;
+    var size;
     const response = await fetch("../fonts.json");
     const json = await response.json();
     var fontFamilyName = json.corporateArr[index].split("-")[0];
     var fontType = json.corporateArr[index];
-
+    if (isPrefix == true) {
+        size = fontSize[1];
+    } else if (w2 == 'null') {
+        size = fontSize[0];
+    } else {
+        size = smallFonts[0];
+    }
+    font = fontType;
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
