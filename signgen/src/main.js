@@ -219,17 +219,25 @@ async function ApplyFont() {
 
 async function SelectFontLayout(w1, w2, sub, isPrefix) {
     var font;
-    var size;
+    var wordSize;
+    var subSize;
     const response = await fetch("../fonts.json");
     const json = await response.json();
     var fontFamilyName = json.corporateArr[index].split("-")[0];
     var fontType = json.corporateArr[index];
-    if (isPrefix == true) {
-        size = fontSize[1];
-    } else if (w2 == 'null') {
-        size = fontSize[0];
+    if (w2 == null) {
+        if (w1.length > 7) {
+            size = fontSize[0];
+        } else {
+            size = fontSize[1];
+        }
     } else {
         size = smallFonts[0];
+    }
+    if (sub != null) {
+        subSize = subFonts[0];
+    } else {
+        subsize = null;
     }
     font = fontType;
 }
