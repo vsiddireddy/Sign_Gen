@@ -180,7 +180,7 @@ async function refresh_default(canvas) {
 
     ctx_a.textAlign = "center";
     ctx_a.font = "80px " + abc; 
-    ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
+    //ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
     ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
 }
 
@@ -208,38 +208,40 @@ async function ApplyFont() {
     var index = getRandomInt(50);
     const response = await fetch("../fonts.json");
     const json = await response.json();
-    var fullFont = json.corporateArr[index];
-    var font = fullFont.split("-")[0];
-    var fontURL = '../Fonts/Corporate/' + font + '/' + fullFont + '.ttf';
-    var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }';
-    var sheet = window.document.styleSheets[0];
-    sheet.insertRule(css);
+    var fullFont = json.corporateArr[index]; // gets specific kind of font (BioRhyme-ExtraLight)
+    var font = fullFont.split("-")[0]; // gets family name of font  (BioRhyme)
+    var fontURL = '../Fonts/Corporate/' + font + '/' + fullFont + '.ttf'; // creates filepath for font
+    var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }'; // creates css rule for the specific font
+    var sheet = window.document.styleSheets[0]; 
+    sheet.insertRule(css); // adds new font into css file
     return font;
 }
 
 async function SelectFontLayout(w1, w2, sub, isPrefix) {
-    var font;
-    var wordSize;
-    var subSize;
+    var wordSize; // font size for w1/w2
+    var subSize; // font size for sub
     const response = await fetch("../fonts.json");
     const json = await response.json();
-    var fontFamilyName = json.corporateArr[index].split("-")[0];
-    var fontType = json.corporateArr[index];
-    if (w2 == null) {
+    var fontFamilyName = json.corporateArr[index].split("-")[0]; // gets family name of font  (BioRhyme)
+    var font = json.corporateArr[index]; // gets specific kind of font (BioRhyme-ExtraLight)
+    if (isPrefix == true) {
+        wordSize = fontSize[0]; // rest of code doesn't run since prefix and suffix are w1 and w2
+    }
+    if (w2 == null) { // picks one of the bigger fonts based on word length
         if (w1.length > 7) {
-            size = fontSize[0];
+            wordSize = fontSize[0];
         } else {
-            size = fontSize[1];
+            wordSize = fontSize[1];
         }
     } else {
-        size = smallFonts[0];
+        wordSize = smallFonts[0];
     }
+
     if (sub != null) {
         subSize = subFonts[0];
     } else {
         subsize = null;
     }
-    font = fontType;
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
