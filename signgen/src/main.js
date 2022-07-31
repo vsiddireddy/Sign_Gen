@@ -76,7 +76,7 @@ function randomRelation(r, g, b){
 
 async function refresh_default(canvas) {
     //printJSON();
-    //SelectFontLayout(1,2,3);
+    GetRandomWord();
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
@@ -152,9 +152,9 @@ async function refresh_default(canvas) {
 
     //ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + fontType[Math.floor(Math.random() * fontType.length)]; 
     var abc = await ApplyFont();
-    console.log("abc: " + abc);
+    //console.log("abc: " + abc);
     ctx_a.font = "'" + "80px " + abc + "'"; // TODO
-    console.log("ctx_a.font: " + ctx_a.font);
+    //console.log("ctx_a.font: " + ctx_a.font);
 
     //rasterizeHTML.drawHTML('<div style="font-family: Chivo1;">random code</div>', canvas_a);
 
@@ -215,6 +215,36 @@ async function ApplyFont() {
     var sheet = window.document.styleSheets[0]; 
     sheet.insertRule(css); // adds new font into css file
     return font;
+}
+
+async function GetRandomWord() {
+    var w1;
+    var w2;
+    var sub;
+    var isPrefix = false;
+    const response = await fetch("../word_lists/corporate_words.json");
+    const json = await response.json();
+    var index = getRandomInt(3);
+    if (index == 0) {
+        w1 = json.corporate_w1[getRandomInt(json.corporate_w1.length)];
+    } else if (index == 1) {
+        w1 = json.corporate_w1[getRandomInt(json.corporate_w1.length)];
+        w2 = json.corporate_w2[getRandomInt(json.corporate_w2.length)];
+        if (getRandomInt(2) == 0)
+            sub = json.corporate_subtext_optional[getRandomInt(json.corporate_subtext_optional.length)];
+    } else if (index == 2) {
+        isPrefix = true;
+        w1 = json.corporate_prefixes[getRandomInt(json.corporate_prefixes.length)];
+        w2 = json.corporate_suffixes[getRandomInt(json.corporate_suffixes.length)];
+        if (getRandomInt(2) == 0)
+            sub = json.corporate_subtext_optional[getRandomInt(json.corporate_subtext_optional.length)];
+    }
+    console.log("---------");
+    console.log("w1: " + w1);
+    console.log("w2: " + w2);
+    console.log("sub: " + sub);
+    console.log(index);
+    //SelectFontLayout(w1, w2, sub, isPrefix);
 }
 
 async function SelectFontLayout(w1, w2, sub, isPrefix) {
