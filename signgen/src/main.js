@@ -217,7 +217,13 @@ async function ApplyFont() {
     return font;
 }
 
-async function GetRandomWord() {
+async function RandomCapitilization(w1, w2) {
+    if (w2 == null) {
+        
+    }
+}
+
+async function GetRandomWord(userInput, category) {
     var w1;
     var w2;
     var sub;
