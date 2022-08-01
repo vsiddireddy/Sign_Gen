@@ -206,21 +206,66 @@ async function printJSON() {
 
 async function ApplyFont() {
     var index = getRandomInt(50);
-    const response = await fetch("../fonts.json");
+    const response = await fetch("../assets/corporate/font_list_corporate.json");
     const json = await response.json();
+    //console.log(json);
     var fullFont = json.corporateArr[index]; // gets specific kind of font (BioRhyme-ExtraLight)
     var font = fullFont.split("-")[0]; // gets family name of font  (BioRhyme)
-    var fontURL = '../Fonts/Corporate/' + font + '/' + fullFont + '.ttf'; // creates filepath for font
+    var fontURL = '../assets/corporate/fonts_corporate/' + font + '/' + fullFont + '.ttf'; // creates filepath for font
     var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }'; // creates css rule for the specific font
-    var sheet = window.document.styleSheets[0]; 
+    var sheet = window.document.styleSheets[0];
     sheet.insertRule(css); // adds new font into css file
     return font;
 }
 
-async function RandomCapitilization(w1, w2) {
-    if (w2 == null) {
-        
+async function RandomCapitilization(w1, w2, isPrefix) {
+    if (isPrefix) {
+        var index = getRandomInt(3);
+        if (index == 0) { // all uppercase
+            w1 = w1.toUpperCase();
+            if (w2 != undefined)
+                w2 = w2.toUpperCase();
+        } else if (index == 1) { // all lowercase
+            w1 = w1.toLowerCase();
+            var secondWordCase = getRandomInt(2);
+            if (secondWordCase == 0) { // w2 all uppercase
+                if (w2 != undefined)
+                    w2 = w2.toUpperCase();
+            } else {
+                if (w2 != undefined)
+                    w2 = w2.toLowerCase();
+            }
+        } else if (index == 2) { // first letter in w1 is uppercase, rest is lowercase
+            w1 = w1.replace(/^./, w1[0].toUpperCase());
+            var secondWordCase = getRandomInt(2);
+            if (secondWordCase == 0) {
+                if (w2 != undefined)
+                    w2 = w2.replace(/^./, w2[0].toUpperCase());
+            } else {
+                if (w2 != undefined)
+                    w2 = w2.toLowerCase();
+            }
+            console.log("INDEX IS 2: w1: " + w1 + " w2: " + w2);
+        }
+    } else {
+        var index = getRandomInt(3);
+        if (index == 0) {
+            w1 = w1.replace(/^./, w1[0].toUpperCase());
+            if (w2 != undefined)
+                w2 = w2.replace(/^./, w2[0].toUpperCase());
+        } else if (index == 1) {
+            w1 = w1.toUpperCase();
+            if (w2 != undefined)
+                w2 = w2.toUpperCase();
+        } else if (index == 2) {
+            w1 = w1.toLowerCase();
+            if (w2 != undefined)
+                w2 = w2.toLowerCase();
+        }
     }
+    console.log("isPrefix: " + isPrefix);
+    console.log("RandomCapitilization w1: " + w1);
+    console.log("RandomCapitilization w2: " + w2);
 }
 
 async function GetRandomWord(userInput, category) {
@@ -228,7 +273,7 @@ async function GetRandomWord(userInput, category) {
     var w2;
     var sub;
     var isPrefix = false;
-    const response = await fetch("../word_lists/corporate_words.json");
+    const response = await fetch("../assets/corporate/word_list_corporate.json");
     const json = await response.json();
     var index = getRandomInt(3);
     if (index == 0) {
@@ -251,12 +296,13 @@ async function GetRandomWord(userInput, category) {
     console.log("sub: " + sub);
     console.log(index);
     //SelectFontLayout(w1, w2, sub, isPrefix);
+    RandomCapitilization(w1, w2, isPrefix);
 }
 
 async function SelectFontLayout(w1, w2, sub, isPrefix) {
     var wordSize; // font size for w1/w2
     var subSize; // font size for sub
-    const response = await fetch("../fonts.json");
+    const response = await fetch("../assets/corporate/font_list_corporate.json");
     const json = await response.json();
     var fontFamilyName = json.corporateArr[index].split("-")[0]; // gets family name of font  (BioRhyme)
     var font = json.corporateArr[index]; // gets specific kind of font (BioRhyme-ExtraLight)
