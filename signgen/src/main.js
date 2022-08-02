@@ -76,7 +76,7 @@ function randomRelation(r, g, b){
 
 async function refresh_default(canvas) {
     //printJSON();
-    GetRandomWord();
+    //GetRandomWord();
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
@@ -133,15 +133,34 @@ async function refresh_default(canvas) {
     }
 
     //text
-    text_a = word1[Math.floor(Math.random() * word1.length)]; 
-    text_b = word2[Math.floor(Math.random() * word2.length)]; 
-    text_c = word3[Math.floor(Math.random() * word3.length)]; 
-
+    //text_a = word1[Math.floor(Math.random() * word1.length)]; 
+    //text_b = word2[Math.floor(Math.random() * word2.length)]; 
+    //text_c = word3[Math.floor(Math.random() * word3.length)]; 
+    var wordsArr = await GetRandomWord();
+    text_a = wordsArr[0];
+    if (wordsArr[1] != undefined) {
+        text_b = wordsArr[1];
+    } else {
+        text_b = "";
+    }
+    if (wordsArr[2] != undefined) {
+        text_c = wordsArr[2];
+    } else {
+        text_c = "";
+    }
+    if (wordsArr[3]) { // isPrefix == true
+        text_a = wordsArr[0] + wordsArr[1];
+        text_b = ""; 
+    }
+    console.log("WORDSARR: ");
+    console.log(wordsArr);
+    /*
     uppercase = getRandomInt(3);
     if(uppercase == 1){
         text_a = text_a.toUpperCase();
         text_b = text_b.toUpperCase();
     }
+    */
 
 
     fontalign = getRandomInt(4);
@@ -266,6 +285,7 @@ async function RandomCapitilization(w1, w2, isPrefix) {
     console.log("isPrefix: " + isPrefix);
     console.log("RandomCapitilization w1: " + w1);
     console.log("RandomCapitilization w2: " + w2);
+    return [w1, w2];
 }
 
 async function GetRandomWord(userInput, category) {
@@ -296,7 +316,10 @@ async function GetRandomWord(userInput, category) {
     console.log("sub: " + sub);
     console.log(index);
     //SelectFontLayout(w1, w2, sub, isPrefix);
-    RandomCapitilization(w1, w2, isPrefix);
+    var wordArr = await RandomCapitilization(w1, w2, isPrefix);
+    //console.log("RANDOM CAPITALIZATION TEST: ");
+    //console.log(wordArr);
+    return [wordArr[0], wordArr[1], sub, isPrefix];
 }
 
 async function SelectFontLayout(w1, w2, sub, isPrefix) {
