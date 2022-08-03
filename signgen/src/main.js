@@ -296,17 +296,24 @@ async function GetRandomWord(userInput, category) {
     const response = await fetch("../assets/corporate/word_list_corporate.json");
     const json = await response.json();
     var index = getRandomInt(3);
-    if (index == 0) {
+    if (index == 0) { // word1 combo
         w1 = json.corporate_w1[getRandomInt(json.corporate_w1.length)];
-    } else if (index == 1) {
+    } else if (index == 1) { // word1 word2 combo
         w1 = json.corporate_w1[getRandomInt(json.corporate_w1.length)];
         w2 = json.corporate_w2[getRandomInt(json.corporate_w2.length)];
         if (getRandomInt(2) == 0)
             sub = json.corporate_subtext_optional[getRandomInt(json.corporate_subtext_optional.length)];
-    } else if (index == 2) {
+    } else if (index == 2) { // prefix suffix combo
         isPrefix = true;
         w1 = json.corporate_prefixes[getRandomInt(json.corporate_prefixes.length)];
-        w2 = json.corporate_suffixes[getRandomInt(json.corporate_suffixes.length)];
+        while (true) {
+            var temp = json.corporate_prefixes[getRandomInt(json.corporate_prefixes.length)];
+            if (temp != w1) {
+                w2 = temp;
+                break;
+            }
+        }
+        //w2 = json.corporate_suffixes[getRandomInt(json.corporate_suffixes.length)];
         if (getRandomInt(2) == 0)
             sub = json.corporate_subtext_optional[getRandomInt(json.corporate_subtext_optional.length)];
     }
@@ -317,8 +324,6 @@ async function GetRandomWord(userInput, category) {
     console.log(index);
     //SelectFontLayout(w1, w2, sub, isPrefix);
     var wordArr = await RandomCapitilization(w1, w2, isPrefix);
-    //console.log("RANDOM CAPITALIZATION TEST: ");
-    //console.log(wordArr);
     return [wordArr[0], wordArr[1], sub, isPrefix];
 }
 
