@@ -77,6 +77,7 @@ function randomRelation(r, g, b){
 async function refresh_default(canvas) {
     //printJSON();
     //GetRandomWord();
+    console.log(document.getElementById("word1").value);
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
@@ -161,7 +162,15 @@ async function refresh_default(canvas) {
         text_b = text_b.toUpperCase();
     }
     */
-
+    if (document.getElementById("word1").value != "") {
+        text_a = document.getElementById("word1").value;
+        if (document.getElementById("word2").value != "") {
+            text_b = document.getElementById("word2").value;
+        } else {
+            text_b = "";
+        }
+        text_c = "";
+    }
 
     fontalign = getRandomInt(4);
     fa_text = "center";
@@ -234,6 +243,7 @@ async function ApplyFont() {
     var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }'; // creates css rule for the specific font
     var sheet = window.document.styleSheets[0];
     sheet.insertRule(css); // adds new font into css file
+    console.log(fontURL);
     return font;
 }
 
