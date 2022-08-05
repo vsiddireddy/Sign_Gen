@@ -180,6 +180,7 @@ async function refresh_default(canvas) {
 
     //ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + fontType[Math.floor(Math.random() * fontType.length)]; 
     var abc = await ApplyFont();
+    //var signFontSizes = await SelectFontLayout();
     //console.log("abc: " + abc);
     ctx_a.font = "'" + "80px " + abc + "'"; // TODO
     //console.log("ctx_a.font: " + ctx_a.font);
@@ -243,7 +244,7 @@ async function ApplyFont() {
     var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }'; // creates css rule for the specific font
     var sheet = window.document.styleSheets[0];
     sheet.insertRule(css); // adds new font into css file
-    console.log(fontURL);
+    console.log(fullFont);
     return font;
 }
 
@@ -362,6 +363,7 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
     } else {
         subsize = null;
     }
+    return [wordSize, subSize];
 }
 
 button.addEventListener("click", function(){refresh_default("canvas_a"); });
