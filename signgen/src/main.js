@@ -139,7 +139,12 @@ async function refresh_default(canvas) {
 
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
-        ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
+        if (text_b == "") {
+            ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
+            console.log("MADE IT IN IF TEXT_B = ''");
+        } else {
+            ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
+        }
     }
     ctx_a.fillStyle = randomColor_b;
     ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2.2);
