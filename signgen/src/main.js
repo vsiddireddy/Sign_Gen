@@ -1,48 +1,6 @@
-var word1 = ["big", "jelly", "fun", "blue", "quick", "sweet", "john's", "cyborg", "nexus", "robot", "comic", "dark", "magic", "medical", "legal", "safe", "trippy", "water", "metal", "mars", "space", "dust", "death", "free", "used", "adult", "proton", "salted", "loud", "evil", "boring", "research", "quantum"];
-var word2 = ["fish", "burgers", "antiques", "seafood", "diner", "hut", "shack", "gifts", "vpn", "movies", "sports", "university", "plaza", "medicine", "cyborgs", "spaceships", "rockets", "mining", "coffee", "hovertech", "physics", "universe", "donuts", "phones", "hub", "parking", "code", "tea", "shoes", "cab", "cart", "store", "bar", "books", "music"];
-var word3 = ["open 24/7", "limited offer", "on sale", " ", " ", " "];
-var fontSize = ["80px ", "85px "]
 var smallFonts = ["50px ", "60px "]
-var subFonts = ["25px ", "35px "]
-var fontType1 = [ "Abel", "Abril Fatface", "Aclonica", "Advent Pro", "Aguafina Script", "Akronim", 
-"Aladin", "Aldrich", "Alex Brush", "Alfa Slab One", "Allan", "Almendra", "Amarante", "Amatic SC", "Amethysta","Amiko", "Amita","Anaheim",
-"Annie Use Your Telescope", "Antic", "Anton", "Arbutus","Archivo", "archivovfbeta", "Arsenal",
-"Artifika", "Arya", "asapvfbeta", "Astloch", "Atomic Age", "Audiowide","Averia Libre", "Bad Script", 
-"Bahiana","Baloo", "Baloo Bhai", "Barlow", "Barrio", "Bentham","Biryani", "Black Ops One", "Buenard"];
-
-var fontType = ["Bungee","Chewy", "Coda","Codystar","Concert One", "Dokdo", "Eater", "Fascinate", "Flamenco", "Flavors", "Fruktur", "Gaegu", "Goblin One", "Hanalei", "Jaldi","Jolly Lodger", "K2D", "La Belle Aurore", "Lobster", "Mystery Quest", "Orbitron", "Oswald"];
-
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-}
-
-function getRandomRgb(){
-
-    var randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
-    var r = randomBetween(0, 255);
-    var g = randomBetween(0, 255);
-    var b = randomBetween(0, 255);
-
-    var rand = getRandomInt(3);
-    if(rand == 0){
-        r = 0;
-    }
-    else if(rand = 1){
-        g = 0;
-    }
-    else if(rand = 2){
-        b = 0;
-    }
-
-    var rgb = `rgb(${r},${g},${b})`;
-
-    return rgb;
-}
-
-function getRandomVal(){
-    var randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
-    var v = randomBetween(0, 255);
-    return v;  
 }
 
 //COLORS
@@ -70,8 +28,6 @@ function randomRelation(r, g, b){
     }
     
     return `rgb(${r},${g},${b})`;
-
-
 }
 
 async function refresh_default(canvas) {
@@ -132,11 +88,7 @@ async function refresh_default(canvas) {
         //ctx_a.arc(20, 21, 10, 0, Math.PI*2, false);
         ctx_a.fill();
     }
-
-    //text
-    //text_a = word1[Math.floor(Math.random() * word1.length)]; 
-    //text_b = word2[Math.floor(Math.random() * word2.length)]; 
-    //text_c = word3[Math.floor(Math.random() * word3.length)]; 
+ 
     var wordsArr = await GetRandomWord();
     text_a = wordsArr[0];
     if (wordsArr[1] != undefined) {
@@ -155,13 +107,7 @@ async function refresh_default(canvas) {
     }
     console.log("WORDSARR: ");
     console.log(wordsArr);
-    /*
-    uppercase = getRandomInt(3);
-    if(uppercase == 1){
-        text_a = text_a.toUpperCase();
-        text_b = text_b.toUpperCase();
-    }
-    */
+
     if (document.getElementById("word1").value != "") {
         text_a = document.getElementById("word1").value;
         if (document.getElementById("word2").value != "") {
