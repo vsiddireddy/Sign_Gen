@@ -149,6 +149,16 @@ async function refresh_default(canvas) {
             //ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
         }
         ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
+    } else {
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+            //ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
+            ctx_a.textBaseline = "middle";
+            console.log("MADE IT IN IF TEXT_B = '' 2");
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+            console.log("RANDOM TEST PRINT 2");
+            //ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
+        }
     }
     ctx_a.fillStyle = randomColor_b;
     ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2.2);
