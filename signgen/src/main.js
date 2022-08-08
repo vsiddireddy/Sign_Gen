@@ -331,4 +331,13 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
     return [wordSize, subSize];
 }
 
-button.addEventListener("click", function(){refresh_default("canvas_a"); });
+document.getElementById("button").addEventListener("click", function(){refresh_default("canvas_a"); });
+
+document.getElementById("filetypeBtn").addEventListener("click", function(){
+    console.log("triggered download button");
+    var canvas = document. getElementById("canvas_a");
+    var anchor = document.createElement("a");
+    anchor.href = canvas.toDataURL("image/png");
+    anchor.download = "IMAGE.PNG";
+    anchor.click();
+});
