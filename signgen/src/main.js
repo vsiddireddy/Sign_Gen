@@ -337,7 +337,15 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     console.log("triggered download button");
     var canvas = document. getElementById("canvas_a");
     var anchor = document.createElement("a");
-    anchor.href = canvas.toDataURL("image/png");
-    anchor.download = "IMAGE.PNG";
+    if (document.getElementById("filetypeSelect").value == 'PNG') {
+        anchor.href = canvas.toDataURL("image/png");
+    } else {
+        anchor.href = canvas.toDataURL("image/jpg");
+    }
+    if (document.getElementById("filetypeSelect").value == 'PNG') {
+        anchor.download = "IMAGE.PNG";
+    } else {
+        anchor.download = "IMAGE.JPG";
+    }
     anchor.click();
 });
