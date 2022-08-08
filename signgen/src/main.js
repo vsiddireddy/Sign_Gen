@@ -139,12 +139,16 @@ async function refresh_default(canvas) {
 
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
-        if (text_b == "") {
-            ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+            //ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
+            ctx_a.textBaseline = "middle";
             console.log("MADE IT IN IF TEXT_B = ''");
         } else {
-            ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
+            ctx_a.textBaseline = "alphabetic";
+            console.log("RANDOM TEST PRINT");
+            //ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
         }
+        ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
     }
     ctx_a.fillStyle = randomColor_b;
     ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2.2);
