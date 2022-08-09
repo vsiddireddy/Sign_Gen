@@ -349,3 +349,17 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     }
     anchor.click();
 });
+
+document.getElementById("canvas_a").addEventListener("contextmenu", function(ev){
+    ev.preventDefault();
+    var image_png = document.getElementById("canvas_a").toDataURL("image/png");
+
+    var download = document.createElement('a');
+    download.href = image_png;
+    download.download = "canvas.png";
+
+    var evObj = document.createEvent('MouseEvents');
+    evObj.initEvent( "click", true, false );
+    download.dispatchEvent(evObj)
+
+    }, false);
