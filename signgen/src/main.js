@@ -171,11 +171,18 @@ async function refresh_default(canvas) {
     ctx_a.font = smallFonts[Math.floor(Math.random() * smallFonts.length)]; 
     ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/1.4);
 
+    var sheet = window.document.styleSheets[0];
+    console.log(abc);
+    console.log("SHEET!");
+    console.log(sheet.cssRules[2].cssText.split(';')[0].split(" ")[3]);
+    var test = sheet.cssRules[2].cssText.split(';')[0].split(" ")[3];
 
     ctx_a.textAlign = "center";
-    ctx_a.font = "80px " + abc; 
+    ctx_a.font = "80px " + abc + ", " + test;
     //ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
     ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+    console.log(text_c);
+
 }
 
 i = 0;
@@ -206,10 +213,13 @@ async function ApplyFont() {
     var fullFont = json.corporateArr[index]; // gets specific kind of font (BioRhyme-ExtraLight)
     var font = fullFont.split("-")[0]; // gets family name of font  (BioRhyme)
     var fontURL = '../assets/corporate/fonts_corporate/' + font + '/' + fullFont + '.ttf'; // creates filepath for font
-    var css = '@font-face { font-family: ' + "'" + font + "'; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }'; // creates css rule for the specific font
+    var css = '@font-face { font-family: ' + "" + font + "; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }'; // creates css rule for the specific font
     var sheet = window.document.styleSheets[0];
+    //console.log("SHEET: ");
+    //console.log(sheet);
     sheet.insertRule(css); // adds new font into css file
-    console.log(fullFont);
+    //console.log(css.split("'")[1]);
+
     return font;
 }
 
