@@ -381,11 +381,11 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
 });
 
 document.getElementById("UpdateCanvas").addEventListener("click", function(){
-    console.log("triggered update button");
     var ctx_a = canvas_a.getContext("2d");
-    var w = document.getElementById("CanvasWidth");
-    var h = document.getElementById("CanvasHeight");
-    ctx_a.drawImage(0, 0, w, h);
+    var w = document.getElementById("CanvasWidth").value;
+    var h = document.getElementById("CanvasHeight").value;
+    ctx_a.canvas.width =  w;
+    ctx_a.canvas.height = h;
 });
 
 document.getElementById("canvas_a").addEventListener("contextmenu", function(ev){
