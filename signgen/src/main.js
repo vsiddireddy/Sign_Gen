@@ -102,7 +102,13 @@ async function refresh_default(canvas) {
         text_c = "";
     }
     if (wordsArr[3]) { // isPrefix == true
-        text_a = wordsArr[0] + wordsArr[1];
+        //text_a = wordsArr[0] + wordsArr[1];
+        if (getRandomInt(3) == 0) {
+            text_a = '#' + wordsArr[0] + wordsArr[1];
+            text_c = "";
+        } else {
+            text_a = wordsArr[0] + wordsArr[1];
+        }
         text_b = ""; 
     }
     console.log("WORDSARR: ");
@@ -166,6 +172,17 @@ async function refresh_default(canvas) {
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
         ctx_a.fillText(text_b, canvas_a.width/1.95, canvas_a.height/1.4);
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+            ctx_a.textBaseline = "middle";
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+        }
+    } else {
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+            ctx_a.textBaseline = "middle";
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+        }
     }
     ctx_a.fillStyle = randomColor_b;
     //ctx_a.font = smallFonts[Math.floor(Math.random() * smallFonts.length)];
@@ -174,11 +191,12 @@ async function refresh_default(canvas) {
     var sheet = window.document.styleSheets[0];
     console.log(abc);
     console.log("SHEET!");
-    console.log(sheet.cssRules[2].cssText.split(';')[0].split(" ")[3]);
-    var test = sheet.cssRules[2].cssText.split(';')[0].split(" ")[3];
+    console.log(sheet.cssRules[1].cssText.split(';')[0].split(" ")[3]);
+    // sheet.cssRules[1] gets same font as abc
+    var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
 
     ctx_a.textAlign = "center";
-    ctx_a.font = "30px " + abc + ", " + test;
+    ctx_a.font = "40px " + abc + ", " + test;
     //ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
     ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
     ctx_a.font = "80px " + abc + ", " + test;
@@ -221,7 +239,7 @@ async function ApplyFont() {
     //console.log(sheet);
     sheet.insertRule(css); // adds new font into css file
     //console.log(css.split("'")[1]);
-    console.log("JSON CORPORATE ARR LENGTH: " + json.corporateArr.length);
+    //console.log("JSON CORPORATE ARR LENGTH: " + json.corporateArr.length);
     return font;
 }
 
@@ -360,6 +378,14 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
         anchor.download = "IMAGE.JPG";
     }
     anchor.click();
+});
+
+document.getElementById("UpdateCanvas").addEventListener("click", function(){
+    console.log("triggered update button");
+    var ctx_a = canvas_a.getContext("2d");
+    var w = document.getElementById("CanvasWidth");
+    var h = document.getElementById("CanvasHeight");
+    ctx_a.drawImage(0, 0, w, h);
 });
 
 document.getElementById("canvas_a").addEventListener("contextmenu", function(ev){
