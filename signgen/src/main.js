@@ -128,7 +128,7 @@ async function refresh_default(canvas) {
     var abc = await ApplyFont();
     //var signFontSizes = await SelectFontLayout();
     //console.log("abc: " + abc);
-    ctx_a.font = "'" + "80px " + abc + "'"; // TODO
+    //ctx_a.font = "'" + "80px " + abc + "'"; // TODO
     //console.log("ctx_a.font: " + ctx_a.font);
 
     //rasterizeHTML.drawHTML('<div style="font-family: Chivo1;">random code</div>', canvas_a);
@@ -168,7 +168,7 @@ async function refresh_default(canvas) {
         ctx_a.fillText(text_b, canvas_a.width/1.95, canvas_a.height/1.4);
     }
     ctx_a.fillStyle = randomColor_b;
-    ctx_a.font = smallFonts[Math.floor(Math.random() * smallFonts.length)]; 
+    //ctx_a.font = smallFonts[Math.floor(Math.random() * smallFonts.length)];
     ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/1.4);
 
     var sheet = window.document.styleSheets[0];
@@ -178,18 +178,20 @@ async function refresh_default(canvas) {
     var test = sheet.cssRules[2].cssText.split(';')[0].split(" ")[3];
 
     ctx_a.textAlign = "center";
-    ctx_a.font = "80px " + abc + ", " + test;
+    ctx_a.font = "30px " + abc + ", " + test;
     //ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
     ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+    ctx_a.font = "80px " + abc + ", " + test;
     console.log(text_c);
 
 }
 
 i = 0;
 while(i<1){
-    refresh_default("canvas_a");
+    //refresh_default("canvas_a");
     i = i+1;
 }
+refresh_default("canvas_a");
 
 //printJSON();
 async function printJSON() {
@@ -219,7 +221,7 @@ async function ApplyFont() {
     //console.log(sheet);
     sheet.insertRule(css); // adds new font into css file
     //console.log(css.split("'")[1]);
-
+    console.log("JSON CORPORATE ARR LENGTH: " + json.corporateArr.length);
     return font;
 }
 
