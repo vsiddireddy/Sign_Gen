@@ -196,12 +196,17 @@ async function refresh_default(canvas) {
     var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
 
     ctx_a.textAlign = "center";
-    ctx_a.font = "40px " + abc + ", " + test;
+    ctx_a.font = "30px " + abc + ", " + test;
     //ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
     ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
     ctx_a.font = "80px " + abc + ", " + test;
     console.log(text_c);
 
+    var baseImage = new Image();
+    baseImage.src = '../assets/corporate/logos/JRO_D_Basic_1.png';
+    baseImage.onload = function() {
+        //ctx_a.drawImage(baseImage, 0, 0, baseImage.width / 8, baseImage.height / 8);
+     };
 }
 
 i = 0;
