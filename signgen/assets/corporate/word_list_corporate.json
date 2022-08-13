@@ -1,9 +1,9 @@
 {
-    "corporate_w1" : ["meet", "green", "crunch", "unit", "paz", "forward", "rise", "capital", "global", "world", "solar", "unit", "astor", "aurea", "caesar", "dumas", "eurig", "fridman", "gore", "hudson", "inyene", "jae", "kimiko", "luceria", "morgan", "newhouse", "ortega", "paz", "quandt", "rollins", "reyes", "sackler", "taylor", "walton", "ziff", "westside", "eastside", "northside", "southside", "proton", "quantum"],
+    "corporate_w1" : ["meet", "green", "crunch", "unit", "paz", "forward", "rise", "capital", "global", "world", "solar", "unit", "astor", "aurea", "caesar", "dumas", "eurig", "fridman", "gore", "hudson", "inyene", "jae", "kimiko", "luceria", "morgan", "newhouse", "ortega", "paz", "quandt", "rollins", "reyes", "sackler", "taylor", "walton", "ziff", "westside", "eastside", "northside", "southside", "proton", "quantum", "vision", "cyber", "tech", "moon", "mind", "console", "cosmic", "neon", "flora"],
 
-    "corporate_w2" : ["investments", "llc", "fund", "capital", "solutions", "inc", "implants", "studios", "productions", "unit", "flow", "wholesale", "corp", "signature"],
+    "corporate_w2" : ["investments", "llc", "fund", "capital", "solutions", "inc", "implants", "studios", "productions", "unit", "flow", "wholesale", "corp", "signature", "quest", "syrup", "tech", "chat", "merge", "bar", "board", "travel", "systems", "overflow", "parking", "labs", "university", "haven", "star", "den", "lounge", "cart", "services", "plaza", "hub"],
     
-    "corporate_subtext_optional" : ["consultation", "incorporated", "implants"],
+    "corporate_subtext_optional" : ["consultation", "incorporated", "implants", "Streaming on Frisbee+", "Invest Today", "7262-8232-656", "Rare and Exotic"],
 
     "corporate_prefixes" : ["nu", "win", "ry", "core", "star", "tech", "sys", "vol", "pro", "hexa", "hydro", "west", "nort", "dune", "pop", "tru", "tele", "cyber", "real", "snap", "coin", "power", "insta", "tate", "net", "dis", "face", "solo", "pay", "ear", "eye", "holo", "wal", "petro", "tes", "wyn", "flow", "up", "me"],
 
