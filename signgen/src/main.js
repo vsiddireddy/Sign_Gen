@@ -231,7 +231,7 @@ async function printJSON() {
 }
 
 async function ApplyFont() {
-    var index = getRandomInt(56); // currently 56 fonts in corporateArr in json file. Need to make this dynamic
+    var index = getRandomInt(63); // currently 56 fonts in corporateArr in json file. Need to make this dynamic
     const response = await fetch("../assets/corporate/font_list_corporate.json");
     const json = await response.json();
     //console.log(json);
