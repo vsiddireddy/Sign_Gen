@@ -7,40 +7,14 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="index.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-        <link href="https://pagecdn.io/lib/easyfonts/fonts.css" rel="stylesheet" />
-        <script src="../node_modules/rasterizehtml/dist/rasterizeHTML.allinone.js"></script>
     </head>
     <body>
-        <h1>SignGen Beta</h1>
-        <input type="text" id="word1" name="word1">
-        <input type="text" id="word2" name="word2">
+        <h1>PaletteGen</h1>
         <br><br>
         <div id="container">
-            <canvas id="canvas_a" width="633" height="291" ></canvas>
-
-            <script src="main.js" async></script>
-        </div>
-        <div id="Themes">
-            <select name="Themes" id="themes">
-                <option value="Corporate">Corporate</option>
-                <option value="Neon">Neon</option>
-                <option value="Market">Market</option>
-                <option value="Retro">Retro</option>
-            </select>
+            <canvas id="canvas_a" width="600" height="200" ></canvas>
+            <script src="colors.js" async></script>
         </div>
         <button id="button">Generate</button>
-        <select name="filetype" id="filetypeSelect">
-            <option value="PNG">PNG</option>
-            <option value="JPG">JPG</option>
-        </select>
-        <button id="filetypeBtn">Download</button>
-        <canvas id="font-style-sheet"></canvas>
-        
-    
     </body>
 </html>
