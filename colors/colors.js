@@ -11,16 +11,40 @@ async function refresh_default(canvas) {
 
     const randomColor = `rgb(${r},${g},${b})`;
 
+    var section = 0;
     //Fill Background
     ctx_a.fillStyle = randomColor;
-    ctx_a.fillRect(0, 0, canvas_a.width/6, canvas_a.height);
+    ctx_a.fillRect(section, 0, canvas_a.width/6, canvas_a.height);
 
-    //Invert Color
-    const invertedColor = invertColor(randomColor);
+    //Darken Color
+    var darkerColor = await darkenColor(randomColor);
     ctx_a.beginPath();
-    ctx_a.rect(100, 0, canvas_a.width/6, canvas_a.height);
-    ctx_a.fillStyle =  "blue";
+    ctx_a.rect(section + 100, 0, canvas_a.width/6, canvas_a.height);
+    ctx_a.fillStyle =  darkerColor; //"blue";
     ctx_a.fill();
+
+    var compColor = await invertColor(darkerColor);
+    ctx_a.beginPath();
+    ctx_a.rect(section, 0, canvas_a.width/6, canvas_a.height/2);
+    ctx_a.fillStyle =  compColor; //"blue";
+    ctx_a.fill();
+
+    while (section <= 600){
+        //Darken Color
+        darkerColor = await darkenColor(darkerColor);
+        ctx_a.beginPath();
+        section = section + 100;
+        ctx_a.rect(section, 0, canvas_a.width/6, canvas_a.height);
+        ctx_a.fillStyle =  darkerColor; //"blue";
+        ctx_a.fill();
+
+        //Get Complementary
+        compColor = await invertColor(darkerColor);
+        ctx_a.beginPath();
+        ctx_a.rect(section, 0, canvas_a.width/6, canvas_a.height/2);
+        ctx_a.fillStyle =  compColor; //"blue";
+        ctx_a.fill();
+    }
 }
 
 //Converts rgb(r,g,b) to array 
@@ -28,21 +52,35 @@ async function rgbToArray(rgb){
     rgb = rgb.substring(4, rgb.length-1)
          .replace(/ /g, '')
          .split(',');
+    //console.log(rgb)
     return rgb;
 }
 
 //Invert Colors
 async function invertColor(rgb) {
-    rgb = rgbToArray(rgb);
-    console.log(rgb[0])
+    var argb = await rgbToArray(rgb);
+    console.log(argb)
 
-    rgb[0] = 255 - rgb[0];
-    rgb[1] = 255 - rgb[1];
-    rgb[2] = 255 - rgb[2];
+    argb[0] = 255 - argb[0];
+    argb[1] = 255 - argb[1];
+    argb[2] = 255 - argb[2];
 
-    var irgb = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`
-    //console.log(irgb)
+    var irgb = `rgb(${argb[0]},${argb[1]},${argb[2]})`
+   // console.log("I_RGB", irgb)
     return irgb;
+}
+
+//Lighten Colors
+async function darkenColor(rgb) {
+    var argb = await rgbToArray(rgb);
+    console.log(argb)
+
+    argb[0] = argb[0] - 25;
+    argb[1] = argb[1] - 25;
+    argb[2] = argb[2] - 25;
+
+    var drgb = `rgb(${argb[0]},${argb[1]},${argb[2]})`
+    return drgb;
 }
 
 //On Click
