@@ -203,7 +203,7 @@ async function refresh_default(canvas) {
     console.log(text_c);
 
     var baseImage = new Image();
-    baseImage.src = '../assets/corporate/logos/JRO_D_Basic_1.png';
+    baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
     baseImage.onload = function() {
         //ctx_a.drawImage(baseImage, 0, 0, baseImage.width / 8, baseImage.height / 8);
      };
@@ -389,8 +389,16 @@ document.getElementById("UpdateCanvas").addEventListener("click", function(){
     var ctx_a = canvas_a.getContext("2d");
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
-    ctx_a.canvas.width =  w;
-    ctx_a.canvas.height = h;
+    if (w/h >= 0.25 && w/h <= 4) {
+        ctx_a.canvas.height = h;
+        ctx_a.canvas.height = h;
+        console.log("did change");
+    } else {
+        console.log("did not change");
+    }
+    console.log("RATIO: " + w/h);
+    //ctx_a.canvas.width =  w;
+    //ctx_a.canvas.height = h;
 });
 
 document.getElementById("canvas_a").addEventListener("contextmenu", function(ev){
