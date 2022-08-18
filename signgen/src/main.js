@@ -109,7 +109,7 @@ async function refresh_default(canvas) {
         } else {
             text_a = wordsArr[0] + wordsArr[1];
         }
-        text_b = ""; 
+        text_b = "";
     }
     console.log("WORDSARR: ");
     console.log(wordsArr);
@@ -390,7 +390,7 @@ document.getElementById("UpdateCanvas").addEventListener("click", function(){
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
     if (w/h >= 0.25 && w/h <= 4) {
-        ctx_a.canvas.height = h;
+        ctx_a.canvas.width = w;
         ctx_a.canvas.height = h;
         console.log("did change");
     } else {
