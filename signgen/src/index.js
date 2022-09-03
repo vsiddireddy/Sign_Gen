@@ -10,14 +10,17 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 565,
-    minWidth: 1024,
-    minHeight: 565,
-    //titleBarStyle: 'hidden',
+    width: 1200,
+    height: 650,
+    minWidth: 1200,
+    minHeight: 650,
+    titleBarStyle: 'hidden',
     resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: false,
     },
   });
 
@@ -52,3 +55,4 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+

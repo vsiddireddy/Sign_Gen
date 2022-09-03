@@ -1,70 +1,116 @@
+body { margin: 0; }
+
 #container{
+  margin-top: 10%;
   display: inline-flex;
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
   margin-left: 20%;
-  margin-right: 20%;
+  margin-right: 40%;
   zoom: .5;
+  padding: 0px 10px;
 }
 
-h1{
-  margin: auto;
-  font-size: 50px;
-  font-family: 'Bebas Neue', cursive;
-  text-align: center;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  color: white;
-}
+
 canvas{ 
-  flex-basis: 33.333333%;
-  margin: auto;
   border: 0px solid black; 
+  margin-left: 200px;
+}
+
+#top_region{
+  -webkit-app-region: drag;
+  height: 25px;
+  width: 100%; /* Set the width of the sidebar */
+  position: fixed;
+  z-index: 2; /* Stay on top */
+  top: 0; /* Stay at the top */
+
+  background-color: rgb(52, 52, 52); 
+  border: none;
+  color: white;
+
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Lexend Deca';
+}
+
+#x_button{
+  -webkit-app-region: no-drag;
+  position: fixed;
+  top: 0;
+  margin-top: 0%;
+  right: 10px;
+}
+
+#right_menu{
+  height: 100%;
+  width: 300px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: rgb(35, 35, 35, 255);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
 }
 
 button {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
-  background-color: rgb(230, 10, 10); /* Green */
+  margin-top: 20px;
+  background-color: rgb(52, 52, 52); 
   border: none;
   color: white;
-  padding: 10px 45px;
+  padding: 5px 15px;
   text-align: center;
   text-decoration: none;
   display: block;
-  font-size: 30px;
-  font-family: 'Bebas Neue', cursive;
+  font-size: 20px;
+  font-family: 'Ubuntu';
 }
 
 
 select{
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
-  background-color: rgb(230, 10, 10); /* Green */
+  margin-top: 20px;
+  background-color: rgb(52, 52, 52); 
   border: none;
   color: white;
-  padding: 5px 40px;
+  padding: 5px 12px;
   padding-bottom: 10px;
   text-align: center;
   text-decoration: none;
   display: block;
-  font-size: 30px;
-  font-family: 'Bebas Neue', cursive;
+  font-size: 20px;
+  font-family: 'Ubuntu';
 }
 
 select option{
   font-size: 20px;
   background-color: DodgerBlue;
-  font-family: 'Bebas Neue', cursive;   
+  font-family: 'Ubuntu';   
 }
 
 body{
-  background-color: black;
+  background-color: #111;
 }
 
 h2,h3 {
   color: white;
+}
+
+input{
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(52, 52, 52); 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  font-family: 'Ubuntu';
 }

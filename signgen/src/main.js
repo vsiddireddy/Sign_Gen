@@ -414,3 +414,10 @@ document.getElementById("canvas_a").addEventListener("contextmenu", function(ev)
     download.dispatchEvent(evObj)
 
     }, false);
+
+const {remote} = require('electron');
+document.getElementById("x_button").addEventListener("click", function (e) {
+    var window = remote.getCurrentWindow();
+    window.close();
+}); 
+    

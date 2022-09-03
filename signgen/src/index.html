@@ -11,39 +11,46 @@
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">        
         <link href="https://pagecdn.io/lib/easyfonts/fonts.css" rel="stylesheet" />
         <script src="../node_modules/rasterizehtml/dist/rasterizeHTML.allinone.js"></script>
     </head>
     <body>
-        <h1>SignGen Beta</h1>
-        <input type="text" id="word1" name="word1" placeholder="First Word">
-        <input type="text" id="word2" name="word2" placeholder="Second Word">
-        <br><br>
-        <input type="text" id="CanvasWidth" name="CanvasWidth" placeholder="Canvas Width">
-        <input type="text" id="CanvasHeight" name="CanvasHeight" placeholder="Canvas Height">
-        <button id="UpdateCanvas">Update</button>
-        <br><br>
+        <div id="top_region">
+            <p id="x_button">x</p>
+        </div>
+
         <div id="container">
             <canvas id="canvas_a" width="633" height="291" ></canvas>
-
             <script src="main.js" async></script>
         </div>
-        <div id="Themes">
-            <select name="Themes" id="themes">
-                <option value="Corporate">Corporate</option>
-                <option value="Neon">Neon</option>
-                <option value="Market">Market</option>
-                <option value="Retro">Retro</option>
+
+
+        <div id="right_menu">
+
+            <div id="Themes">
+                <select name="Themes" id="themes">
+                    <option value="Corporate">Corporate</option>
+                    <option value="Neon">Neon</option>
+                    <option value="Market">Market</option>
+                    <option value="Retro">Retro</option>
+                </select>
+            </div>
+
+            <input type="text" id="word1" name="word1" placeholder="First Word">
+            <input type="text" id="word2" name="word2" placeholder="Second Word">
+            <input type="text" id="CanvasWidth" name="CanvasWidth" placeholder="Canvas Width">
+            <input type="text" id="CanvasHeight" name="CanvasHeight" placeholder="Canvas Height">
+            <button id="UpdateCanvas">Update</button>
+            <button id="button">Generate</button>
+            <select name="filetype" id="filetypeSelect">
+                <option value="PNG">PNG</option>
+                <option value="JPG">JPG</option>
             </select>
+            <button id="filetypeBtn">Download</button>
         </div>
-        <button id="button">Generate</button>
-        <select name="filetype" id="filetypeSelect">
-            <option value="PNG">PNG</option>
-            <option value="JPG">JPG</option>
-        </select>
-        <button id="filetypeBtn">Download</button>
-        <canvas id="font-style-sheet"></canvas>
         
     
     </body>
