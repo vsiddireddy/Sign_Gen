@@ -366,7 +366,7 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
     return [wordSize, subSize];
 }
 
-document.getElementById("button").addEventListener("click", function(){refresh_default("canvas_a"); });
+document.getElementById("gen_button").addEventListener("click", function(){refresh_default("canvas_a"); });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
     console.log("triggered download button");
@@ -414,6 +414,9 @@ document.getElementById("canvas_a").addEventListener("contextmenu", function(ev)
     download.dispatchEvent(evObj)
 
     }, false);
+
+
+
 
 const {remote} = require('electron');
 document.getElementById("x_button").addEventListener("click", function (e) {
