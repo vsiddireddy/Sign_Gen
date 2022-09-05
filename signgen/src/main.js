@@ -207,14 +207,22 @@ async function refresh_default(canvas) {
     baseImage.onload = function() {
         //ctx_a.drawImage(baseImage, 0, 0, baseImage.width / 8, baseImage.height / 8);
      };
+    ctx_a.textBaseline = "middle";
 }
 
 i = 0;
-while(i<1){
-    //refresh_default("canvas_a");
+while(i<5){
+    refresh_default("canvas_a");
+    document.getElementById("canvas_a").style.opacity = "0";
+    if (i <= 2) {
+        //document.getElementById("canvas_a").style.opacity = "0";
+        console.log("DEBUG PRINT");
+    } else {
+        //document.getElementById("canvas_a").style.opacity = "1";
+    }
     i = i+1;
 }
-refresh_default("canvas_a");
+//refresh_default("canvas_a");
 
 //printJSON();
 async function printJSON() {
@@ -366,7 +374,10 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
     return [wordSize, subSize];
 }
 
-document.getElementById("gen_button").addEventListener("click", function(){refresh_default("canvas_a"); });
+document.getElementById("gen_button").addEventListener("click", function(){
+    document.getElementById("canvas_a").style.opacity = "1";
+    refresh_default("canvas_a");
+ });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
     console.log("triggered download button");
