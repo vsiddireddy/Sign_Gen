@@ -198,9 +198,13 @@ async function refresh_default(canvas) {
     ctx_a.textAlign = "center";
     ctx_a.font = "30px " + abc + ", " + test;
     //ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
-    ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+    
+    if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
+        ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
+    } else {
+        ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+    }
     ctx_a.font = "80px " + abc + ", " + test;
-    console.log(text_c);
 
     var baseImage = new Image();
     baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
