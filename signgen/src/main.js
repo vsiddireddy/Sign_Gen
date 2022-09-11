@@ -211,7 +211,7 @@ async function refresh_default(canvas) {
     baseImage.onload = function() {
         //ctx_a.drawImage(baseImage, 0, 0, baseImage.width / 8, baseImage.height / 8);
      };
-    ctx_a.textBaseline = "middle";
+    ctx_a.baseline = "middle";
 }
 
 i = 0;
