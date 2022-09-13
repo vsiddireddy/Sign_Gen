@@ -94,7 +94,7 @@ async function refresh_default(canvas) {
     } else {
         text_b = "";
     }
-    if (wordsArr[2] != 0) {
+    if (wordsArr[2] != undefined) {
         text_c = wordsArr[2];
     } else {
         text_c = "";
@@ -108,7 +108,6 @@ async function refresh_default(canvas) {
         }
         text_b = "";
     }
-    console.log("WORDSARR: ");
     console.log(wordsArr);
 
     if (document.getElementById("word1").value != "") {
@@ -134,36 +133,38 @@ async function refresh_default(canvas) {
     //Shadows
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
-        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+        if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
         } else {
-            ctx_a.textBaseline = "alphabetic";
+            ctx_a.textBaseline = "middle";
         }
         //Shadow For Word 1
-        ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/2.2);
+        ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
     } else {
-        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+        if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
         } else {
-            ctx_a.textBaseline = "alphabetic";
+            ctx_a.textBaseline = "middle";
         }
     }
     
     //Word 1
     if(text_a != ""){
         ctx_a.fillStyle = randomColor_b;
-        ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2.2);
+        ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
     }
 
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
-        //Shadow For Word 2
-        ctx_a.fillText(text_b, canvas_a.width/1.97, canvas_a.height/1.4);
+        
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
         } else {
             ctx_a.textBaseline = "alphabetic";
         }
+        
+        //Shadow For Word 2
+        ctx_a.fillText(text_b, canvas_a.width/1.97, canvas_a.height/1.4);
     } else {
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
@@ -181,19 +182,20 @@ async function refresh_default(canvas) {
     var sheet = window.document.styleSheets[0];
     var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
 
-    ctx_a.textAlign = "center";
-    ctx_a.font = "30px " + abc + ", " + test;
-    
-    if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
-        ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
-    } else {
-        ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+    if(text_c != ""){
+        ctx_a.textAlign = "center";
+        ctx_a.font = "30px " + abc + ", " + test;
+        if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
+            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
+        } else {
+            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+        }
     }
-    
+
     ctx_a.font = "80px " + abc + ", " + test;
     var baseImage = new Image();
     baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
-    baseImage.onload = function() {};
+    //baseImage.onload = function() {};
     ctx_a.baseline = "middle";
 }
 
@@ -233,11 +235,7 @@ async function ApplyFont() {
     var fontURL = '../assets/corporate/fonts_corporate/' + font + '/' + fullFont + '.ttf'; // creates filepath for font
     var css = '@font-face { font-family: ' + "" + font + "; " + 'src: url(' + "'" + fontURL + "'" + ') format("truetype"); }'; // creates css rule for the specific font
     var sheet = window.document.styleSheets[0];
-    //console.log("SHEET: ");
-    //console.log(sheet);
     sheet.insertRule(css); // adds new font into css file
-    //console.log(css.split("'")[1]);
-    console.log("JSON CORPORATE ARR LENGTH: " + json.corporateArr.length);
     return font;
 }
 
@@ -268,7 +266,6 @@ async function RandomCapitilization(w1, w2, isPrefix) {
                 if (w2 != undefined)
                     w2 = w2.toLowerCase();
             }
-            console.log("INDEX IS 2: w1: " + w1 + " w2: " + w2);
         }
     } else {
         var index = getRandomInt(3);
@@ -286,16 +283,13 @@ async function RandomCapitilization(w1, w2, isPrefix) {
                 w2 = w2.toLowerCase();
         }
     }
-    console.log("isPrefix: " + isPrefix);
-    console.log("RandomCapitilization w1: " + w1);
-    console.log("RandomCapitilization w2: " + w2);
     return [w1, w2];
 }
 
 async function GetRandomWord(userInput, category) {
     var w1;
     var w2;
-    var sub = 0;
+    var sub;
     var isPrefix = false;
     const response = await fetch("../assets/corporate/word_list_corporate.json");
     const json = await response.json();
@@ -317,16 +311,9 @@ async function GetRandomWord(userInput, category) {
                 break;
             }
         }
-        //w2 = json.corporate_suffixes[getRandomInt(json.corporate_suffixes.length)];
         if (getRandomInt(2) == 0)
             sub = json.corporate_subtext_optional[getRandomInt(json.corporate_subtext_optional.length)];
     }
-    console.log("---------");
-    console.log("w1: " + w1);
-    console.log("w2: " + w2);
-    console.log("sub: " + sub);
-    console.log(index);
-    //SelectFontLayout(w1, w2, sub, isPrefix);
     var wordArr = await RandomCapitilization(w1, w2, isPrefix);
     return [wordArr[0], wordArr[1], sub, isPrefix];
 }
@@ -365,7 +352,6 @@ document.getElementById("gen_button").addEventListener("click", function(){
  });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
-    console.log("triggered download button");
     var canvas = document. getElementById("canvas_a");
     var anchor = document.createElement("a");
     if (document.getElementById("filetypeSelect").value == 'PNG') {
