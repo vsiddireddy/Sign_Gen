@@ -4,69 +4,31 @@ function getRandomInt(max) {
 }
 
 //COLORS
+async function applyColors() {
+    const response = await fetch("../assets/corporate/colors_corporate/color_list_corporate.json");
+    const json = await response.json();
 
-function randomRelation(r, g, b){
-    
-    val = getRandomInt(3);
-    if(val == 0){
-        //return getSimilarColor(r, g, b);
-        r = r+80;
-        g = g+80;
-        b = b+80;
-    }
-    else if(val == 1){
-        //return getOppositeColor(r, g, b);
-        r = r+200;
-        g = g+200;
-        b = b+200;
-    }
-    else if(val == 2){
-        //return getOppositeColor(r, g, b);
-        r = r-80;
-        g = g-80;
-        b = b-80;
-    }
-    
-    return `rgb(${r},${g},${b})`;
+    var maxIndex = Object.keys(json.corporateArr).length;
+    var index = getRandomInt(maxIndex);
+
+    var colors = json.corporateArr[index]; 
+    return colors;
 }
 
 async function refresh_default(canvas) {
-    //printJSON();
-    //GetRandomWord();
-    console.log(document.getElementById("word1").value);
+    //canvas
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
 
-    var randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
-    var r = randomBetween(0, 255);
-    var g = randomBetween(0, 255);
-    var b = randomBetween(0, 255);
+    //colors
+    var colors = await applyColors();
+    console.log(colors);
 
-    //Get Bright Colors?
-    if(r > 200){
-        g = getRandomInt(90);
-        b = getRandomInt(90);
-    }
-    if(g > 200){
-        r = getRandomInt(90);
-        b = getRandomInt(90);
-    }
-    if(b > 200){
-        g = getRandomInt(90);
-        r = getRandomInt(90);
-    }
-
-    a1 = getRandomInt(2);
-    if(a1 == 0){
-        a1_val = 20;
-    }
-    else{
-        a1_val = 100;
-    }
-    const randomColor_a = `rgb(${r},${g},${b})`;
-    const randomColor_a1 = `rgb(${r-a1_val},${g-a1_val},${b-a1_val})`;
-    const randomColor_b = randomRelation(r, g, b); //or opposite
+    
+    const randomColor_a = colors.m1;
+    const randomColor_a1 = colors.m1;
+    const randomColor_b = colors.m2
     const shadowColor = 'rgb(27, 27, 27)';
     
     //background
@@ -87,6 +49,7 @@ async function refresh_default(canvas) {
         ctx_a.fill();
     }
  
+    //words
     var wordsArr = await GetRandomWord();
     text_a = wordsArr[0];
     if (wordsArr[1] != undefined) {
@@ -127,24 +90,29 @@ async function refresh_default(canvas) {
     }
 
     var abc = await ApplyFont();
-    var shadow = getRandomInt(3);
+    var shadow = getRandomInt(5);
     ctx_a.textAlign = fa_text;
 
-    //Shadows
+    //shadows
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
         if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
+            console.log("middle");
             ctx_a.textBaseline = "middle";
         } else {
-            ctx_a.textBaseline = "middle";
+            console.log("alphabetic");
+            ctx_a.textBaseline = "alphabetic";
         }
         //Shadow For Word 1
         ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
     } else {
         if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
+            console.log("middle");
+
         } else {
-            ctx_a.textBaseline = "middle";
+            console.log("alphabetic");
+            ctx_a.textBaseline = "alphabetic";
         }
     }
     
@@ -195,7 +163,7 @@ async function refresh_default(canvas) {
     ctx_a.font = "80px " + abc + ", " + test;
     var baseImage = new Image();
     baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
-    //baseImage.onload = function() {};
+    baseImage.onload = function() {};
     ctx_a.baseline = "middle";
 }
 
