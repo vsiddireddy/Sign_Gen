@@ -331,6 +331,7 @@ while(i<5){
 }
 
 document.getElementById("gen_button").addEventListener("click", function(){
+    document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_a").style.opacity = "1";
     refresh_default("canvas_a");
  });
@@ -391,8 +392,9 @@ document.getElementById("zmout").addEventListener("click", function(){
 
     
 const {remote} = require('electron');
-document.getElementById("x_button").addEventListener("click", function (e) {
+document.getElementById("x_button").addEventListener("click", function (){
+    console.log("cxxxx");
     var window = remote.getCurrentWindow();
-    window.close();
+    window.destroy();
 }); 
     
