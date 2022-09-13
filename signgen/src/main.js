@@ -1,9 +1,10 @@
 var smallFonts = ["50px ", "60px "]
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-//COLORS
+//Colors
 async function applyColors() {
     const response = await fetch("../assets/corporate/colors_corporate/color_list_corporate.json");
     const json = await response.json();
@@ -13,171 +14,6 @@ async function applyColors() {
 
     var colors = json.corporateArr[index]; 
     return colors;
-}
-
-async function refresh_default(canvas) {
-    //canvas
-    var canvas_a = document.getElementById(canvas);
-    var ctx_a = canvas_a.getContext("2d");
-    ctx_a.clearRect(0, 0, 633, 291);
-
-    //colors
-    var colors = await applyColors();
-    console.log(colors);
-
-    
-    const randomColor_a = colors.m1;
-    const randomColor_a1 = colors.m1;
-    const randomColor_b = colors.m2
-    const shadowColor = 'rgb(27, 27, 27)';
-    
-    //background
-    ctx_a.fillStyle = randomColor_a;
-    ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
-
-    //artifacts
-    ctx_a.fillStyle = randomColor_a1;
-    ctx_a.beginPath();
-
-    artifact = getRandomInt(5);
-    if (artifact == 0){
-        ctx_a.fillRect(0, canvas_a.height/5, canvas_a.width, canvas_a.height/1.5);
-        ctx_a.stroke();
-    }
-    else if(artifact == 1){
-        ctx_a.arc(canvas_a.width/2, canvas_a.height/2, 90, 0, 2 * 3*Math.PI*2);
-        ctx_a.fill();
-    }
- 
-    //words
-    var wordsArr = await GetRandomWord();
-    text_a = wordsArr[0];
-    if (wordsArr[1] != undefined) {
-        text_b = wordsArr[1];
-    } else {
-        text_b = "";
-    }
-    if (wordsArr[2] != undefined) {
-        text_c = wordsArr[2];
-    } else {
-        text_c = "";
-    }
-    if (wordsArr[3]) { // isPrefix == true
-        if (getRandomInt(3) == 0) {
-            text_a = '#' + wordsArr[0] + wordsArr[1];
-            text_c = "";
-        } else {
-            text_a = wordsArr[0] + wordsArr[1];
-        }
-        text_b = "";
-    }
-    console.log(wordsArr);
-
-    if (document.getElementById("word1").value != "") {
-        text_a = document.getElementById("word1").value;
-        if (document.getElementById("word2").value != "") {
-            text_b = document.getElementById("word2").value;
-        } else {
-            text_b = "";
-        }
-        text_c = "";
-    }
-
-    fontalign = getRandomInt(4);
-    fa_text = "center";
-    if(fontalign == 0){
-        fa_text = "center"; //Change to left later
-    }
-
-    var abc = await ApplyFont();
-    var shadow = getRandomInt(5);
-    ctx_a.textAlign = fa_text;
-
-    //shadows
-    if(shadow == 1 || shadow == 2){
-        ctx_a.fillStyle = shadowColor;
-        if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
-            console.log("middle");
-            ctx_a.textBaseline = "middle";
-        } else {
-            console.log("alphabetic");
-            ctx_a.textBaseline = "alphabetic";
-        }
-        //Shadow For Word 1
-        ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
-    } else {
-        if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
-            ctx_a.textBaseline = "middle";
-            console.log("middle");
-
-        } else {
-            console.log("alphabetic");
-            ctx_a.textBaseline = "alphabetic";
-        }
-    }
-    
-    //Word 1
-    if(text_a != ""){
-        ctx_a.fillStyle = randomColor_b;
-        ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
-    }
-
-    if(shadow == 1 || shadow == 2){
-        ctx_a.fillStyle = shadowColor;
-        
-        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
-            ctx_a.textBaseline = "middle";
-        } else {
-            ctx_a.textBaseline = "alphabetic";
-        }
-        
-        //Shadow For Word 2
-        ctx_a.fillText(text_b, canvas_a.width/1.97, canvas_a.height/1.4);
-    } else {
-        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
-            ctx_a.textBaseline = "middle";
-        } else {
-            ctx_a.textBaseline = "alphabetic";
-        }
-    }
-    
-    //Word 2
-    if(text_b != ""){
-        ctx_a.fillStyle = randomColor_b;
-        ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/1.4);
-    }
-
-    var sheet = window.document.styleSheets[0];
-    var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
-
-    if(text_c != ""){
-        ctx_a.textAlign = "center";
-        ctx_a.font = "30px " + abc + ", " + test;
-        if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
-            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
-        } else {
-            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
-        }
-    }
-
-    ctx_a.font = "80px " + abc + ", " + test;
-    var baseImage = new Image();
-    baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
-    baseImage.onload = function() {};
-    ctx_a.baseline = "middle";
-}
-
-i = 0;
-while(i<5){
-    refresh_default("canvas_a");
-    document.getElementById("canvas_a").style.opacity = "0";
-    if (i <= 2) {
-        //document.getElementById("canvas_a").style.opacity = "0";
-        console.log("DEBUG PRINT");
-    } else {
-        //document.getElementById("canvas_a").style.opacity = "1";
-    }
-    i = i+1;
 }
 
 async function printJSON() {
@@ -312,6 +148,191 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
         subsize = null;
     }
     return [wordSize, subSize];
+}
+
+async function refresh_default(canvas) {
+    //canvas
+    var canvas_a = document.getElementById(canvas);
+    var ctx_a = canvas_a.getContext("2d");
+    ctx_a.clearRect(0, 0, 633, 291);
+
+    //colors
+    var colors = await applyColors();
+    console.log(colors);
+
+    
+    const randomColor_a = colors.m1;
+    const randomColor_a1 = colors.m1;
+    const randomColor_b = colors.m2
+    const shadowColor = 'rgb(27, 27, 27)';
+
+      //logo
+      /*
+      var baseImage = new Image();
+      baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_' + (getRandomInt(199)+1) + '.png';
+      var imageDimensions = (canvas_a.width + canvas_a.height)/7;
+      baseImage.onload = async function() {
+        ctx_a.drawImage(baseImage, canvas_a.width/4, canvas_a.height/2, imageDimensions, imageDimensions);
+        ctx_a.globalCompositeOperation = "source-in";
+        ctx_a.fillStyle = randomColor_b;
+        ctx_a.fillRect(canvas_a.width/4, canvas_a.height/4, imageDimensions, imageDimensions);
+        
+        //background
+        ctx_a.globalCompositeOperation = "destination-over";
+        ctx_a.fillStyle = randomColor_a;
+        ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
+      };
+      */
+    
+      ctx_a.fillStyle = randomColor_a;
+      ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
+     
+    //artifacts
+    ctx_a.fillStyle = randomColor_a1;
+    ctx_a.beginPath();
+
+    artifact = getRandomInt(5);
+    if (artifact == 0){
+        ctx_a.fillRect(0, canvas_a.height/5, canvas_a.width, canvas_a.height/1.5);
+        ctx_a.stroke();
+    }
+    else if(artifact == 1){
+        ctx_a.arc(canvas_a.width/2, canvas_a.height/2, 90, 0, 2 * 3*Math.PI*2);
+        ctx_a.fill();
+    }
+
+  
+    
+
+    //words
+    var wordsArr = await GetRandomWord();
+    text_a = wordsArr[0];
+    if (wordsArr[1] != undefined) {
+        text_b = wordsArr[1];
+    } else {
+        text_b = "";
+    }
+    if (wordsArr[2] != undefined) {
+        text_c = wordsArr[2];
+    } else {
+        text_c = "";
+    }
+    if (wordsArr[3]) { // isPrefix == true
+        if (getRandomInt(3) == 0) {
+            text_a = '#' + wordsArr[0] + wordsArr[1];
+            text_c = "";
+        } else {
+            text_a = wordsArr[0] + wordsArr[1];
+        }
+        text_b = "";
+    }
+    console.log(wordsArr);
+
+    if (document.getElementById("word1").value != "") {
+        text_a = document.getElementById("word1").value;
+        if (document.getElementById("word2").value != "") {
+            text_b = document.getElementById("word2").value;
+        } else {
+            text_b = "";
+        }
+        text_c = "";
+    }
+
+    fontalign = getRandomInt(4);
+    fa_text = "center";
+    if(fontalign == 0){
+        fa_text = "center"; //Change to left later
+    }
+
+    var abc = await ApplyFont();
+    console.log(abc);
+    var shadow = getRandomInt(5);
+    ctx_a.textAlign = fa_text;
+
+    //shadows
+    if(shadow == 1 || shadow == 2){
+        ctx_a.globalCompositeOperation = "source-over";  
+        ctx_a.fillStyle = shadowColor;
+        if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
+            ctx_a.textBaseline = "middle";
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+        }
+        //Shadow For Word 1
+        ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
+    } else {
+        ctx_a.globalCompositeOperation = "source-over";  
+        if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
+            ctx_a.textBaseline = "middle";
+
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+        }
+    }
+    
+    //Word 1
+    if(text_a != ""){
+        ctx_a.globalCompositeOperation = "source-over";  
+        ctx_a.fillStyle = randomColor_b;
+        ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
+    }
+
+    if(shadow == 1 || shadow == 2){
+        ctx_a.globalCompositeOperation = "source-over";  
+        ctx_a.fillStyle = shadowColor;
+        
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+            ctx_a.textBaseline = "middle";
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+        }
+        
+        //Shadow For Word 2
+        ctx_a.fillText(text_b, canvas_a.width/1.97, canvas_a.height/1.4);
+    } else {
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+            ctx_a.textBaseline = "middle";
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+        }
+    }
+    
+    //Word 2
+    if(text_b != ""){
+        ctx_a.globalCompositeOperation = "source-over";  
+        ctx_a.fillStyle = randomColor_b;
+        ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/1.4);
+    }
+
+    var sheet = window.document.styleSheets[0];
+    var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
+
+    if(text_c != ""){
+        ctx_a.globalCompositeOperation = "source-over";  
+        ctx_a.textAlign = "center";
+        ctx_a.font = "30px " + abc + ", " + test;
+        if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
+            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
+        } else {
+            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+        }
+    }
+
+    ctx_a.font = "80px " + abc + ", " + test;
+    ctx_a.baseline = "middle";
+}
+
+i = 0;
+while(i<5){
+    refresh_default("canvas_a");
+    document.getElementById("canvas_a").style.opacity = "0";
+    if (i <= 2) {
+        //document.getElementById("canvas_a").style.opacity = "0";
+        console.log("DEBUG PRINT");
+    } else {
+        //document.getElementById("canvas_a").style.opacity = "1";
+    }
+    i = i+1;
 }
 
 document.getElementById("gen_button").addEventListener("click", function(){
