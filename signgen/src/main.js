@@ -327,12 +327,6 @@ i = 0;
 while(i<5){
     refresh_default("canvas_a");
     document.getElementById("canvas_a").style.opacity = "0";
-    if (i <= 2) {
-        //document.getElementById("canvas_a").style.opacity = "0";
-        console.log("DEBUG PRINT");
-    } else {
-        //document.getElementById("canvas_a").style.opacity = "1";
-    }
     i = i+1;
 }
 
