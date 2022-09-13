@@ -84,8 +84,6 @@ async function refresh_default(canvas) {
     }
     else if(artifact == 1){
         ctx_a.arc(canvas_a.width/2, canvas_a.height/2, 90, 0, 2 * 3*Math.PI*2);
-      //  ctx_a.scale(2, 1);
-        //ctx_a.arc(20, 21, 10, 0, Math.PI*2, false);
         ctx_a.fill();
     }
  
@@ -96,13 +94,12 @@ async function refresh_default(canvas) {
     } else {
         text_b = "";
     }
-    if (wordsArr[2] != undefined) {
+    if (wordsArr[2] != 0) {
         text_c = wordsArr[2];
     } else {
         text_c = "";
     }
     if (wordsArr[3]) { // isPrefix == true
-        //text_a = wordsArr[0] + wordsArr[1];
         if (getRandomInt(3) == 0) {
             text_a = '#' + wordsArr[0] + wordsArr[1];
             text_c = "";
@@ -130,48 +127,38 @@ async function refresh_default(canvas) {
         fa_text = "center"; //Change to left later
     }
 
-    //ctx_a.font = fontSize[Math.floor(Math.random() * fontSize.length)] + fontType[Math.floor(Math.random() * fontType.length)]; 
     var abc = await ApplyFont();
-    //var signFontSizes = await SelectFontLayout();
-    //console.log("abc: " + abc);
-    //ctx_a.font = "'" + "80px " + abc + "'"; // TODO
-    //console.log("ctx_a.font: " + ctx_a.font);
-
-    //rasterizeHTML.drawHTML('<div style="font-family: Chivo1;">random code</div>', canvas_a);
-
     var shadow = getRandomInt(3);
-
     ctx_a.textAlign = fa_text;
 
+    //Shadows
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
-            //ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
             ctx_a.textBaseline = "middle";
-            console.log("MADE IT IN IF TEXT_B = ''");
         } else {
             ctx_a.textBaseline = "alphabetic";
-            console.log("RANDOM TEST PRINT");
-            //ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
         }
-        ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
+        //Shadow For Word 1
+        ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/2.2);
     } else {
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
-            //ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
             ctx_a.textBaseline = "middle";
-            console.log("MADE IT IN IF TEXT_B = '' 2");
         } else {
             ctx_a.textBaseline = "alphabetic";
-            console.log("RANDOM TEST PRINT 2");
-            //ctx_a.fillText(text_a, canvas_a.width/1.95, canvas_a.height/2.2);
         }
     }
-    ctx_a.fillStyle = randomColor_b;
-    ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2.2);
+    
+    //Word 1
+    if(text_a != ""){
+        ctx_a.fillStyle = randomColor_b;
+        ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2.2);
+    }
 
     if(shadow == 1 || shadow == 2){
         ctx_a.fillStyle = shadowColor;
-        ctx_a.fillText(text_b, canvas_a.width/1.95, canvas_a.height/1.4);
+        //Shadow For Word 2
+        ctx_a.fillText(text_b, canvas_a.width/1.97, canvas_a.height/1.4);
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
         } else {
@@ -184,33 +171,29 @@ async function refresh_default(canvas) {
             ctx_a.textBaseline = "alphabetic";
         }
     }
-    ctx_a.fillStyle = randomColor_b;
-    //ctx_a.font = smallFonts[Math.floor(Math.random() * smallFonts.length)];
-    ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/1.4);
+    
+    //Word 2
+    if(text_b != ""){
+        ctx_a.fillStyle = randomColor_b;
+        ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/1.4);
+    }
 
     var sheet = window.document.styleSheets[0];
-    console.log(abc);
-    console.log("SHEET!");
-    console.log(sheet.cssRules[1].cssText.split(';')[0].split(" ")[3]);
-    // sheet.cssRules[1] gets same font as abc
     var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
 
     ctx_a.textAlign = "center";
     ctx_a.font = "30px " + abc + ", " + test;
-    //ctx_a.font = "subFonts[Math.floor(Math.random() * subFonts.length)]"; 
     
     if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
         ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
     } else {
         ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
     }
+    
     ctx_a.font = "80px " + abc + ", " + test;
-
     var baseImage = new Image();
     baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
-    baseImage.onload = function() {
-        //ctx_a.drawImage(baseImage, 0, 0, baseImage.width / 8, baseImage.height / 8);
-     };
+    baseImage.onload = function() {};
     ctx_a.baseline = "middle";
 }
 
@@ -226,9 +209,7 @@ while(i<5){
     }
     i = i+1;
 }
-//refresh_default("canvas_a");
 
-//printJSON();
 async function printJSON() {
     var index = getRandomInt(50);
     const response = await fetch("../fonts.json");
@@ -314,7 +295,7 @@ async function RandomCapitilization(w1, w2, isPrefix) {
 async function GetRandomWord(userInput, category) {
     var w1;
     var w2;
-    var sub;
+    var sub = 0;
     var isPrefix = false;
     const response = await fetch("../assets/corporate/word_list_corporate.json");
     const json = await response.json();
@@ -412,8 +393,6 @@ document.getElementById("UpdateCanvas").addEventListener("click", function(){
         console.log("did not change");
     }
     console.log("RATIO: " + w/h);
-    //ctx_a.canvas.width =  w;
-    //ctx_a.canvas.height = h;
 });
 
 document.getElementById("canvas_a").addEventListener("contextmenu", function(ev){
@@ -430,9 +409,7 @@ document.getElementById("canvas_a").addEventListener("contextmenu", function(ev)
 
     }, false);
 
-
-
-
+    
 const {remote} = require('electron');
 document.getElementById("x_button").addEventListener("click", function (e) {
     var window = remote.getCurrentWindow();
