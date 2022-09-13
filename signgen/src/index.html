@@ -26,10 +26,27 @@
             </div>
     
             <div id="container">
-                <canvas id="canvas_a" width="633" height="291" ></canvas>
-                <script src="main.js" async></script>
+              <div class="mainCanvas">
+                  <canvas id="canvas_a" width="633" height="291" ></canvas>
+              </div>
+                  
+              <div class="canvasZoom">
+                <button id="zmin" class="mdc-icon-button material-icons" this.style.color='#000000'" />
+                <div class="mdc-icon-button__ripple"></div>
+                zoom_in
+                </button>
+
+                <button id="zmout" class="mdc-icon-button material-icons" this.style.color='#000000'" />
+                <div class="mdc-icon-button__ripple"></div>
+                zoom_out
+                </button>
+              </div>
+
+                  
+              <script src="main.js" async></script>
             </div>
-    
+
+            
     
             <div id="right_menu">
     

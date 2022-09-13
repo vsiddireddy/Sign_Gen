@@ -83,6 +83,7 @@ canvas{
   padding-top: 40px;
 }
 
+
 #bottom_left{
   padding-top: 260px;
 }
@@ -100,6 +101,24 @@ button {
   display: block;
   font-size: 15px;
   font-family: 'Ubuntu', sans-serif;
+}
+
+.canvasZoom{
+  zoom: 1.15;
+}
+
+#zmin{
+  background: none;
+  position: fixed;
+  top: 30px;
+  right: 200px;
+}
+
+#zmout{
+  background: none;
+  position: fixed;
+  top: 65px;
+  right: 200px;
 }
 
 #UpdateCanvas{

@@ -23,6 +23,7 @@ const createWindow = () => {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
+      zoomFactor: 1,
     },
   });
 

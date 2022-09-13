@@ -1,4 +1,5 @@
 var smallFonts = ["50px ", "60px "]
+document.body.style.zoom = "100%";
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -383,6 +384,16 @@ document.getElementById("canvas_a").addEventListener("contextmenu", function(ev)
     download.dispatchEvent(evObj)
 
     }, false);
+
+document.getElementById("zmin").addEventListener("click", function(){
+    var csize = getComputedStyle(document.getElementById('canvas_a')).zoom;
+    document.getElementById("canvas_a").style.zoom = 1.2*csize;
+});
+
+document.getElementById("zmout").addEventListener("click", function(){
+    var csize = getComputedStyle(document.getElementById('canvas_a')).zoom;
+    document.getElementById("canvas_a").style.zoom = 0.8*csize;
+});
 
     
 const {remote} = require('electron');
