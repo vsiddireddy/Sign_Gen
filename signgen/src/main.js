@@ -225,7 +225,7 @@ async function refresh_default(canvas) {
         }
         text_b = "";
     }
-    consoleText = "WORDS: { " + wordsArr  + " }   " + consoleText;
+    consoleText = "WORDS: { " + text_a + ", " + text_b + ", " + text_c  + " }   " + consoleText;
 
     if (document.getElementById("word1").value != "") {
         text_a = document.getElementById("word1").value;
@@ -244,18 +244,16 @@ async function refresh_default(canvas) {
       shadow = getRandomInt(4);   
     }
     
-    //FONT
+    //Choose Font/Size
     var sheet = window.document.styleSheets[0];
     var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
-    console.log(test);
     var randSize = getRandomInt(5)/100;
-
     var randMS = 0.11 + randSize;
     var mainSize = Math.round(randMS * canvas_a.width) + "px ";
     ctx_a.font = (mainSize) + abc + ", " + test;
     ctx_a.baseline = "middle";
 
-    //shadows
+    //Shadow For Word 1
     if(shadow == 1 || shadow == 2){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = colors.h1;
@@ -264,7 +262,6 @@ async function refresh_default(canvas) {
         } else {
             ctx_a.textBaseline = "alphabetic";
         }
-        //Shadow For Word 1
         ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
     } else {
         ctx_a.globalCompositeOperation = "source-over";  
@@ -276,42 +273,40 @@ async function refresh_default(canvas) {
         }
     }
 
-    
-    //Word 1
+    //Draw Word 1
     if(text_a != ""){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = randomColor_b;
         ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
     }
 
+    //Draw Shadow For Word 2
     if(shadow == 1 || shadow == 2){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = colors.h1;
         
-        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) { //if main text is single line
             ctx_a.textBaseline = "middle";
         } else {
-            ctx_a.textBaseline = "bottom";
+            ctx_a.textBaseline = "top";
         }
-        
-        //Shadow For Word 2
         ctx_a.fillText(text_b, canvas_a.width/1.97, (canvas_a.height/2));
     } else {
-        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
+        if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) { //if main text is single line
             ctx_a.textBaseline = "middle";
         } else {
             ctx_a.textBaseline = "top";
         }
     }
     
-    //Word 2
+    //Draw Word 2
     if(text_b != ""){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = randomColor_b;
         ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/2);
     }
 
-    //Subtext
+    //Draw Subtext
     if(text_c != ""){
         console.log(test);
         console.log(abc);
@@ -321,7 +316,7 @@ async function refresh_default(canvas) {
 
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.textAlign = "center"; 
-        ctx_a.textBaseline = "top";
+        ctx_a.textBaseline = "middle";
 
         var randSS = 0.01 + randSize;
         var subSize = Math.round(randSS * canvas_a.width) + "px ";
