@@ -152,6 +152,7 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
     return [wordSize, subSize];
 }
 
+
 async function refresh_default(canvas) {
     //canvas
     var canvas_a = document.getElementById(canvas);
@@ -311,8 +312,9 @@ async function refresh_default(canvas) {
 
     if(text_c != ""){
         ctx_a.globalCompositeOperation = "source-over";  
-        ctx_a.textAlign = "center";
-        ctx_a.font = "30px " + abc + ", " + test;
+        ctx_a.textAlign = "center"; 
+        var subSize = Math.round(0.06 * canvas_a.width) + "px ";
+        ctx_a.font = (subSize) + abc + ", " + test;
         if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
             ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
         } else {
@@ -320,7 +322,8 @@ async function refresh_default(canvas) {
         }
     }
 
-    ctx_a.font = "80px " + abc + ", " + test;
+    var mainSize = (0.15 * canvas_a.width) + "px ";
+    ctx_a.font = (mainSize) + abc + ", " + test;
     ctx_a.baseline = "middle";
 }
 
