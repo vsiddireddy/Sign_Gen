@@ -3,43 +3,99 @@ body { margin: 0; border-radius: 5px;  background-color: #212835;}
 #container{
   zoom: 1; 
   position:relative;
-  padding-top: 15%;
+  padding-top: 16%;
   padding-left: 14%
 }
 
 #splashScreen{
   position: absolute;
-  background-color: #161a22;
-  left: 15%;
-
-  padding-bottom: 85px;
+  background-color: #12141b;
+  left: 14%;
+  margin-top: 0px;
+  padding-bottom: 30px;
 }
 
 #splashScreen img{
-  z-index: 0;
+  z-index: -1;
 }
 
 #splashScreen h1{
   position: absolute;
-  top: -5px;
-  right: 470px;
+  bottom: 37px;
+  right: 460px;
   z-index: 1;
   color: white;
-  font-size: 30px;
+  font-size: 33px;
   font-family: 'Ubuntu', sans-serif;
   font-weight:700;
 }
 
 #splashScreen h2{
   position: absolute;
-  top: 15px;
-  right: 20px;
+  bottom: 33px;
+  right: 525px;
   z-index: 1;
-  color: white;
+  color: rgb(109, 109, 109);
   font-size: 11px;
   font-family: 'Ubuntu', sans-serif;
   font-weight:400;
 }
+
+#splashInfo1{
+  position: absolute;
+  bottom: 8px;
+  left: 160px;
+  z-index: 1;
+  color: rgb(50, 50, 50);
+  font-size: 9px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight:400;
+}
+
+#splashInfo2{
+  position: absolute;
+  bottom: -2px;
+  left: 200px;
+  z-index: 1;
+  color: rgb(50, 50, 50);
+  font-size: 9px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight:400;
+}
+
+#splashGen1{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(186, 186, 186);
+  text-decoration: underline;
+  position: absolute;
+  right: 25px;
+  bottom: 70px;
+  z-index: 2;
+}
+
+#splashGen2{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-size: 15px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight:700;
+  color: rgb(186, 186, 186);
+  text-decoration: underline;
+  position: absolute;
+  right: 25px;
+  bottom: 50px;
+  z-index: 2;
+}
+
+.splashbuttons:hover{
+  color: rgb(0, 255, 30);
+}
+
 
 #mainCanvas{
   position: absolute;
@@ -197,7 +253,6 @@ button {
 .mdc-icon-button:visited{
   color: rgb(86, 89, 93) !important;
 }
-
 
 
 #leftbutton{

@@ -1,3 +1,4 @@
+const { shell } = require('electron');
 var smallFonts = ["50px ", "60px "]
 document.body.style.zoom = "100%";
 
@@ -336,6 +337,16 @@ document.getElementById("gen_button").addEventListener("click", function(){
     refresh_default("canvas_a");
  });
 
+ document.getElementById("splashGen1").addEventListener("click", function(){
+    shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
+});
+
+document.getElementById("splashGen2").addEventListener("click", function(){
+    document.getElementById("splashScreen").style.display = 'none';
+    document.getElementById("canvas_a").style.opacity = "1";
+    refresh_default("canvas_a");
+});
+
 document.getElementById("filetypeBtn").addEventListener("click", function(){
     var canvas = document. getElementById("canvas_a");
     var anchor = document.createElement("a");
@@ -387,7 +398,17 @@ document.getElementById("zmin").addEventListener("click", function(){
 
 document.getElementById("zmout").addEventListener("click", function(){
     var csize = getComputedStyle(document.getElementById('canvas_a')).zoom;
-    document.getElementById("canvas_a").style.zoom = 0.8*csize;
+    document.getElementById("canvas_a").style.zoom = csize/1.2;
+});
+
+document.getElementById("lm-home").addEventListener("click", function(){
+    document.getElementById("splashScreen").style.display = 'block';
+    document.getElementById("canvas_a").style.opacity = "0";
+});
+
+document.getElementById("lm-refresh").addEventListener("click", function(){
+    document.getElementById("splashScreen").style.display = 'none';
+    document.getElementById("canvas_a").style.opacity = "100";
 });
 
     
