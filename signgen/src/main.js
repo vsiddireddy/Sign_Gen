@@ -152,8 +152,9 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
     return [wordSize, subSize];
 }
 
-
 async function refresh_default(canvas) {
+    var consoleText = "";
+
     //canvas
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
@@ -161,13 +162,10 @@ async function refresh_default(canvas) {
 
     //colors
     var colors = await applyColors();
-    console.log(colors);
-
-    
     const randomColor_a = colors.m1;
     const randomColor_a1 = colors.m1;
-    const randomColor_b = colors.m2
-    const shadowColor = 'rgb(27, 27, 27)';
+    const randomColor_b = colors.m2;
+    consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "{ W: " + canvas_a.width + " H: " + canvas_a.height + " }   ";
 
       //logo
       /*
@@ -187,14 +185,15 @@ async function refresh_default(canvas) {
       };
       */
     
-      ctx_a.fillStyle = randomColor_a;
-      ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
+    //Fill Background
+    ctx_a.fillStyle = randomColor_a;
+    ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
      
-    //artifacts
+    //Artifacts
     ctx_a.fillStyle = randomColor_a1;
     ctx_a.beginPath();
 
-    artifact = getRandomInt(5);
+    artifact = getRandomInt(2);
     if (artifact == 0){
         ctx_a.fillRect(0, canvas_a.height/5, canvas_a.width, canvas_a.height/1.5);
         ctx_a.stroke();
@@ -204,10 +203,7 @@ async function refresh_default(canvas) {
         ctx_a.fill();
     }
 
-  
-    
-
-    //words
+    //Words
     var wordsArr = await GetRandomWord();
     text_a = wordsArr[0];
     if (wordsArr[1] != undefined) {
@@ -229,7 +225,7 @@ async function refresh_default(canvas) {
         }
         text_b = "";
     }
-    console.log(wordsArr);
+    consoleText = "WORDS: { " + wordsArr  + " }   " + consoleText;
 
     if (document.getElementById("word1").value != "") {
         text_a = document.getElementById("word1").value;
@@ -241,20 +237,23 @@ async function refresh_default(canvas) {
         text_c = "";
     }
 
-    fontalign = getRandomInt(4);
-    fa_text = "center";
-    if(fontalign == 0){
-        fa_text = "center"; //Change to left later
-    }
-
     var abc = await ApplyFont();
-    console.log(abc);
+    consoleText = "FONT: { " + abc + " }   " + consoleText;
     var shadow = 0;
     if(colors.h1 != ""){
       shadow = getRandomInt(4);   
     }
     
-    ctx_a.textAlign = fa_text;
+    //FONT
+    var sheet = window.document.styleSheets[0];
+    var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
+    console.log(test);
+    var randSize = getRandomInt(5)/100;
+
+    var randMS = 0.11 + randSize;
+    var mainSize = Math.round(randMS * canvas_a.width) + "px ";
+    ctx_a.font = (mainSize) + abc + ", " + test;
+    ctx_a.baseline = "middle";
 
     //shadows
     if(shadow == 1 || shadow == 2){
@@ -278,7 +277,6 @@ async function refresh_default(canvas) {
     }
 
     
-    
     //Word 1
     if(text_a != ""){
         ctx_a.globalCompositeOperation = "source-over";  
@@ -293,16 +291,16 @@ async function refresh_default(canvas) {
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
         } else {
-            ctx_a.textBaseline = "alphabetic";
+            ctx_a.textBaseline = "bottom";
         }
         
         //Shadow For Word 2
-        ctx_a.fillText(text_b, canvas_a.width/1.97, canvas_a.height/1.4);
+        ctx_a.fillText(text_b, canvas_a.width/1.97, (canvas_a.height/2));
     } else {
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
         } else {
-            ctx_a.textBaseline = "alphabetic";
+            ctx_a.textBaseline = "top";
         }
     }
     
@@ -310,30 +308,36 @@ async function refresh_default(canvas) {
     if(text_b != ""){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = randomColor_b;
-        ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/1.4);
+        ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/2);
     }
 
-    var sheet = window.document.styleSheets[0];
-    var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
-    var randSize = getRandomInt(5)/100;
-
+    //Subtext
     if(text_c != ""){
+        console.log(test);
+        console.log(abc);
+
+        let metrics = ctx_a.measureText(text_a);
+        let actualHeight = (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) * 0.9;
+
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.textAlign = "center"; 
-        var randSS = 0.03 + randSize;
+        ctx_a.textBaseline = "top";
+
+        var randSS = 0.01 + randSize;
         var subSize = Math.round(randSS * canvas_a.width) + "px ";
+        
         ctx_a.font = (subSize) + abc + ", " + test;
-        if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
-            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
+        if ((wordsArr[3] == true) && (wordsArr[2] != "")) { //if text_b doesn't exist
+            console.log(actualHeight);
+            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*1));
         } else {
-            ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.2);
+            console.log(actualHeight);
+            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*1.3));
         }
     }
 
-    var randMS = 0.11 + randSize;
-    var mainSize = Math.round(randMS * canvas_a.width) + "px ";
-    ctx_a.font = (mainSize) + abc + ", " + test;
-    ctx_a.baseline = "middle";
+    console.log(consoleText);
+    document.getElementById("console_text").innerHTML = consoleText;
 }
 
 i = 0;
@@ -424,7 +428,7 @@ document.getElementById("lm-refresh").addEventListener("click", function(){
 });
 
     
-const {remote} = require('electron');
+const {remote} = require('electron').remote;
 document.getElementById("x_button").addEventListener("click", function (){
     console.log("cxxxx");
     var window = remote.getCurrentWindow();

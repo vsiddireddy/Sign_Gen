@@ -134,6 +134,7 @@ canvas{
   top: 0;
   margin-top: 5px;
   right: 10px;
+  z-index: 2;
 }
 
 #x_button:hover{
@@ -153,31 +154,49 @@ canvas{
 #right_menu{
   border-radius: 15px;
   height: 100%;
-  width: 300px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+  width: 300px; 
+  position: fixed;
+  z-index: 1; 
+  top: 0;
   right: 0;
   background-color: #1c212d;
-  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-x: hidden; 
   padding-top: 45px;
 }
 
 #left_menu{
   border-radius: 15px;
   height: 100%;
-  width: 60px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+  width: 60px;
+  position: fixed; 
+  z-index: 1;
+  top: 0; 
   left: 0;
   background-color: #1c212d;
   padding-top: 40px;
 }
 
+#bottom_region{
+  height: 15px;
+  width: 100%; 
+  position: fixed;
+  z-index: 2; 
+  bottom: 0; 
+
+  background-color: #12141b; 
+  color: rgb(85, 85, 85);
+
+  text-decoration: none;
+  text-align: center;
+  font-size: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight:400;
+  padding-bottom: 15px;
+}
+
 
 #bottom_left{
-  padding-top: 260px;
+  padding-top: 240px;
 }
 
 button {
