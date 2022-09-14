@@ -249,13 +249,17 @@ async function refresh_default(canvas) {
 
     var abc = await ApplyFont();
     console.log(abc);
-    var shadow = getRandomInt(5);
+    var shadow = 0;
+    if(colors.h1 != ""){
+      shadow = getRandomInt(4);   
+    }
+    
     ctx_a.textAlign = fa_text;
 
     //shadows
     if(shadow == 1 || shadow == 2){
         ctx_a.globalCompositeOperation = "source-over";  
-        ctx_a.fillStyle = shadowColor;
+        ctx_a.fillStyle = colors.h1;
         if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
         } else {
@@ -272,6 +276,8 @@ async function refresh_default(canvas) {
             ctx_a.textBaseline = "alphabetic";
         }
     }
+
+    
     
     //Word 1
     if(text_a != ""){
@@ -282,7 +288,7 @@ async function refresh_default(canvas) {
 
     if(shadow == 1 || shadow == 2){
         ctx_a.globalCompositeOperation = "source-over";  
-        ctx_a.fillStyle = shadowColor;
+        ctx_a.fillStyle = colors.h1;
         
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
@@ -309,11 +315,13 @@ async function refresh_default(canvas) {
 
     var sheet = window.document.styleSheets[0];
     var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
+    var randSize = getRandomInt(5)/100;
 
     if(text_c != ""){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.textAlign = "center"; 
-        var subSize = Math.round(0.06 * canvas_a.width) + "px ";
+        var randSS = 0.03 + randSize;
+        var subSize = Math.round(randSS * canvas_a.width) + "px ";
         ctx_a.font = (subSize) + abc + ", " + test;
         if (wordsArr[3] == true && wordsArr[2] != "") { // isprefix is true and text_b exists
             ctx_a.fillText(text_c, canvas_a.width/2, canvas_a.height/1.5);
@@ -322,7 +330,8 @@ async function refresh_default(canvas) {
         }
     }
 
-    var mainSize = (0.15 * canvas_a.width) + "px ";
+    var randMS = 0.11 + randSize;
+    var mainSize = Math.round(randMS * canvas_a.width) + "px ";
     ctx_a.font = (mainSize) + abc + ", " + test;
     ctx_a.baseline = "middle";
 }
