@@ -259,23 +259,27 @@ async function refresh_default(canvas) {
         ctx_a.fillStyle = colors.h1;
         if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
+            console.log("middle");
         } else {
             ctx_a.textBaseline = "alphabetic";
+            console.log("alphabetic");
         }
         ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
     } else {
         ctx_a.globalCompositeOperation = "source-over";  
         if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
+            console.log("middle");
 
         } else {
             ctx_a.textBaseline = "alphabetic";
+            console.log("alphabetic");
         }
     }
 
     //Draw Word 1
     if(text_a != ""){
-        ctx_a.globalCompositeOperation = "source-over";  
+        //ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = randomColor_b;
         ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
     }
@@ -316,18 +320,18 @@ async function refresh_default(canvas) {
 
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.textAlign = "center"; 
-        ctx_a.textBaseline = "middle";
+        ctx_a.textBaseline = "top";
 
-        var randSS = 0.01 + randSize;
+        var randSS = 0.02 + randSize;
         var subSize = Math.round(randSS * canvas_a.width) + "px ";
         
         ctx_a.font = (subSize) + abc + ", " + test;
         if ((wordsArr[3] == true) && (wordsArr[2] != "")) { //if text_b doesn't exist
             console.log(actualHeight);
-            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*1));
+            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*0.8));
         } else {
             console.log(actualHeight);
-            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*1.3));
+            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*1.4));
         }
     }
 
