@@ -128,24 +128,11 @@ canvas{
   padding-bottom: 15px;
 }
 
-#x_button{
-  -webkit-app-region: no-drag;
-  position: fixed;
-  top: 0;
-  margin-top: 5px;
-  right: 10px;
-  z-index: 2;
-}
-
-#x_button:hover{
-  color: red;
-}
-
 #signgentext{
   position: fixed;
   top: 0;
   margin-top: 10px;
-  left: 10px;
+  right: 15px;
   font-size: 17px;
   font-family: 'Ubuntu', sans-serif;
   font-weight:700;
@@ -212,6 +199,7 @@ button {
   display: block;
   font-size: 15px;
   font-family: 'Ubuntu', sans-serif;
+  border-radius: 8px;
 }
 
 .canvasZoom{
@@ -333,6 +321,7 @@ select{
   border: none;
   color: white;
   padding: 5px 72px;
+  border-radius: 8px;
   
   
   text-align: center;
@@ -349,8 +338,6 @@ select option{
   font-family: 'Ubuntu', sans-serif;   
 }
 
-
-
 h2,h3 {
   color: white;
 }
@@ -358,6 +345,7 @@ h2,h3 {
 input{
   margin-top: 0px;
   margin-bottom: 10px;
+  border-radius: 8px;
   margin-left: auto;
   margin-right: auto;
   background-color: #232938; 
