@@ -191,13 +191,15 @@ async function refresh_default(canvas) {
       };
       */
 
+      // TODO to change logo size and keep it centered, change scale variable. Bigger scale means smaller logo. Need to work on resizing
       var logo = await GetRandomLogo();
       console.log(logo);
       var img = new Image();
       img.onload = function() {
-          var x = (ctx_a.canvas.width  - (img.width/4))/2;
-          var y = (ctx_a.canvas.height - (img.height/4))/2;
-          ctx_a.drawImage(img, x, y, img.width/4, img.height/4);
+          var scale = 8;
+          var x = (ctx_a.canvas.width  - (img.width/scale))/2;
+          var y = (ctx_a.canvas.height - (img.height/scale))/2;
+          ctx_a.drawImage(img, x, y, img.width/scale, img.height/scale);
       }
       img.src = logo;
     
@@ -363,6 +365,14 @@ while(i<5){
     document.getElementById("canvas_a").style.opacity = "0";
     i = i+1;
 }
+
+document.getElementById("toggleLogo").addEventListener("change", function (event) {
+    if (event.target.checked) {
+        console.log("Checked");
+    } else {
+        console.log("Not checked");
+    }
+});
 
 document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
