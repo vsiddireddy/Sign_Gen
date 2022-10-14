@@ -32,7 +32,7 @@ async function printJSON() {
 }
 
 async function ApplyFont() {
-    var index = getRandomInt(66); // currently 66 fonts in corporateArr in json file. Need to make this dynamic
+    var index = getRandomInt(66); // currently 66 fonts in corporateArr in json file. Need to make this dynamic TODO
     const response = await fetch("../assets/corporate/font_list_corporate.json");
     const json = await response.json();
     //console.log(json);
@@ -43,6 +43,12 @@ async function ApplyFont() {
     var sheet = window.document.styleSheets[0];
     sheet.insertRule(css); // adds new font into css file
     return font;
+}
+
+async function GetRandomLogo() {
+    var index = getRandomInt(200);
+    var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
+    return svgURL;
 }
 
 async function RandomCapitilization(w1, w2, isPrefix) {
@@ -184,6 +190,16 @@ async function refresh_default(canvas) {
         ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
       };
       */
+
+      var logo = await GetRandomLogo();
+      console.log(logo);
+      var img = new Image();
+      img.onload = function() {
+          var x = (ctx_a.canvas.width  - (img.width/4))/2;
+          var y = (ctx_a.canvas.height - (img.height/4))/2;
+          ctx_a.drawImage(img, x, y, img.width/4, img.height/4);
+      }
+      img.src = logo;
     
     //Fill Background
     ctx_a.fillStyle = randomColor_a;
@@ -337,6 +353,8 @@ async function refresh_default(canvas) {
 
     console.log(consoleText);
     document.getElementById("console_text").innerHTML = consoleText;
+
+
 }
 
 i = 0;
