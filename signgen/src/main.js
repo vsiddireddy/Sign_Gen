@@ -45,10 +45,20 @@ async function ApplyFont() {
     return font;
 }
 
-async function GetRandomLogo() {
+async function GetRandomLogo(ctx_a) {
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
-    return svgURL;
+    var img = new Image();
+    if (document.getElementById("toggleLogo").checked == true) {
+        img.src = svgURL;
+        img.onload = async function() {
+            var scale = 8;
+            var x = (ctx_a.canvas.width  - (img.width/scale))/2;
+            var y = (ctx_a.canvas.height - (img.height/scale))/2;
+            ctx_a.drawImage(img, x, y, img.width/scale, img.height/scale);
+        }
+    }
+    //return svgURL;
 }
 
 async function RandomCapitilization(w1, w2, isPrefix) {
@@ -192,16 +202,8 @@ async function refresh_default(canvas) {
       */
 
       // TODO to change logo size and keep it centered, change scale variable. Bigger scale means smaller logo. Need to work on resizing
-      var logo = await GetRandomLogo();
-      console.log(logo);
-      var img = new Image();
-      img.onload = function() {
-          var scale = 8;
-          var x = (ctx_a.canvas.width  - (img.width/scale))/2;
-          var y = (ctx_a.canvas.height - (img.height/scale))/2;
-          ctx_a.drawImage(img, x, y, img.width/scale, img.height/scale);
-      }
-      img.src = logo;
+      GetRandomLogo(ctx_a);
+      //console.log(logo);
     
     //Fill Background
     ctx_a.fillStyle = randomColor_a;
