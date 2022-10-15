@@ -175,7 +175,7 @@ async function refresh_default(canvas) {
     var canvas_a = document.getElementById(canvas);
     var ctx_a = canvas_a.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
-
+    GetRandomLogo(ctx_a);
     //colors
     var colors = await applyColors();
     const randomColor_a = colors.m1;
@@ -202,7 +202,7 @@ async function refresh_default(canvas) {
       */
 
       // TODO to change logo size and keep it centered, change scale variable. Bigger scale means smaller logo. Need to work on resizing
-      GetRandomLogo(ctx_a);
+      
       //console.log(logo);
     
     //Fill Background
