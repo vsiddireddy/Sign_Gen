@@ -271,7 +271,7 @@ async function refresh_default(canvas) {
     var randMS = 0.11 + randSize;
     var mainSize = Math.round(randMS * canvas_a.width) + "px ";
     ctx_a.font = (mainSize) + abc + ", " + test;
-    //ctx_a.baseline = "middle";
+    ctx_a.baseline = "middle";
 
     //Shadow For Word 1
     if(shadow == 1 || shadow == 2){
@@ -280,9 +280,9 @@ async function refresh_default(canvas) {
         if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
             ctx_a.textBaseline = "middle";
             console.log("middle");
-        } else if (text_b != "" && text_c == "") {
-            ctx_a.textBaseline = "bottom";
-            console.log("bottom");
+        } else {
+            ctx_a.textBaseline = "alphabetic";
+            console.log("alphabetic");
         }
         ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
     } else {
