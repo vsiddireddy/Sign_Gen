@@ -199,12 +199,12 @@ async function cropImageFromCanvas(ctx) {
     var image = canvas.toDataURL();
   }
 
-async function refresh_default(canvas) {
+async function refresh_default(canvas1, canvas2, canvas3) {
+    //refresh_default("canvas_back", "canvas_text", "canvas_post");
     var consoleText = "";
-    refresh_back(canvas);
-    refresh_post(canvas);
-    refresh_text(canvas);
-
+    refresh_back(canvas1);
+    refresh_text(canvas2);
+    refresh_post(canvas3);
 }
 
 async function refresh_back(canvas) {
@@ -408,7 +408,7 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
 document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
-    refresh_default("canvas_back");
+    refresh_default("canvas_back", "canvas_text", "canvas_post");
     //refresh_text("canvas_text");
     //refresh_post("canvas_post");
     //refresh_back("canvas_back");
@@ -421,7 +421,7 @@ document.getElementById("gen_button").addEventListener("click", function(){
 document.getElementById("splashGen2").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
-    refresh_default("canvas_back");
+    refresh_default("canvas_back", "canvas_text", "canvas_post");
     //refresh_text("canvas_text");
     //refresh_post("canvas_post");
     //refresh_back("canvas_back");
