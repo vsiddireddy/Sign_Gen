@@ -168,12 +168,43 @@ async function SelectFontLayout(w1, w2, sub, isPrefix) {
     return [wordSize, subSize];
 }
 
+async function cropImageFromCanvas(ctx) {
+    var canvas = ctx.canvas, 
+      w = canvas.width, h = canvas.height,
+      pix = {x:[], y:[]},
+      imageData = ctx.getImageData(0,0,canvas.width,canvas.height),
+      x, y, index;
+    
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        index = (y * w + x) * 4;
+        if (imageData.data[index+3] > 0) {
+          pix.x.push(x);
+          pix.y.push(y);
+        } 
+      }
+    }
+    pix.x.sort(function(a,b){return a-b});
+    pix.y.sort(function(a,b){return a-b});
+    var n = pix.x.length-1;
+    
+    w = 1 + pix.x[n] - pix.x[0];
+    h = 1 + pix.y[n] - pix.y[0];
+    var cut = ctx.getImageData(pix.x[0], pix.y[0], w, h);
+  
+    canvas.width = w;
+    canvas.height = h;
+    ctx.putImageData(cut, 0, 0);
+          
+    var image = canvas.toDataURL();
+  }
+
 async function refresh_default(canvas) {
     var consoleText = "";
 
     //canvas
-    var canvas_a = document.getElementById(canvas);
-    var ctx_a = canvas_a.getContext("2d");
+    var canvas_back = document.getElementById(canvas);
+    var ctx_a = canvas_back.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
     GetRandomLogo(ctx_a);
     //colors
@@ -181,33 +212,11 @@ async function refresh_default(canvas) {
     const randomColor_a = colors.m1;
     const randomColor_a1 = colors.m1;
     const randomColor_b = colors.m2;
-    consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "{ W: " + canvas_a.width + " H: " + canvas_a.height + " }   ";
-
-      //logo
-      /*
-      var baseImage = new Image();
-      baseImage.src = '../assets/corporate/logos/PNG/JRO_D_Basic_' + (getRandomInt(199)+1) + '.png';
-      var imageDimensions = (canvas_a.width + canvas_a.height)/7;
-      baseImage.onload = async function() {
-        ctx_a.drawImage(baseImage, canvas_a.width/4, canvas_a.height/2, imageDimensions, imageDimensions);
-        ctx_a.globalCompositeOperation = "source-in";
-        ctx_a.fillStyle = randomColor_b;
-        ctx_a.fillRect(canvas_a.width/4, canvas_a.height/4, imageDimensions, imageDimensions);
-        
-        //background
-        ctx_a.globalCompositeOperation = "destination-over";
-        ctx_a.fillStyle = randomColor_a;
-        ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
-      };
-      */
-
-      // TODO to change logo size and keep it centered, change scale variable. Bigger scale means smaller logo. Need to work on resizing
-      
-      //console.log(logo);
+    consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "{ W: " + canvas_back.width + " H: " + canvas_back.height + " }   ";
     
     //Fill Background
     ctx_a.fillStyle = randomColor_a;
-    ctx_a.fillRect(0, 0, canvas_a.width, canvas_a.height);
+    ctx_a.fillRect(0, 0, canvas_back.width, canvas_back.height);
      
     //Artifacts
     ctx_a.fillStyle = randomColor_a1;
@@ -215,13 +224,28 @@ async function refresh_default(canvas) {
 
     artifact = getRandomInt(2);
     if (artifact == 0){
-        ctx_a.fillRect(0, canvas_a.height/5, canvas_a.width, canvas_a.height/1.5);
+        ctx_a.fillRect(0, canvas_back.height/5, canvas_back.width, canvas_back.height/1.5);
         ctx_a.stroke();
     }
     else if(artifact == 1){
-        ctx_a.arc(canvas_a.width/2, canvas_a.height/2, 90, 0, 2 * 3*Math.PI*2);
+        ctx_a.arc(canvas_back.width/2, canvas_back.height/2, 90, 0, 2 * 3*Math.PI*2);
         ctx_a.fill();
     }
+}
+
+async function refresh_text(canvas) {
+    //canvas
+    var canvas_back = document.getElementById(canvas);
+    var ctx_a = canvas_back.getContext("2d");
+    ctx_a.clearRect(0, 0, 633, 291);
+
+    //colors
+    var colors = await applyColors();
+    const randomColor_a = colors.m1;
+    const randomColor_a1 = colors.m1;
+    const randomColor_b = colors.m2;
+    var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "{ W: " + canvas_back.width + " H: " + canvas_back.height + " }   ";
+    
 
     //Words
     var wordsArr = await GetRandomWord();
@@ -261,7 +285,7 @@ async function refresh_default(canvas) {
     consoleText = "FONT: { " + abc + " }   " + consoleText;
     var shadow = 0;
     if(colors.h1 != ""){
-      shadow = getRandomInt(4);   
+        shadow = getRandomInt(4);   
     }
     
     //Choose Font/Size
@@ -269,7 +293,7 @@ async function refresh_default(canvas) {
     var test = sheet.cssRules[1].cssText.split(';')[0].split(" ")[3];
     var randSize = getRandomInt(5)/100;
     var randMS = 0.11 + randSize;
-    var mainSize = Math.round(randMS * canvas_a.width) + "px ";
+    var mainSize = Math.round(randMS * canvas_back.width) + "px ";
     ctx_a.font = (mainSize) + abc + ", " + test;
     ctx_a.baseline = "middle";
 
@@ -284,7 +308,7 @@ async function refresh_default(canvas) {
             ctx_a.textBaseline = "alphabetic";
             console.log("alphabetic");
         }
-        ctx_a.fillText(text_a, canvas_a.width/1.97, canvas_a.height/1.97);
+        ctx_a.fillText(text_a, canvas_back.width/1.97, canvas_back.height/1.97);
     } else {
         ctx_a.globalCompositeOperation = "source-over";  
         if ((text_b == "" && text_c == "") || (wordsArr[3] == true)) {
@@ -301,7 +325,7 @@ async function refresh_default(canvas) {
     if(text_a != ""){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = randomColor_b;
-        ctx_a.fillText(text_a, canvas_a.width/2, canvas_a.height/2);
+        ctx_a.fillText(text_a, canvas_back.width/2, canvas_back.height/2);
     }
 
     //Draw Shadow For Word 2
@@ -314,7 +338,7 @@ async function refresh_default(canvas) {
         } else {
             ctx_a.textBaseline = "top";
         }
-        ctx_a.fillText(text_b, canvas_a.width/1.97, (canvas_a.height/2));
+        ctx_a.fillText(text_b, canvas_back.width/1.97, (canvas_back.height/2));
     } else {
         if ((text_b == "" && wordsArr[3] == false) || (wordsArr[3] == true)) { //if main text is single line
             ctx_a.textBaseline = "middle";
@@ -327,7 +351,7 @@ async function refresh_default(canvas) {
     if(text_b != ""){
         ctx_a.globalCompositeOperation = "source-over";  
         ctx_a.fillStyle = randomColor_b;
-        ctx_a.fillText(text_b, canvas_a.width/2, canvas_a.height/2);
+        ctx_a.fillText(text_b, canvas_back.width/2, canvas_back.height/2);
     }
 
     //Draw Subtext
@@ -343,29 +367,20 @@ async function refresh_default(canvas) {
         ctx_a.textBaseline = "top";
 
         var randSS = 0.02 + randSize;
-        var subSize = Math.round(randSS * canvas_a.width) + "px ";
+        var subSize = Math.round(randSS * canvas_back.width) + "px ";
         
         ctx_a.font = (subSize) + abc + ", " + test;
         if ((wordsArr[3] == true) && (wordsArr[2] != "")) { //if text_b doesn't exist
             console.log(actualHeight);
-            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*0.8));
+            ctx_a.fillText(text_c, canvas_back.width/2, (canvas_back.height/2)+((actualHeight)*0.8));
         } else {
             console.log(actualHeight);
-            ctx_a.fillText(text_c, canvas_a.width/2, (canvas_a.height/2)+((actualHeight)*1.4));
+            ctx_a.fillText(text_c, canvas_back.width/2, (canvas_back.height/2)+((actualHeight)*1.4));
         }
     }
 
     console.log(consoleText);
     document.getElementById("console_text").innerHTML = consoleText;
-
-
-}
-
-i = 0;
-while(i<5){
-    refresh_default("canvas_a");
-    document.getElementById("canvas_a").style.opacity = "0";
-    i = i+1;
 }
 
 document.getElementById("toggleLogo").addEventListener("change", function (event) {
@@ -378,8 +393,9 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
 
 document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
-    document.getElementById("canvas_a").style.opacity = "1";
-    refresh_default("canvas_a");
+    document.getElementById("canvas_back").style.opacity = "1";
+    refresh_default("canvas_back");
+    refresh_text("canvas_text");
  });
 
  document.getElementById("splashGen1").addEventListener("click", function(){
@@ -388,12 +404,13 @@ document.getElementById("gen_button").addEventListener("click", function(){
 
 document.getElementById("splashGen2").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
-    document.getElementById("canvas_a").style.opacity = "1";
-    refresh_default("canvas_a");
+    document.getElementById("canvas_back").style.opacity = "1";
+    refresh_default("canvas_back");
+    refresh_text("canvas_text");
 });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
-    var canvas = document. getElementById("canvas_a");
+    var canvas = document. getElementById("canvas_back");
     var anchor = document.createElement("a");
     if (document.getElementById("filetypeSelect").value == 'PNG') {
         anchor.href = canvas.toDataURL("image/png");
@@ -409,7 +426,7 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
 });
 
 document.getElementById("UpdateCanvas").addEventListener("click", function(){
-    var ctx_a = canvas_a.getContext("2d");
+    var ctx_a = canvas_back.getContext("2d");
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
     if (w/h >= 0.25 && w/h <= 4) {
@@ -422,9 +439,9 @@ document.getElementById("UpdateCanvas").addEventListener("click", function(){
     console.log("RATIO: " + w/h);
 });
 
-document.getElementById("canvas_a").addEventListener("contextmenu", function(ev){
+document.getElementById("canvas_back").addEventListener("contextmenu", function(ev){
     ev.preventDefault();
-    var image_png = document.getElementById("canvas_a").toDataURL("image/png");
+    var image_png = document.getElementById("canvas_back").toDataURL("image/png");
 
     var download = document.createElement('a');
     download.href = image_png;
@@ -437,23 +454,23 @@ document.getElementById("canvas_a").addEventListener("contextmenu", function(ev)
     }, false);
 
 document.getElementById("zmin").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementById('canvas_a')).zoom;
-    document.getElementById("canvas_a").style.zoom = 1.2*csize;
+    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
+    document.getElementById("canvas_back").style.zoom = 1.2*csize;
 });
 
 document.getElementById("zmout").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementById('canvas_a')).zoom;
-    document.getElementById("canvas_a").style.zoom = csize/1.2;
+    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
+    document.getElementById("canvas_back").style.zoom = csize/1.2;
 });
 
 document.getElementById("lm-home").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'block';
-    document.getElementById("canvas_a").style.opacity = "0";
+    document.getElementById("canvas_back").style.opacity = "0";
 });
 
 document.getElementById("lm-refresh").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
-    document.getElementById("canvas_a").style.opacity = "100";
+    document.getElementById("canvas_back").style.opacity = "100";
 }); 
 
 /*
