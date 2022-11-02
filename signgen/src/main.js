@@ -206,7 +206,7 @@ async function refresh_default(canvas) {
     var canvas_back = document.getElementById(canvas);
     var ctx_a = canvas_back.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
-    GetRandomLogo(ctx_a);
+    //GetRandomLogo(ctx_a);
     //colors
     var colors = await applyColors();
     const randomColor_a = colors.m1;
@@ -231,6 +231,14 @@ async function refresh_default(canvas) {
         ctx_a.arc(canvas_back.width/2, canvas_back.height/2, 90, 0, 2 * 3*Math.PI*2);
         ctx_a.fill();
     }
+}
+
+async function refresh_post(canvas) {
+    //canvas
+    var canvas_post = document.getElementById(canvas);
+    var ctx_a = canvas_post.getContext("2d");
+    ctx_a.clearRect(0, 0, 633, 291);
+    GetRandomLogo(ctx_a);
 }
 
 async function refresh_text(canvas) {
@@ -396,6 +404,7 @@ document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("canvas_back").style.opacity = "1";
     refresh_default("canvas_back");
     refresh_text("canvas_text");
+    refresh_post("canvas_post");
  });
 
  document.getElementById("splashGen1").addEventListener("click", function(){
@@ -407,6 +416,7 @@ document.getElementById("splashGen2").addEventListener("click", function(){
     document.getElementById("canvas_back").style.opacity = "1";
     refresh_default("canvas_back");
     refresh_text("canvas_text");
+    refresh_post("canvas_post");
 });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
