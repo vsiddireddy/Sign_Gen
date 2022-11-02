@@ -201,7 +201,13 @@ async function cropImageFromCanvas(ctx) {
 
 async function refresh_default(canvas) {
     var consoleText = "";
+    refresh_back(canvas);
+    refresh_post(canvas);
+    refresh_text(canvas);
 
+}
+
+async function refresh_back(canvas) {
     //canvas
     var canvas_back = document.getElementById(canvas);
     var ctx_a = canvas_back.getContext("2d");
@@ -403,8 +409,9 @@ document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
     refresh_default("canvas_back");
-    refresh_text("canvas_text");
-    refresh_post("canvas_post");
+    //refresh_text("canvas_text");
+    //refresh_post("canvas_post");
+    //refresh_back("canvas_back");
  });
 
  document.getElementById("splashGen1").addEventListener("click", function(){
@@ -415,8 +422,9 @@ document.getElementById("splashGen2").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
     refresh_default("canvas_back");
-    refresh_text("canvas_text");
-    refresh_post("canvas_post");
+    //refresh_text("canvas_text");
+    //refresh_post("canvas_post");
+    //refresh_back("canvas_back");
 });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
