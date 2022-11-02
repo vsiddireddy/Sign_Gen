@@ -473,12 +473,20 @@ document.getElementById("canvas_back").addEventListener("contextmenu", function(
 
 document.getElementById("zmin").addEventListener("click", function(){
     var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
     document.getElementById("canvas_back").style.zoom = 1.2*csize;
+    document.getElementById("canvas_text").style.zoom = 1.2*csize;
+    document.getElementById("canvas_post").style.zoom = 1.2*csize;
 });
 
 document.getElementById("zmout").addEventListener("click", function(){
     var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
     document.getElementById("canvas_back").style.zoom = csize/1.2;
+    document.getElementById("canvas_text").style.zoom = csize/1.2;
+    document.getElementById("canvas_post").style.zoom = csize/1.2;
 });
 
 document.getElementById("lm-home").addEventListener("click", function(){
