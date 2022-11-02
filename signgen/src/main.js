@@ -202,9 +202,9 @@ async function cropImageFromCanvas(ctx) {
 async function refresh_default(canvas1, canvas2, canvas3) {
     //refresh_default("canvas_back", "canvas_text", "canvas_post");
     var consoleText = "";
-    refresh_back(canvas1);
     refresh_text(canvas2);
     refresh_post(canvas3);
+    refresh_back(canvas1);
 }
 
 async function refresh_back(canvas) {
