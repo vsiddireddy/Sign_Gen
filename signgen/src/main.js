@@ -53,9 +53,9 @@ async function GetRandomLogo(ctx_a) {
         img.src = svgURL;
         img.onload = async function() {
             var scale = 8;
-            var x = (ctx_a.canvas.width  - (img.width/scale))/2;
-            var y = (ctx_a.canvas.height - (img.height/scale))/2;
-            ctx_a.drawImage(img, x, y, img.width/scale, img.height/scale);
+            var x = (ctx_a.canvas.width  - (img.width / scale)) / 2;
+            var y = (ctx_a.canvas.height - (img.height / scale)) / 2;
+            ctx_a.drawImage(img, x, y, img.width / scale, img.height / scale);
         }
     }
     //return svgURL;
