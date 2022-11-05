@@ -49,7 +49,7 @@ async function GetRandomLogo(ctx_a) {
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
     var img = new Image();
-    if (document.getElementById("toggleLogo").checked == true) {
+    if (document.getElementById("toggleLogo").checked) {
         img.src = svgURL;
         img.onload = async function() {
             var scale = 8;
