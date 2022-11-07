@@ -45,7 +45,7 @@ async function ApplyFont() {
     return font;
 }
 
-async function GetRandomLogo(ctx_a) {
+async function GetRandomLogo(ctx_a, canvas) {
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
     var img = new Image();
@@ -55,6 +55,15 @@ async function GetRandomLogo(ctx_a) {
             var scale = 8;
             var x = (ctx_a.canvas.width  - (img.width / scale)) / 2;
             var y = (ctx_a.canvas.height - (img.height / scale)) / 2;
+
+            // draw color
+            ctx_a.fillStyle = "#09f";
+            ctx_a.fillRect(x, y, img.width / scale, img.height / scale);
+
+            // set composite mode
+            ctx_a.globalCompositeOperation = "destination-atop";
+
+            // draw image
             ctx_a.drawImage(img, x, y, img.width / scale, img.height / scale);
         }
     }
@@ -244,7 +253,7 @@ async function refresh_post(canvas) {
     var canvas_post = document.getElementById(canvas);
     var ctx_a = canvas_post.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
-    GetRandomLogo(ctx_a);
+    GetRandomLogo(ctx_a, canvas_post);
 }
 
 async function refresh_text(canvas) {
