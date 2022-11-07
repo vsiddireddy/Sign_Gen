@@ -57,7 +57,9 @@ async function GetRandomLogo(ctx_a, canvas) {
             var y = (ctx_a.canvas.height - (img.height / scale)) / 2;
 
             // draw color
-            ctx_a.fillStyle = "#09f";
+            var colors = await applyColors();
+            ctx_a.fillStyle = colors.m2;
+            //ctx_a.fillStyle = "#09f";
             ctx_a.fillRect(x, y, img.width / scale, img.height / scale);
 
             // set composite mode
