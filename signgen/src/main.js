@@ -46,6 +46,7 @@ async function ApplyFont() {
 }
 
 async function GetRandomLogo(ctx_a) {
+    // ctx_a is using canvas_post
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
     var img = new Image();
@@ -255,7 +256,7 @@ async function refresh_post(canvas) {
     var canvas_post = document.getElementById(canvas);
     var ctx_a = canvas_post.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
-    GetRandomLogo(ctx_a, canvas_post);
+    GetRandomLogo(ctx_a);
 }
 
 async function refresh_text(canvas) {
