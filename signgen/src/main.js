@@ -45,7 +45,7 @@ async function ApplyFont() {
     return font;
 }
 
-async function GetRandomLogo(ctx_a, canvas) {
+async function GetRandomLogo(ctx_a) {
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
     var img = new Image();
