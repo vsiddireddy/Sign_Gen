@@ -45,7 +45,7 @@ async function ApplyFont() {
     return font;
 }
 
-async function GetRandomLogo(ctx_a) {
+async function GetRandomLogo(ctx_a, colors) {
     // ctx_a is using canvas_post
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
@@ -58,7 +58,7 @@ async function GetRandomLogo(ctx_a) {
             var y = (ctx_a.canvas.height - (img.height / scale)) / 2;
 
             // draw color
-            var colors = await applyColors();
+            //var colors = await applyColors();
             ctx_a.fillStyle = colors.m2;
             //ctx_a.fillStyle = "#09f";
             ctx_a.fillRect(x, y, img.width / scale, img.height / scale);
@@ -214,19 +214,20 @@ async function cropImageFromCanvas(ctx) {
 async function refresh_default(canvas1, canvas2, canvas3) {
     //refresh_default("canvas_back", "canvas_text", "canvas_post");
     var consoleText = "";
-    refresh_text(canvas2);
-    refresh_post(canvas3);
-    refresh_back(canvas1);
+    var colors = await applyColors();
+    refresh_text(canvas2, colors);
+    refresh_post(canvas3, colors);
+    refresh_back(canvas1, colors);
 }
 
-async function refresh_back(canvas) {
+async function refresh_back(canvas, colors) {
     //canvas
     var canvas_back = document.getElementById(canvas);
     var ctx_a = canvas_back.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
     //GetRandomLogo(ctx_a);
     //colors
-    var colors = await applyColors();
+    //var colors = await applyColors();
     const randomColor_a = colors.m1;
     const randomColor_a1 = colors.m1;
     const randomColor_b = colors.m2;
@@ -251,22 +252,22 @@ async function refresh_back(canvas) {
     }
 }
 
-async function refresh_post(canvas) {
+async function refresh_post(canvas, colors) {
     //canvas
     var canvas_post = document.getElementById(canvas);
     var ctx_a = canvas_post.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
-    GetRandomLogo(ctx_a);
+    GetRandomLogo(ctx_a, colors);
 }
 
-async function refresh_text(canvas) {
+async function refresh_text(canvas, colors) {
     //canvas
     var canvas_back = document.getElementById(canvas);
     var ctx_a = canvas_back.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
 
     //colors
-    var colors = await applyColors();
+    //var colors = await applyColors();
     const randomColor_a = colors.m1;
     const randomColor_a1 = colors.m1;
     const randomColor_b = colors.m2;
