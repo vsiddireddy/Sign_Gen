@@ -421,6 +421,28 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
 document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
+
+    var canvas_back = document.getElementById("canvas_back");
+    var canvas_text = document.getElementById("canvas_text");
+    var canvas_post = document.getElementById("canvas_post");
+    var ctx_a = canvas_back.getContext("2d");
+    var ctx_b = canvas_text.getContext("2d");
+    var ctx_c = canvas_post.getContext("2d");
+
+    var w = document.getElementById("CanvasWidth").value;
+    var h = document.getElementById("CanvasHeight").value;
+    if (w/h >= 0.25 && w/h <= 4) {
+        ctx_a.canvas.width = w;
+        ctx_a.canvas.height = h;
+        ctx_b.canvas.width = w;
+        ctx_b.canvas.height = h;
+        ctx_c.canvas.width = w;
+        ctx_c.canvas.height = h;
+        console.log("did change");
+    } else {
+        console.log("did not change");
+    }
+
     refresh_default("canvas_back", "canvas_text", "canvas_post");
     //refresh_text("canvas_text");
     //refresh_post("canvas_post");
