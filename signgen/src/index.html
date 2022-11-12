@@ -60,9 +60,10 @@
             </div>
 
             
-    
             <div id="right_menu">
-    
+
+              <div id="generate_menu">
+
                 <div id="Themes">
                     <p id="menutext">Theme</p>
                     <select name="Themes" id="themes">
@@ -72,10 +73,6 @@
                         <option value="Retro">Retro</option>
                     </select>
                 </div>
-                
-                <p id="menutext">Custom Text (Optional)</p>
-                <input type="text" id="word1" name="word1" placeholder="First Word">
-                <input type="text" id="word2" name="word2" placeholder="Second Word">
 
                 <p id="menutext">Canvas Size (Optional)</p>
                 <input type="text" id="CanvasWidth" name="CanvasWidth" placeholder="Canvas Width">
@@ -94,12 +91,29 @@
                         <option value="PNG">PNG</option>
                         <option value="JPG">JPG</option>
                     </select>
-                    <button id="filetypeBtn" class="mdc-icon-button material-icons" onclick="document.getElementById(lm).style.color='#56595d'; this.style.color='#000000'" />
+                    <button id="filetypeBtn" class="mdc-icon-button material-icons" this.style.color='#000000'" />
                     <div class="mdc-icon-button__ripple"></div>
                     file_download
                   </button>
                 </div>
 
+              </div>
+
+              <div id="modify_menu">
+
+                <p id="menutext">Text</p>
+                <input type="text" id="word1" name="word1" placeholder="First Word">
+                <input type="text" id="word2" name="word2" placeholder="Second Word">
+
+                <p id="menutext">Colors</p>
+                <input type="text" id="word1" name="word1" placeholder="Primary Color">
+                <input type="text" id="word2" name="word2" placeholder="Secondary Color">
+                <style> #modify_menu {display:none;} </style>
+
+              </div>
+
+        
+              
             </div>
     
             <div id="left_menu">
@@ -108,17 +122,17 @@
                     home
                   </button>
     
-                  <button id="lm-refresh" class="mdc-icon-button material-icons"onclick="document.getElementById(lm).style.color='#56595d'; this.style.color='#000000'" />
+                  <button id="lm-refresh" class="mdc-icon-button material-icons" this.style.color='#000000'" />
                     <div class="mdc-icon-button__ripple"></div>
                     refresh
                   </button>
     
-                  <button id="lm" class="mdc-icon-button material-icons"onclick="document.getElementById(lm).style.color='#56595d'; this.style.color='#000000'" />
+                  <button id="lm-modify" class="mdc-icon-button material-icons" this.style.color='#000000'" />
                     <div class="mdc-icon-button__ripple"></div>
                     auto_awesome
                   </button>
     
-                  <button id="lm" class="mdc-icon-button material-icons"onclick="document.getElementById(lm).style.color='#56595d'; this.style.color='#000000'" />
+                  <button id="lm-dl" class="mdc-icon-button material-icons" this.style.color='#000000'" />
                     <div class="mdc-icon-button__ripple"></div>
                     file_download
                   </button>
@@ -133,7 +147,7 @@
                         settings
                       </button>
                   </div>
-    
+                  <script src="ui.js" ></script>
             </div>
 
             <div id="bottom_region">
