@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "fabric": "^5.2.4",
     "hex-rgb": "^5.0.0",
     "npm": "^8.15.0",
     "rasterizehtml": "^1.3.1"
