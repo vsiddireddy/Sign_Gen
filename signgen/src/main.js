@@ -236,6 +236,15 @@ async function refresh_back(canvas, colors) {
     //Fill Background
     ctx_a.fillStyle = randomColor_a;
     ctx_a.fillRect(0, 0, canvas_back.width, canvas_back.height);
+
+    //Fill Border
+    var rngBorder = getRandomInt(2);
+    if (rngBorder == 1) {
+        ctx_a.strokeRect(0, 0, canvas_back.width, canvas_back.height);
+        canvas_back.style.border = '2px solid ' + randomColor_b; // adjust as needed
+    } else {
+        canvas_back.style.border = 'none';
+    }
      
     //Artifacts
     ctx_a.fillStyle = randomColor_a1;
