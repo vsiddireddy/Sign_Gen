@@ -432,12 +432,9 @@ document.getElementById("gen_button").addEventListener("click", function(){
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
     if (w/h >= 0.25 && w/h <= 4) {
-        ctx_a.canvas.width = w;
-        ctx_a.canvas.height = h;
-        ctx_b.canvas.width = w;
-        ctx_b.canvas.height = h;
-        ctx_c.canvas.width = w;
-        ctx_c.canvas.height = h;
+        ctx_a.canvas.width = w, ctx_a.canvas.height = h;
+        ctx_b.canvas.width = w, ctx_b.canvas.height = h;
+        ctx_c.canvas.width = w, ctx_c.canvas.height = h;
         console.log("did change");
     } else {
         console.log("did not change");
