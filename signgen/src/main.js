@@ -1,4 +1,5 @@
 const { shell } = require('electron');
+const faker = require('faker');
 var smallFonts = ["50px ", "60px "]
 document.body.style.zoom = "100%";
 
@@ -218,6 +219,9 @@ async function refresh_default(canvas1, canvas2, canvas3) {
     refresh_text(canvas2, colors);
     refresh_post(canvas3, colors);
     refresh_back(canvas1, colors);
+    var randomName = faker.name.findName(); // Rowan Nikolaus
+    console.log('randomName');
+    console.log(randomName);
 }
 
 async function refresh_back(canvas, colors) {
