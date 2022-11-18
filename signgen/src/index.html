@@ -17,6 +17,7 @@
         <link href="https://pagecdn.io/lib/easyfonts/fonts.css" rel="stylesheet" />
         <script src="../node_modules/rasterizehtml/dist/rasterizeHTML.allinone.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="fabric.min.js"></script>
     </head>
     <body>
         <div id="app_container">
@@ -37,6 +38,18 @@
                   <p id="splashInfo2">For more details, see the SignGen documentation.</p>
               </div>
 
+              <canvas id="c" width="800" height="600" ></canvas>
+              <script>/*
+                var canvas = new fabric.Canvas('c');
+                var rect = new fabric.Rect({
+                  left: 100,
+                  top: 150,
+                  fill: 'red',
+                  width: 200,
+                  height: 20
+                });
+                canvas.add(rect);*/
+              </script>
               <div class="mainCanvas" id = "mainCanvas">
                   <canvas id="canvas_back" width="633" height="291" ></canvas>
                   <canvas id="canvas_post" width="633" height="291" ></canvas>

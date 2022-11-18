@@ -449,6 +449,15 @@ document.getElementById("gen_button").addEventListener("click", function(){
         console.log("did not change");
     }
 
+    var canvas = new fabric.Canvas('c');
+    var rect = new fabric.Rect({
+      left: 100,
+      top: 150,
+      fill: 'red',
+      width: 200,
+      height: 20
+    });
+    canvas.add(rect);
     refresh_default("canvas_back", "canvas_text", "canvas_post");
     //refresh_text("canvas_text");
     //refresh_post("canvas_post");
