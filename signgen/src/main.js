@@ -126,6 +126,63 @@ async function GetRandomWord(userInput, category) {
     var w2;
     var sub;
     var isPrefix = false;
+    var num = getRandomInt(7);
+    var num2 = getRandomInt(7);
+    var num3 = getRandomInt(4);
+    console.log(num);
+    console.log(num2);
+    console.log(num3);
+    if (num == 0) {
+        w1 = faker.commerce.product();
+    } else if (num == 1) {
+        w1 = faker.company.companyName();
+    } else if (num == 2) {
+        w1 = faker.database.engine();
+    } else if (num == 3) {
+        w1 = faker.address.city();
+    } else if (num == 4) {
+        w1 = faker.name.firstName();
+    } else if (num == 5) {
+        w1 = faker.commerce.productAdjective();
+    } else if (num == 6) {
+        w1 = faker.vehicle.vehicle();
+    }
+    if (getRandomInt(2) == 0) {
+        if (num2 == 0) {
+            w2 = faker.commerce.product();
+        } else if (num2 == 1) {
+            w2 = faker.company.companyName();
+        } else if (num2 == 2) {
+            w2 = faker.database.engine();
+        } else if (num2 == 3) {
+            w2 = faker.address.city();
+        } else if (num2 == 4) {
+            w2 = faker.name.firstName();
+        } else if (num2 == 5) {
+            w2 = faker.commerce.productAdjective();
+        } else if (num2 == 6) {
+            w2 = faker.vehicle.vehicle();
+        }
+    }
+    if (getRandomInt(2) == 0) {
+        if (w2 != "") {
+            if (num3 == 0) {
+                sub = faker.internet.domainName();
+            } else if (num3 == 1) {
+                sub = faker.finance.amount();
+            } else if (num3 == 2) {
+                sub = faker.address.city()
+            } else if (num3 == 3) {
+                sub = faker.phone.phoneNumber();
+            }
+        }
+    }
+    return [w1, w2, sub, isPrefix];
+    /*
+    var w1;
+    var w2;
+    var sub;
+    var isPrefix = false;
     const response = await fetch("../assets/corporate/word_list_corporate.json");
     const json = await response.json();
     var index = getRandomInt(3);
@@ -151,6 +208,7 @@ async function GetRandomWord(userInput, category) {
     }
     var wordArr = await RandomCapitilization(w1, w2, isPrefix);
     return [wordArr[0], wordArr[1], sub, isPrefix];
+    */
 }
 
 async function SelectFontLayout(w1, w2, sub, isPrefix) {
@@ -219,9 +277,6 @@ async function refresh_default(canvas1, canvas2, canvas3) {
     refresh_text(canvas2, colors);
     refresh_post(canvas3, colors);
     refresh_back(canvas1, colors);
-    var randomName = faker.name.findName(); // Rowan Nikolaus
-    console.log('randomName');
-    console.log(randomName);
 }
 
 async function refresh_back(canvas, colors) {
