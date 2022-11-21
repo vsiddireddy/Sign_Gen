@@ -75,6 +75,27 @@ async function GetRandomLogo(ctx_a, colors) {
 }
 
 async function RandomCapitilization(w1, w2, isPrefix) {
+    //console.log(w2 == null);
+    console.log('RandomCapitilization: ' + w1 + " : " + w2);
+    var index = getRandomInt(4);
+    if (index == 0) { // all uppercase
+        w1 = w1.toUpperCase();
+    } else if (index == 1) { // all lowercase
+        w1 = w1.toLowerCase();
+    } else if (index == 2) {
+        w1 = w1.replace(/^./, w1[0].toUpperCase());
+    }
+    if (w2 != undefined) {
+        if (index == 0) { // all uppercase
+            w2 = w2.toUpperCase();
+        } else if (index == 1) {
+            w2 = w2.toLowerCase();
+        } else if (index == 2) {
+            w2 = w2.replace(/^./, w2[0].toUpperCase());
+        }
+    }
+    return [w1, w2];
+    /*
     if (isPrefix) {
         var index = getRandomInt(3);
         if (index == 0) { // all uppercase
@@ -119,65 +140,58 @@ async function RandomCapitilization(w1, w2, isPrefix) {
         }
     }
     return [w1, w2];
+    */
 }
 
 async function GetRandomWord(userInput, category) {
     var w1;
     var w2;
     var sub;
-    var isPrefix = false;
-    var num = getRandomInt(7);
-    var num2 = getRandomInt(7);
-    var num3 = getRandomInt(4);
-    console.log(num);
-    console.log(num2);
-    console.log(num3);
-    if (num == 0) {
-        w1 = faker.commerce.product();
-    } else if (num == 1) {
-        w1 = faker.company.companyName();
-    } else if (num == 2) {
-        w1 = faker.database.engine();
-    } else if (num == 3) {
-        w1 = faker.address.city();
-    } else if (num == 4) {
-        w1 = faker.name.firstName();
-    } else if (num == 5) {
-        w1 = faker.commerce.productAdjective();
-    } else if (num == 6) {
-        w1 = faker.vehicle.vehicle();
+    var wordArr = [
+        faker.commerce.product(), faker.company.companyName(), faker.database.engine(), faker.address.city(), faker.name.firstName(), 
+        faker.commerce.productAdjective(), faker.vehicle.vehicle(), faker.commerce.department(), faker.commerce.productName(),
+        faker.commerce.productMaterial(), faker.company.bs(), faker.finance.accountName(), faker.animal.type()
+    ];
+    var subArr = [
+        faker.address.latitude(), faker.address.longitude(), faker.address.direction(), faker.commerce.price(), faker.internet.domainName(),
+        faker.address.city(), faker.finance.amount(), faker.phone.phoneNumber(), faker.datatype.uuid(), faker.address.streetName(),
+        faker.address.streetAddress(), faker.company.companySuffix()
+    ];
+    var word1Num = getRandomInt(14);
+    var word2Num = getRandomInt(14);
+    while (word1Num == word2Num) {
+        word2Num = getRandomInt(14);
+    }
+    var subNum = getRandomInt(12);
+    var choiceNum = getRandomInt(2);
+    if (choiceNum == 0) {
+        w1 = wordArr[word1Num];
+        console.log('BEFORE W1: ' + w1);
+        while (w1 == undefined) {
+            w1 = wordArr[getRandomInt(14)];
+        }
+        console.log('AFTER W1: ' + w1);
+    } else if (choiceNum == 1) {
+        w1 = wordArr[word1Num];
+        w2 = wordArr[word2Num];
+        console.log('BEFORE W1/W2: ' + w1 + " : " + w2);
+        while (w1 == undefined) {
+            w1 = wordArr[getRandomInt(14)];
+        }
+        while (w2 == undefined) {
+            w2 = wordArr[getRandomInt(14)];
+        }
+        console.log('AFTER W1/W2: ' + w1 + " : " + w2);
     }
     if (getRandomInt(2) == 0) {
-        if (num2 == 0) {
-            w2 = faker.commerce.product();
-        } else if (num2 == 1) {
-            w2 = faker.company.companyName();
-        } else if (num2 == 2) {
-            w2 = faker.database.engine();
-        } else if (num2 == 3) {
-            w2 = faker.address.city();
-        } else if (num2 == 4) {
-            w2 = faker.name.firstName();
-        } else if (num2 == 5) {
-            w2 = faker.commerce.productAdjective();
-        } else if (num2 == 6) {
-            w2 = faker.vehicle.vehicle();
-        }
+        sub = subArr[subNum];
     }
-    if (getRandomInt(2) == 0) {
-        if (w2 != "") {
-            if (num3 == 0) {
-                sub = faker.internet.domainName();
-            } else if (num3 == 1) {
-                sub = faker.finance.amount();
-            } else if (num3 == 2) {
-                sub = faker.address.city()
-            } else if (num3 == 3) {
-                sub = faker.phone.phoneNumber();
-            }
-        }
-    }
-    return [w1, w2, sub, isPrefix];
+    //var wordArr = await RandomCapitilization(w1, w2, false);
+    //console.log('CHOICENUM: ' + choiceNum);
+    //console.log(word1Num + " : " + word2Num);
+    //console.log(w1 + " : " + w2);
+    wordArr = await RandomCapitilization(w1, w2, false);
+    return [wordArr[0], wordArr[1], sub, false];
     /*
     var w1;
     var w2;
