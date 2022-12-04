@@ -2,6 +2,7 @@ const { shell } = require('electron');
 var Mousetrap = require('mousetrap');
 const faker = require('faker');
 var smallFonts = ["50px ", "60px "]
+var printDebug = true;
 document.body.style.zoom = "100%";
 
 function getRandomInt(max) {
@@ -490,7 +491,11 @@ async function refresh_text(canvas, colors) {
     }
 
     console.log(consoleText);
-    document.getElementById("console_text").innerHTML = consoleText;
+    if (printDebug) {
+        document.getElementById("console_text").innerHTML = consoleText;
+    } else {
+        document.getElementById("console_text").innerHTML = '';
+    }
 }
 
 document.getElementById("toggleLogo").addEventListener("change", function (event) {
@@ -534,6 +539,10 @@ document.getElementById("gen_button").addEventListener("click", function(){
     canvas.add(rect);*/
     refresh_default("canvas_back", "canvas_text", "canvas_post");
  });
+
+ Mousetrap.bind(['command+k', 'ctrl+k'], function() {
+    printDebug = !printDebug;
+});
 
  Mousetrap.bind('space', function() {
     document.getElementById("splashScreen").style.display = 'none';
