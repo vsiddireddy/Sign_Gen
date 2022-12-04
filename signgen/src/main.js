@@ -1,4 +1,5 @@
 const { shell } = require('electron');
+var Mousetrap = require('mousetrap');
 const faker = require('faker');
 var smallFonts = ["50px ", "60px "]
 document.body.style.zoom = "100%";
@@ -522,7 +523,7 @@ document.getElementById("gen_button").addEventListener("click", function(){
         console.log("did not change");
     }
 
-    var canvas = new fabric.Canvas('c');
+    /*var canvas = new fabric.Canvas('c');
     var rect = new fabric.Rect({
       left: 100,
       top: 150,
@@ -530,12 +531,45 @@ document.getElementById("gen_button").addEventListener("click", function(){
       width: 200,
       height: 20
     });
-    canvas.add(rect);
+    canvas.add(rect);*/
     refresh_default("canvas_back", "canvas_text", "canvas_post");
-    //refresh_text("canvas_text");
-    //refresh_post("canvas_post");
-    //refresh_back("canvas_back");
  });
+
+ Mousetrap.bind('space', function() {
+    document.getElementById("splashScreen").style.display = 'none';
+    document.getElementById("canvas_back").style.opacity = "1";
+    refresh_default("canvas_back", "canvas_text", "canvas_post");
+ });
+
+ Mousetrap.bind('q', function() {
+    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
+    document.getElementById("canvas_back").style.zoom = 1.2 * csize;
+    document.getElementById("canvas_text").style.zoom = 1.2 * csize;
+    document.getElementById("canvas_post").style.zoom = 1.2 * csize;
+ });
+
+ Mousetrap.bind('w', function() {
+    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
+    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
+    document.getElementById("canvas_back").style.zoom = csize / 1.2;
+    document.getElementById("canvas_text").style.zoom = csize / 1.2;
+    document.getElementById("canvas_post").style.zoom = csize / 1.2;
+ });
+
+ /*
+ document.addEventListener("wheel", function(e) {
+    const mainCanvas = document.getElementById('mainCanvas');
+    let zoom = 3;
+    if (e.deltaY > 0) {
+        mainCanvas.style.transform = `scale(${(zoom += 0.06)})`;
+    } else {
+        mainCanvas.style.transform = `scale(${(zoom -= 0.06)})`;
+    }
+});
+*/
 
  document.getElementById("splashGen1").addEventListener("click", function(){
     shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
