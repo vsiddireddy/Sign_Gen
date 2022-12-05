@@ -151,8 +151,9 @@ async function GetRandomWord(userInput, category) {
     var sub;
     var wordArr = [
         faker.commerce.product(), faker.company.companyName(), faker.database.engine(), faker.address.city(), faker.name.firstName(), 
-        faker.commerce.productAdjective(), faker.vehicle.vehicle(), faker.commerce.department(), faker.commerce.productName(),
-        faker.commerce.productMaterial(), faker.company.bs(), faker.finance.accountName(), faker.animal.type()
+        faker.commerce.productAdjective(), faker.commerce.department(), faker.commerce.productName(), faker.commerce.productMaterial(), 
+        faker.company.bs(), faker.finance.accountName(), faker.animal.type(), faker.commerce.department(), faker.vehicle.vehicle(),
+        faker.vehicle.manufacturer()
     ];
     var subArr = [
         faker.address.latitude(), faker.address.longitude(), faker.address.direction(), faker.commerce.price(), faker.internet.domainName(),
