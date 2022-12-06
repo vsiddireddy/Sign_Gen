@@ -62,7 +62,7 @@ async function GetRandomLogo(ctx_a, colors) {
 
             // draw color
             //var colors = await applyColors();
-            ctx_a.fillStyle = colors.m2;
+            ctx_a.fillStyle = colors.h1;
             //ctx_a.fillStyle = "#09f";
             ctx_a.fillRect(x, y, img.width / scale, img.height / scale);
 
@@ -525,8 +525,6 @@ document.getElementById("gen_button").addEventListener("click", function(){
         ctx_b.canvas.width = w, ctx_b.canvas.height = h;
         ctx_c.canvas.width = w, ctx_c.canvas.height = h;
         console.log("did change");
-    } else {
-        console.log("did not change");
     }
 
     /*var canvas = new fabric.Canvas('c');
@@ -557,7 +555,6 @@ document.getElementById("gen_button").addEventListener("click", function(){
 
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
-    console.log("W AND H", w, h);
     if ((w != '' && h != '') && (w/h >= 0.25 && w/h <= 4)) {
         ctx_a.canvas.width = w, ctx_a.canvas.height = h;
         ctx_b.canvas.width = w, ctx_b.canvas.height = h;
@@ -600,7 +597,7 @@ document.getElementById("gen_button").addEventListener("click", function(){
 });
 */
 
- document.getElementById("splashGen1").addEventListener("click", function(){
+document.getElementById("splashGen1").addEventListener("click", function(){
     shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
 });
 
@@ -608,9 +605,6 @@ document.getElementById("splashGen2").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
     refresh_default("canvas_back", "canvas_text", "canvas_post");
-    //refresh_text("canvas_text");
-    //refresh_post("canvas_post");
-    //refresh_back("canvas_back");
 });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
