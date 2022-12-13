@@ -61,9 +61,7 @@ async function GetRandomLogo(ctx_a, colors) {
             var y = (ctx_a.canvas.height - (img.height / scale)) / 2;
 
             // draw color
-            //var colors = await applyColors();
             ctx_a.fillStyle = colors.h1;
-            //ctx_a.fillStyle = "#09f";
             ctx_a.fillRect(x, y, img.width / scale, img.height / scale);
 
             // set composite mode
@@ -149,6 +147,10 @@ async function GetRandomWord(userInput, category) {
     var w1;
     var w2;
     var sub;
+    var oneWordArr = [
+        faker.company.companyName(), faker.company.bs(), faker.company.catchPhrase(), 
+        faker.vehicle.vehicle(), faker.vehicle.manufacturer(), faker.commerce.productName(), faker.commerce.department()
+    ];
     var wordArr = [
         faker.commerce.product(), faker.company.companyName(), faker.database.engine(), faker.address.city(), faker.name.firstName(), 
         faker.commerce.productAdjective(), faker.commerce.department(), faker.commerce.productName(), faker.commerce.productMaterial(), 
@@ -160,20 +162,19 @@ async function GetRandomWord(userInput, category) {
         faker.address.city(), faker.finance.amount(), faker.phone.phoneNumber(), faker.datatype.uuid(), faker.address.streetName(),
         faker.address.streetAddress(), faker.company.companySuffix()
     ];
-    var word1Num = getRandomInt(14);
-    var word2Num = getRandomInt(14);
+    var oneWordNum = getRandomInt(8);
+    var word1Num   = getRandomInt(14);
+    var word2Num   = getRandomInt(14);
     while (word1Num == word2Num) {
         word2Num = getRandomInt(14);
     }
     var subNum = getRandomInt(12);
     var choiceNum = getRandomInt(2);
     if (choiceNum == 0) {
-        w1 = wordArr[word1Num];
-        console.log('BEFORE W1: ' + w1);
+        w1 = oneWordArr[oneWordNum];
         while (w1 == undefined) {
-            w1 = wordArr[getRandomInt(14)];
+            w1 = oneWordArr[getRandomInt(2)];
         }
-        console.log('AFTER W1: ' + w1);
     } else if (choiceNum == 1) {
         w1 = wordArr[word1Num];
         w2 = wordArr[word2Num];
