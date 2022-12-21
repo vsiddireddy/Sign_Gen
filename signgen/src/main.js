@@ -95,52 +95,6 @@ async function RandomCapitilization(w1, w2, isPrefix) {
         }
     }
     return [w1, w2];
-    /*
-    if (isPrefix) {
-        var index = getRandomInt(3);
-        if (index == 0) { // all uppercase
-            w1 = w1.toUpperCase();
-            if (w2 != undefined)
-                w2 = w2.toUpperCase();
-        } else if (index == 1) { // all lowercase
-            w1 = w1.toLowerCase();
-            var secondWordCase = getRandomInt(2);
-            if (secondWordCase == 0) { // w2 all uppercase
-                if (w2 != undefined)
-                    w2 = w2.toUpperCase();
-            } else {
-                if (w2 != undefined)
-                    w2 = w2.toLowerCase();
-            }
-        } else if (index == 2) { // first letter in w1 is uppercase, rest is lowercase
-            w1 = w1.replace(/^./, w1[0].toUpperCase());
-            var secondWordCase = getRandomInt(2);
-            if (secondWordCase == 0) {
-                if (w2 != undefined)
-                    w2 = w2.replace(/^./, w2[0].toUpperCase());
-            } else {
-                if (w2 != undefined)
-                    w2 = w2.toLowerCase();
-            }
-        }
-    } else {
-        var index = getRandomInt(3);
-        if (index == 0) {
-            w1 = w1.replace(/^./, w1[0].toUpperCase());
-            if (w2 != undefined)
-                w2 = w2.replace(/^./, w2[0].toUpperCase());
-        } else if (index == 1) {
-            w1 = w1.toUpperCase();
-            if (w2 != undefined)
-                w2 = w2.toUpperCase();
-        } else if (index == 2) {
-            w1 = w1.toLowerCase();
-            if (w2 != undefined)
-                w2 = w2.toLowerCase();
-        }
-    }
-    return [w1, w2];
-    */
 }
 
 async function GetRandomWord(userInput, category) {
@@ -190,43 +144,8 @@ async function GetRandomWord(userInput, category) {
     if (getRandomInt(2) == 0) {
         sub = subArr[subNum];
     }
-    //var wordArr = await RandomCapitilization(w1, w2, false);
-    //console.log('CHOICENUM: ' + choiceNum);
-    //console.log(word1Num + " : " + word2Num);
-    //console.log(w1 + " : " + w2);
     wordArr = await RandomCapitilization(w1, w2, false);
     return [wordArr[0], wordArr[1], sub, false];
-    /*
-    var w1;
-    var w2;
-    var sub;
-    var isPrefix = false;
-    const response = await fetch("../assets/corporate/word_list_corporate.json");
-    const json = await response.json();
-    var index = getRandomInt(3);
-    if (index == 0) { // word1 combo
-        w1 = json.corporate_w1[getRandomInt(json.corporate_w1.length)];
-    } else if (index == 1) { // word1 word2 combo
-        w1 = json.corporate_w1[getRandomInt(json.corporate_w1.length)];
-        w2 = json.corporate_w2[getRandomInt(json.corporate_w2.length)];
-        if (getRandomInt(2) == 0)
-            sub = json.corporate_subtext_optional[getRandomInt(json.corporate_subtext_optional.length)];
-    } else if (index == 2) { // prefix suffix combo
-        isPrefix = true;
-        w1 = json.corporate_prefixes[getRandomInt(json.corporate_prefixes.length)];
-        while (true) {
-            var temp = json.corporate_prefixes[getRandomInt(json.corporate_prefixes.length)];
-            if (temp != w1) {
-                w2 = temp;
-                break;
-            }
-        }
-        if (getRandomInt(2) == 0)
-            sub = json.corporate_subtext_optional[getRandomInt(json.corporate_subtext_optional.length)];
-    }
-    var wordArr = await RandomCapitilization(w1, w2, isPrefix);
-    return [wordArr[0], wordArr[1], sub, isPrefix];
-    */
 }
 
 async function SelectFontLayout(w1, w2, sub, isPrefix) {
@@ -288,12 +207,12 @@ async function cropImageFromCanvas(ctx) {
     var image = canvas.toDataURL();
   }
 
-async function refresh_default(canvas1, canvas2, canvas3) {
+async function refresh_default(canvas1) {
     //refresh_default("canvas_back", "canvas_text", "canvas_post");
     var consoleText = "";
     var colors = await applyColors();
-    refresh_text(canvas2, colors);
-    refresh_post(canvas3, colors);
+    refresh_text(canvas1, colors);
+    refresh_post(canvas1, colors);
     refresh_back(canvas1, colors);
 }
 
@@ -513,18 +432,12 @@ document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("canvas_back").style.opacity = "1";
 
     var canvas_back = document.getElementById("canvas_back");
-    var canvas_text = document.getElementById("canvas_text");
-    var canvas_post = document.getElementById("canvas_post");
     var ctx_a = canvas_back.getContext("2d");
-    var ctx_b = canvas_text.getContext("2d");
-    var ctx_c = canvas_post.getContext("2d");
 
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
     if (w/h >= 0.25 && w/h <= 4) {
         ctx_a.canvas.width = w, ctx_a.canvas.height = h;
-        ctx_b.canvas.width = w, ctx_b.canvas.height = h;
-        ctx_c.canvas.width = w, ctx_c.canvas.height = h;
         console.log("did change");
     }
 
@@ -537,9 +450,25 @@ document.getElementById("gen_button").addEventListener("click", function(){
       height: 20
     });
     canvas.add(rect);
-    refresh_default("canvas_back", "canvas_text", "canvas_post");
+    refresh_default("canvas_back");
  });
 
+/*
+document.getElementById("gen_button").addEventListener("click", function(){
+    var canvas = new fabric.Canvas('c');
+    var rect = new fabric.Rect({
+        left: 100,
+        top: 150,
+        fill: 'red',
+        width: 200,
+        height: 20
+      });
+    canvas.add(rect);
+    rect.set({ left: 20, top: 50 });
+    canvas.renderAll();
+});
+
+*/
  Mousetrap.bind(['command+k', 'ctrl+k'], function() {
     printDebug = !printDebug;
 });
@@ -570,33 +499,15 @@ document.getElementById("gen_button").addEventListener("click", function(){
 
  Mousetrap.bind('q', function() {
     var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
     document.getElementById("canvas_back").style.zoom = 1.2 * csize;
-    document.getElementById("canvas_text").style.zoom = 1.2 * csize;
-    document.getElementById("canvas_post").style.zoom = 1.2 * csize;
+
  });
 
  Mousetrap.bind('w', function() {
     var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
     document.getElementById("canvas_back").style.zoom = csize / 1.2;
-    document.getElementById("canvas_text").style.zoom = csize / 1.2;
-    document.getElementById("canvas_post").style.zoom = csize / 1.2;
  });
 
- /*
- document.addEventListener("wheel", function(e) {
-    const mainCanvas = document.getElementById('mainCanvas');
-    let zoom = 3;
-    if (e.deltaY > 0) {
-        mainCanvas.style.transform = `scale(${(zoom += 0.06)})`;
-    } else {
-        mainCanvas.style.transform = `scale(${(zoom -= 0.06)})`;
-    }
-});
-*/
 
 document.getElementById("splashGen1").addEventListener("click", function(){
     shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
@@ -624,26 +535,6 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     anchor.click();
 });
 
-document.getElementById("UpdateCanvas").addEventListener("click", function(){
-    var ctx_a = canvas_back.getContext("2d");
-    //var ctx_b = canvas_text.getContext("2d");
-    //var ctx_c = canvas_post.getContext("2d");
-    var w = document.getElementById("CanvasWidth").value;
-    var h = document.getElementById("CanvasHeight").value;
-    if (w/h >= 0.25 && w/h <= 4) {
-        ctx_a.canvas.width = w;
-        ctx_a.canvas.height = h;
-        /*ctx_b.canvas.width = w;
-        ctx_b.canvas.height = h;
-        ctx_c.canvas.width = w;
-        ctx_c.canvas.height = h;*/
-        console.log("did change");
-    } else {
-        console.log("did not change");
-    }
-    console.log("RATIO: " + w/h);
-});
-
 document.getElementById("canvas_back").addEventListener("contextmenu", function(ev){
     ev.preventDefault();
     var image_png = document.getElementById("canvas_back").toDataURL("image/png");
@@ -660,20 +551,12 @@ document.getElementById("canvas_back").addEventListener("contextmenu", function(
 
 document.getElementById("zmin").addEventListener("click", function(){
     var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
     document.getElementById("canvas_back").style.zoom = 1.2*csize;
-    document.getElementById("canvas_text").style.zoom = 1.2*csize;
-    document.getElementById("canvas_post").style.zoom = 1.2*csize;
 });
 
 document.getElementById("zmout").addEventListener("click", function(){
     var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_text')).zoom;
-    var csize = getComputedStyle(document.getElementById('canvas_post')).zoom;
     document.getElementById("canvas_back").style.zoom = csize/1.2;
-    document.getElementById("canvas_text").style.zoom = csize/1.2;
-    document.getElementById("canvas_post").style.zoom = csize/1.2;
 });
 
 document.getElementById("lm-home").addEventListener("click", function(){
@@ -685,47 +568,3 @@ document.getElementById("lm-refresh").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "100";
 }); 
-
-/*
-// Make the DIV element draggable:
-dragElement(document.getElementById("mainCanvas"));
-
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  elmnt.onmousedown = dragMouseDown;
-  
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-*/
-
-
-//FONT: { Sora } WORDS: { PAZ, , } COLORS: { #386641, #bc4749, #f2e8cf } { W: 633 H: 291 }
-//^^MISALLIGBED FONT
