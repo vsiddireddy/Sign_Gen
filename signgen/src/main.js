@@ -52,6 +52,8 @@ async function GetRandomLogo(ctx_a, colors) {
     // ctx_a is using canvas_post
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
+    var canvas_back = document.getElementById("canvas_back");
+    var ctx_a = canvas_back.getContext("2d");
     var img = new Image();
     if (document.getElementById("toggleLogo").checked) {
         img.src = svgURL;
@@ -65,7 +67,7 @@ async function GetRandomLogo(ctx_a, colors) {
             ctx_a.fillRect(x, y, img.width / scale, img.height / scale);
 
             // set composite mode
-            ctx_a.globalCompositeOperation = "destination-atop";
+            //ctx_a.globalCompositeOperation = "destination-atop";
 
             // draw image
             ctx_a.drawImage(img, x, y, img.width / scale, img.height / scale);
@@ -259,8 +261,8 @@ async function refresh_back(canvas, colors) {
 
 async function refresh_post(canvas, colors) {
     //canvas
-    var canvas_post = document.getElementById(canvas);
-    var ctx_a = canvas_post.getContext("2d");
+    var canvas_back = document.getElementById("canvas_back");
+    var ctx_a = canvas_back.getContext("2d");
     ctx_a.clearRect(0, 0, 633, 291);
     GetRandomLogo(ctx_a, colors);
 }
@@ -477,24 +479,15 @@ document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
     var canvas_back = document.getElementById("canvas_back");
-    var canvas_text = document.getElementById("canvas_text");
-    var canvas_post = document.getElementById("canvas_post");
     var ctx_a = canvas_back.getContext("2d");
-    var ctx_b = canvas_text.getContext("2d");
-    var ctx_c = canvas_post.getContext("2d");
-
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
     if ((w != '' && h != '') && (w/h >= 0.25 && w/h <= 4)) {
         ctx_a.canvas.width = w, ctx_a.canvas.height = h;
-        ctx_b.canvas.width = w, ctx_b.canvas.height = h;
-        ctx_c.canvas.width = w, ctx_c.canvas.height = h;
     } else {
         ctx_a.canvas.width = 633, ctx_a.canvas.height = 291;
-        ctx_b.canvas.width = 633, ctx_b.canvas.height = 291;
-        ctx_c.canvas.width = 633, ctx_c.canvas.height = 291;
     }
-    refresh_default("canvas_back", "canvas_text", "canvas_post");
+    refresh_default("canvas_back");
  });
 
  Mousetrap.bind('q', function() {
