@@ -431,27 +431,35 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
 
 document.getElementById("gen_button").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
+    /*
     document.getElementById("canvas_back").style.opacity = "1";
 
     var canvas_back = document.getElementById("canvas_back");
     var ctx_a = canvas_back.getContext("2d");
+    */
+ 
 
+    var canvas_back = new fabric.Canvas('canvas_back');
+    var ctx_a = canvas_back.getContext("2d");
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
     if (w/h >= 0.25 && w/h <= 4) {
         ctx_a.canvas.width = w, ctx_a.canvas.height = h;
         console.log("did change");
     }
-
-    var canvas = new fabric.Canvas('c');
+    else{
+        w = 633;
+        h = 291;
+    }
+    canvas_back.setDimensions({width: w, height: h});
     var rect = new fabric.Rect({
       left: 100,
       top: 150,
       fill: 'red',
-      width: 200,
-      height: 20
+      width: w,
+      height: h
     });
-    canvas.add(rect);
+    canvas_back.add(rect);
     refresh_default("canvas_back");
  });
 
