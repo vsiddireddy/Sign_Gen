@@ -236,6 +236,7 @@ async function refresh_back(canvas, colors) {
     ctx_a.fillRect(0, 0, canvas_back.width, canvas_back.height);
 
     //Fill Border
+    /*
     var rngBorder = getRandomInt(2);
     if (rngBorder == 1) {
         ctx_a.strokeRect(0, 0, canvas_back.width, canvas_back.height);
@@ -243,6 +244,7 @@ async function refresh_back(canvas, colors) {
     } else {
         canvas_back.style.border = 'none';
     }
+    */
      
     //Artifacts
     ctx_a.fillStyle = randomColor_a1;
@@ -440,18 +442,14 @@ document.getElementById("gen_button").addEventListener("click", function(){
  
 
     var canvas_back = new fabric.Canvas('canvas_back');
-    var ctx_a = canvas_back.getContext("2d");
+    //var ctx_a = canvas_back.getContext("2d");
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
     if (w/h >= 0.25 && w/h <= 4) {
-        ctx_a.canvas.width = w, ctx_a.canvas.height = h;
-        console.log("did change");
+        canvas_back.setDimensions({width: w, height: h});
+    } else{
+        canvas_back.setDimensions({width: 633, height: 291});
     }
-    else{
-        w = 633;
-        h = 291;
-    }
-    canvas_back.setDimensions({width: w, height: h});
     var rect = new fabric.Rect({
       left: 100,
       top: 150,
@@ -486,7 +484,7 @@ document.getElementById("gen_button").addEventListener("click", function(){
  Mousetrap.bind('space', function() {
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_back").style.opacity = "1";
-    var canvas_back = document.getElementById("canvas_back");
+    var canvas_back = new fabric.canvas("canvas_back");
     var ctx_a = canvas_back.getContext("2d");
     var w = document.getElementById("CanvasWidth").value;
     var h = document.getElementById("CanvasHeight").value;
