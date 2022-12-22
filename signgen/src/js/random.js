@@ -3,12 +3,12 @@ var Mousetrap = require('mousetrap');
 const faker = require('faker');
 var printDebug = true;
 
-function getRandomInt(max) {
+export function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
 //Colors
-async function applyColors() {
+export async function applyColors() {
     const response = await fetch("../assets/corporate/colors_corporate/color_list_corporate.json");
     const json = await response.json();
 
@@ -19,7 +19,7 @@ async function applyColors() {
     return colors;
 }
 
-async function ApplyFont() {
+export async function ApplyFont() {
     var index = getRandomInt(66); // currently 66 fonts in corporateArr in json file. Need to make this dynamic TODO
     const response = await fetch("../assets/corporate/font_list_corporate.json");
     const json = await response.json();
@@ -33,7 +33,7 @@ async function ApplyFont() {
     return font;
 }
 
-async function GetRandomLogo(ctx_a, colors) {
+export async function GetRandomLogo(ctx_a, colors) {
     // ctx_a is using canvas_post
     var index = getRandomInt(200);
     var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
@@ -61,7 +61,7 @@ async function GetRandomLogo(ctx_a, colors) {
     //return svgURL;
 }
 
-async function RandomCapitilization(w1, w2, isPrefix) {
+export async function RandomCapitilization(w1, w2, isPrefix) {
     //console.log(w2 == null);
     console.log('RandomCapitilization: ' + w1 + " : " + w2);
     var index = getRandomInt(4);
@@ -84,7 +84,7 @@ async function RandomCapitilization(w1, w2, isPrefix) {
     return [w1, w2];
 }
 
-async function GetRandomWord(userInput, category) {
+export async function GetRandomWord(userInput, category) {
     var w1;
     var w2;
     var sub;
