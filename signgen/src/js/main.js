@@ -3,22 +3,8 @@ var gen_button = document.getElementById('gen_button');
 if(gen_button){
     console.log("gen button exists");
     gen_button.addEventListener("click", function(){
-        document.getElementById("splashScreen").style.display = 'none';
-    
-        var canvas_back = new fabric.Canvas("canvas_back");
-        canvas_back.backgroundColor= "green";
-
         const canvasObject = new canvas();
         canvasObject.generate();
-
-        var rect = new fabric.Rect({
-          left: 100,
-          top: 150,
-          fill: 'red',
-          width: 20,
-          height: 20
-        });
-        canvas_back.add(rect);
      });
 }
 
