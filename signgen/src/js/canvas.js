@@ -1,41 +1,49 @@
 const r = new random();
-var canvas_back = new fabric.Canvas("canvas_back");
+var sign = new fabric.Canvas("canvas_back");
 
 class canvas {
 
     async generate() {
         this.clear();
 
+        //input values
         var w = document.getElementById("CanvasWidth").value;
         var h = document.getElementById("CanvasHeight").value;
         if (w/h >= 0.25 && w/h <= 4) {
-            canvas_back.setWidth(w);
-            canvas_back.setHeight(h);
+            sign.setWidth(w);
+            sign.setHeight(h);
         } else{
-            w = 633, h = 291 
-            canvas_back.setWidth(633);
-            canvas_back.setHeight(291);
+            w = 633, h = 291 //default values
+            sign.setWidth(w);
+            sign.setHeight(h);
         }
 
-
+        //random values
         var colors = await r.ApplyColors();
-        canvas_back.backgroundColor = colors.m1;
+        var words  = await r.GetRandomWord();
+        var font   = await r.ApplyFont();
 
-        var words = await r.GetRandomWord();
-        var font = await r.ApplyFont();
+        //fabric
+        sign.backgroundColor = colors.m1;
 
-        console.log(w);
-        var text = new fabric.Textbox(words[0], {
+        var main_text = new fabric.Textbox(words[0], {
             width: Number(w),
             textAlign: "center"
         });
-  
-        canvas_back.add(text);
+        sign.add(main_text);
+
+        if(words[1] !== undefined){
+            var sub_text = new fabric.Textbox(words[1], {
+                width: Number(w),
+                textAlign: "center"
+            });
+            sign.add(sub_text);
+        }
     }
 
     async clear(){
         document.getElementById("splashScreen").style.display = 'none';
-        canvas_back.clear();
+        sign.clear();
     }
 }
 
