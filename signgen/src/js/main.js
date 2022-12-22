@@ -15,7 +15,7 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
         console.log("Not checked");
     }
 });
-
+//
 document.getElementById("splashGen1").addEventListener("click", function(){
     shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
 });
