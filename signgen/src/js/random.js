@@ -135,6 +135,22 @@ async function GetRandomWord(userInput, category) {
     return [wordArr[0], wordArr[1], sub, false];
 }
 
+document.getElementById("filetypeBtn").addEventListener("click", function(){
+    var canvas = document.getElementById("canvas_back");
+    var anchor = document.createElement("a");
+    if (document.getElementById("filetypeSelect").value == 'PNG') {
+        anchor.href = canvas.toDataURL("image/png");
+    } else {
+        anchor.href = canvas.toDataURL("image/jpg");
+    }
+    if (document.getElementById("filetypeSelect").value == 'PNG') {
+        anchor.download = "IMAGE.PNG";
+    } else {
+        anchor.download = "IMAGE.JPG";
+    }
+    anchor.click();
+});
+
 document.getElementById("toggleLogo").addEventListener("change", function (event) {
     if (event.target.checked) {
         console.log("Checked");
