@@ -8,6 +8,9 @@ if(gen_button){
         var canvas_back = new fabric.Canvas("canvas_back");
         canvas_back.backgroundColor= "green";
 
+        const canvasObject = new canvas();
+        canvasObject.generate();
+
         var rect = new fabric.Rect({
           left: 100,
           top: 150,
