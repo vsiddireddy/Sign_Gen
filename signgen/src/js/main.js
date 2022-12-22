@@ -1,18 +1,22 @@
-document.getElementById("filetypeBtn").addEventListener("click", function(){
-    var canvas = document.getElementById("canvas_back");
-    var anchor = document.createElement("a");
-    if (document.getElementById("filetypeSelect").value == 'PNG') {
-        anchor.href = canvas.toDataURL("image/png");
-    } else {
-        anchor.href = canvas.toDataURL("image/jpg");
-    }
-    if (document.getElementById("filetypeSelect").value == 'PNG') {
-        anchor.download = "IMAGE.PNG";
-    } else {
-        anchor.download = "IMAGE.JPG";
-    }
-    anchor.click();
-});
+var gen_button = document.getElementById('gen_button');
+
+if(gen_button){
+    console.log("gen button exists");
+    gen_button.addEventListener("click", function(){
+        document.getElementById("splashScreen").style.display = 'none';
+    
+        var canvas_back = new fabric.Canvas('canvas_back');
+
+        var rect = new fabric.Rect({
+          left: 100,
+          top: 150,
+          fill: 'red',
+          width: 20,
+          height: 20
+        });
+        canvas_back.add(rect);
+     });
+}
 
 document.getElementById("toggleLogo").addEventListener("change", function (event) {
     if (event.target.checked) {
