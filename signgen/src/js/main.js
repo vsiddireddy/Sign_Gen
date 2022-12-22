@@ -5,7 +5,8 @@ if(gen_button){
     gen_button.addEventListener("click", function(){
         document.getElementById("splashScreen").style.display = 'none';
     
-        var canvas_back = new fabric.Canvas('canvas_back');
+        var canvas_back = new fabric.Canvas("canvas_back");
+        canvas_back.backgroundColor= "green";
 
         var rect = new fabric.Rect({
           left: 100,
