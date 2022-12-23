@@ -1,0 +1,264 @@
+@font-face {
+    font-family: AdventPro;
+    src: url('../assets/corporate/fonts_corporate/AdventPro/AdventPro-Medium.ttf');
+}
+@font-face {
+    font-family: AlegreyaSansSC;
+    src: url('../assets/corporate/fonts_corporate/AlegreyaSansSC/AlegreyaSansSC-Medium.ttf');
+}
+@font-face {
+    font-family: ArchivoBlack;
+    src: url('../assets/corporate/fonts_corporate/ArchivoBlack/ArchivoBlack-Regular.ttf');
+}
+@font-face {
+    font-family: Asap1;
+    src: url('../assets/corporate/fonts_corporate/Asap/Asap-SemiBold.ttf');
+}
+@font-face {
+    font-family: Asap2;
+    src: url('../assets/corporate/fonts_corporate/Asap/Asap-SemiBoldItalic.ttf');
+}
+@font-face {
+    font-family: Audiowide;
+    src: url('../assets/corporate/fonts_corporate/Audiowide/Audiowide-Regular.ttf');
+}
+@font-face {
+    font-family: BioRhyme1;
+    src: url('../assets/corporate/fonts_corporate/BioRhyme/BioRhyme-ExtraLight.ttf');
+}
+@font-face {
+    font-family: BioRhyme2;
+    src: url('../assets/corporate/fonts_corporate/BioRhyme/BioRhyme-Light.ttf');
+}
+@font-face {
+    font-family: Cabin;
+    src: url('../assets/corporate/fonts_corporate/Cabin/Cabin-SemiBoldItalic.ttf');
+}
+@font-face {
+    font-family: ChakraPetch1;
+    src: url('../assets/corporate/fonts_corporate/ChakraPetch/ChakraPetch-Bold.ttf');
+}
+@font-face {
+    font-family: ChakraPetch2;
+    src: url('../assets/corporate/fonts_corporate/ChakraPetch/ChakraPetch-SemiBoldItalic.ttf');
+}
+@font-face {
+    font-family: Chivo1;
+    src: url('../assets/corporate/fonts_corporate/Chivo/Chivo-Light.ttf');
+}
+@font-face {
+    font-family: Chivo2;
+    src: url('../assets/corporate/fonts_corporate/Chivo/Chivo-Regular.ttf');
+}
+@font-face {
+    font-family: Comfortaa;
+    src: url('../assets/corporate/fonts_corporate/Comfortaa/Comfortaa-Medium.ttf');
+}
+@font-face {
+    font-family: ConcertOne;
+    src: url('../assets/corporate/fonts_corporate/ConcertOne/ConcertOne-Regular.ttf');
+}
+@font-face {
+    font-family: DMSans1;
+    src: url('../assets/corporate/fonts_corporate/DMSans/DMSans-Bold.ttf');
+}
+@font-face {
+    font-family: DMSans2;
+    src: url('../assets/corporate/fonts_corporate/DMSans/DMSans-Italic.ttf');
+}
+@font-face {
+    font-family: Eczar1;
+    src: url('../assets/corporate/fonts_corporate/Eczar/Eczar-Medium.ttf');
+}
+@font-face {
+    font-family: Eczar2;
+    src: url('../assets/corporate/fonts_corporate/Eczar/Eczar-Regular.ttf');
+}
+@font-face {
+    font-family: FiraSans1;
+    src: url('../assets/corporate/fonts_corporate/FiraSans/FiraSans-Regular.ttf');
+}
+@font-face {
+    font-family: FiraSans2;
+    src: url('../assets/corporate/fonts_corporate/FiraSans/FiraSans-ThinItalic.ttf');
+}
+@font-face {
+    font-family: FjallaOne;
+    src: url('../assets/corporate/fonts_corporate/FjallaOne/FjallaOne-Regular.ttf');
+}
+@font-face {
+    font-family: IBMPlexSans1;
+    src: url('../assets/corporate/fonts_corporate/IBMPlexSans/IBMPlexSans-Italic.ttf');
+}
+@font-face {
+    font-family: IBMPlexSans2;
+    src: url('../assets/corporate/fonts_corporate/IBMPlexSans/IBMPlexSans-Light.ttf');
+}
+@font-face {
+    font-family: Inconsolata1;
+    src: url('../assets/corporate/fonts_corporate/Inconsolata/Inconsolata-ExtraLight.ttf');
+}
+@font-face {
+    font-family: Inconsolata2;
+    src: url('../assets/corporate/fonts_corporate/Inconsolata/Inconsolata-SemiBold.ttf');
+}
+@font-face {
+    font-family: InknutAntiqua1;
+    src: url('../assets/corporate/fonts_corporate/InknutAntiqua/InknutAntiqua-ExtraBold.ttf');
+}
+@font-face {
+    font-family: InknutAntiqua2;
+    src: url('../assets/corporate/fonts_corporate/InknutAntiqua/InknutAntiqua-Regular.ttf');
+}
+@font-face {
+    font-family: Inter1;
+    src: url('../assets/corporate/fonts_corporate/Inter/Inter-ExtraLight.ttf');
+}
+@font-face {
+    font-family: Inter2;
+    src: url('../assets/corporate/fonts_corporate/Inter/Inter-Regular.ttf');
+}
+@font-face {
+    font-family: JetBrainsMono1;
+    src: url('../assets/corporate/fonts_corporate/JetBrainsMono/JetBrainsMono-Bold.ttf');
+}
+@font-face {
+    font-family: JetBrainsMono2;
+    src: url('../assets/corporate/fonts_corporate/JetBrainsMono/JetBrainsMono-BoldItalic.ttf');
+}
+@font-face {
+    font-family: Lato1;
+    src: url('../assets/corporate/fonts_corporate/Lato/Lato-Black.ttf');
+}
+@font-face {
+    font-family: Lato2;
+    src: url('../assets/corporate/fonts_corporate/Lato/Lato-Bold.ttf');
+}
+@font-face {
+    font-family: Manrope1;
+    src: url('../assets/corporate/fonts_corporate/Manrope/Manrope-Light.ttf');
+}
+@font-face {
+    font-family: Manrope2;
+    src: url('../assets/corporate/fonts_corporate/Manrope/Manrope-Regular.ttf');
+}
+@font-face {
+    font-family: NotoSans1;
+    src: url('../assets/corporate/fonts_corporate/NotoSans/NotoSans-BlackItalic.ttf');
+}
+@font-face {
+    font-family: NotoSans2;
+    src: url('../assets/corporate/fonts_corporate/NotoSans/NotoSans-Bold.ttf');
+}
+@font-face {
+    font-family: Nunito1;
+    src: url('../assets/corporate/fonts_corporate/Nunito/Nunito-BlackItalic.ttf');
+}
+@font-face {
+    font-family: Nunito2;
+    src: url('../assets/corporate/fonts_corporate/Nunito/Nunito-Bold.ttf');
+}
+@font-face {
+    font-family: OpenSans1;
+    src: url('../assets/corporate/fonts_corporate/OpenSans/OpenSans-Bold.ttf');
+}
+@font-face {
+    font-family: OpenSans2;
+    src: url('../assets/corporate/fonts_corporate/OpenSans/OpenSans-Italic.ttf');
+}
+@font-face {
+    font-family: Oswald1;
+    src: url('../assets/corporate/fonts_corporate/Oswald/Oswald-Medium.ttf');
+}
+@font-face {
+    font-family: Oswald2;
+    src: url('../assets/corporate/fonts_corporate/Oswald/Oswald-SemiBold.ttf');
+}
+@font-face {
+    font-family: PermanentMarker;
+    src: url('../assets/corporate/fonts_corporate/PermanentMarker/PermanentMarker-Regular.ttf');
+}
+@font-face {
+    font-family: Poppins1;
+    src: url('../assets/corporate/fonts_corporate/Poppins/Poppins-Italic.ttf');
+}
+@font-face {
+    font-family: Poppins2;
+    src: url('../assets/corporate/fonts_corporate/Poppins/Poppins-Thin.ttf');
+}
+@font-face {
+    font-family: Prompt1;
+    src: url('../assets/corporate/fonts_corporate/Prompt/Prompt-Bold.ttf');
+}
+@font-face {
+    font-family: Prompt2;
+    src: url('../assets/corporate/fonts_corporate/Prompt/Prompt-BoldItalic.ttf');
+}
+@font-face {
+    font-family: ProzaLibre1;
+    src: url('../assets/corporate/fonts_corporate/ProzaLibre/ProzaLibre-Bold.ttf');
+}
+@font-face {
+    font-family: ProzaLibre2;
+    src: url('../assets/corporate/fonts_corporate/ProzaLibre/ProzaLibre-MediumItalic.ttf');
+}
+@font-face {
+    font-family: PTSans1;
+    src: url('../assets/corporate/fonts_corporate/PTSans/PTSans-Italic.ttf');
+}
+@font-face {
+    font-family: PTSans2;
+    src: url('../assets/corporate/fonts_corporate/PTSans/PTSans-Regular.ttf');
+}
+@font-face {
+    font-family: Quicksand;
+    src: url('../assets/corporate/fonts_corporate/Quicksand/Quicksand-SemiBold.ttf');
+}
+@font-face {
+    font-family: Raleway1;
+    src: url('../assets/corporate/fonts_corporate/Raleway/Raleway-Medium.ttf');
+}
+@font-face {
+    font-family: Raleway2;
+    src: url('../assets/corporate/fonts_corporate/Raleway/Raleway-SemiBoldItalic.ttf');
+}
+@font-face {
+    font-family: Righteous;
+    src: url('../assets/corporate/fonts_corporate/Righteous/Righteous-Regular.ttf');
+}
+@font-face {
+    font-family: Rubik1;
+    src: url('../assets/corporate/fonts_corporate/Rubik/Rubik-Regular.ttf');
+}
+@font-face {
+    font-family: Rubik2;
+    src: url('../assets/corporate/fonts_corporate/Rubik/Rubik-SemiBoldItalic.ttf');
+}
+@font-face {
+    font-family: RussoOne;
+    src: url('../assets/corporate/fonts_corporate/RussoOne/RussoOne-Regular.ttf');
+}
+@font-face {
+    font-family: Sora1;
+    src: url('../assets/corporate/fonts_corporate/Sora/Sora-Bold.ttf');
+}
+@font-face {
+    font-family: Sora2;
+    src: url('../assets/corporate/fonts_corporate/Sora/Sora-SemiBold.ttf');
+}
+@font-face {
+    font-family: SourceSansPro1;
+    src: url('../assets/corporate/fonts_corporate/SourceSansPro/SourceSansPro-Black.ttf');
+}
+@font-face {
+    font-family: SourceSansPro2;
+    src: url('../assets/corporate/fonts_corporate/SourceSansPro/SourceSansPro-BlackItalic.ttf');
+}
+@font-face {
+    font-family: SpaceMono1;
+    src: url('../assets/corporate/fonts_corporate/SpaceMono/SpaceMono-Bold.ttf');
+}
+@font-face {
+    font-family: SpaceMono2;
+    src: url('../assets/corporate/fonts_corporate/SpaceMono/SpaceMono-Italic.ttf');
+}
