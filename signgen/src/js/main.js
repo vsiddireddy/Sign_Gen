@@ -21,9 +21,9 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     if (document.getElementById("filetypeSelect").value == 'PNG') {
         link.download = 'sign.png';
     } else {
-        link.download = 'sign.jpg'
+        link.download = 'sign.jpg';
     }
-    link.href = document.getElementById('canvas_back').toDataURL()
+    link.href = document.getElementById('canvas_back').toDataURL();
     link.click();
 });
 
