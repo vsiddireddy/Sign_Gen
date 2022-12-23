@@ -15,7 +15,18 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
         console.log("Not checked");
     }
 });
-//
+
+document.getElementById("filetypeBtn").addEventListener("click", function(){
+    var link = document.createElement('a');
+    if (document.getElementById("filetypeSelect").value == 'PNG') {
+        link.download = 'sign.png';
+    } else {
+        link.download = 'sign.jpg'
+    }
+    link.href = document.getElementById('canvas_back').toDataURL()
+    link.click();
+});
+
 document.getElementById("splashGen1").addEventListener("click", function(){
     shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
 });
