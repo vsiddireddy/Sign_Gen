@@ -18,6 +18,26 @@ class canvas {
             sign.setHeight(291);
         }
 
+        const url = r.GetRandomLogo();
+        console.log(url);
+        if (document.getElementById('toggleLogo').checked) {
+            fabric.loadSVGFromURL(url, function(objects, options) {
+                objects.every(function(svg) {
+                    console.log(svg);
+                    svg.set({
+                        top: 90,
+                        left: 90,
+                        originX: 'center',
+                        originY: 'center',
+                        fill: 'red'
+                    });
+                    svg.scaleToWidth(50);
+                    svg.scaleToHeight(50);
+                    sign.add(svg).renderAll();
+                    return false;
+                });
+            });
+        }
 
         var colors = await r.ApplyColors();
         sign.backgroundColor = colors.m1;
