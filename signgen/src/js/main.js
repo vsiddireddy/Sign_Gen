@@ -1,20 +1,5 @@
 var gen_button = document.getElementById('gen_button');
 
-const fontArr2 = ['AdventPro', 'AlegreyaSansSC', 'ArchivoBlack', 'Asap1', 'Asap2', 'Audiowide'];
-for (let x = 0; x < 66; x++) {
-    const fontArr = ['AdventPro', 'AlegreyaSansSC', 'ArchivoBlack', 'Asap1', 'Asap2', 'Audiowide',
-    'BioRhyme1', 'BioRhyme2', 'Cabin', 'ChakraPetch1', 'ChakraPetch2', 'Chivo1', 'Chivo2', 'Comfortaa',
-    'ConcertOne', 'DMSans1', 'DMSans2', 'Eczar1', 'Eczar2', 'FiraSans1', 'FiraSans2', 'FjallaOne', 
-    'IBMPlexSans1', 'IBMPlexSans2', 'Inconsolata1', 'Inconsolata2', 'InknutAntiqua1', 'InknutAntiqua2',
-    'Inter1', 'Inter2', 'JetBrainsMono1', 'JetBrainsMono2', 'Lato1', 'Lato2', 'Manrope1', 'Manrope2',
-    'NotoSans1', 'NotoSans2', 'Nunito1', 'Nunito2', 'OpenSans1', 'OpenSans2', 'Oswald1', 'Oswald2',
-    'PermanentMarker', 'Poppins1', 'Poppins2', 'Prompt1', 'Prompt2', 'ProzaLibre1', 'ProzaLibre2',
-    'PTSans1', 'PTSans2', 'Quicksand', 'Raleway1', 'Raleway2', 'Righteous', 'Rubik1', 'Rubik2',
-    'RussoOne', 'Sora1', 'Sora2', 'SourceSansPro1', 'SourceSansPro2', 'SpaceMono1', 'SpaceMono2']
-    const canvasObject = new canvas();
-    //canvasObject.test(fontArr[x]);
-}
-
 if(gen_button){
     console.log("gen button exists");
     gen_button.addEventListener("click", function(){
