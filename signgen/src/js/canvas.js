@@ -29,10 +29,11 @@ class canvas {
                         left: 90,
                         originX: 'center',
                         originY: 'center',
-                        fill: 'red'
+                        fill: 'blue'
                     });
-                    svg.scaleToWidth(50);
-                    svg.scaleToHeight(50);
+                    svg.scaleToWidth(w/1.75);
+                    svg.scaleToHeight(h/1.75);
+                    sign.centerObject(svg);
                     sign.add(svg).renderAll();
                     return false;
                 });

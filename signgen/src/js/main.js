@@ -1,7 +1,7 @@
 var gen_button = document.getElementById('gen_button');
 
 if(gen_button){
-    console.log("gen button exists");
+    //console.log("gen button exists");
     gen_button.addEventListener("click", function(){
         const canvasObject = new canvas();
         canvasObject.generate();
