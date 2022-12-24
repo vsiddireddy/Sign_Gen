@@ -61,6 +61,8 @@ class canvas {
 
             if(words[1] !== undefined){
                 var sub_text = new fabric.Textbox(words[1], {
+                    top: 90,
+                    left: 90,
                     fontFamily: font,
                     width: Number(w),
                     textAlign: "center"
