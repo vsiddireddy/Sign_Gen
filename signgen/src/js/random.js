@@ -69,13 +69,13 @@ class random {
         var w2;
         var sub;
         var oneWordArr = [
-            faker.company.companyName(), faker.company.bs(), faker.company.catchPhrase(), 
+            faker.company.companyName(), faker.company.catchPhrase(), 
             faker.vehicle.vehicle(), faker.vehicle.manufacturer(), faker.commerce.productName(), faker.commerce.department()
         ];
         var wordArr = [
             faker.commerce.product(), faker.company.companyName(), faker.database.engine(), faker.address.city(), faker.name.firstName(), 
             faker.commerce.productAdjective(), faker.commerce.department(), faker.commerce.productName(), faker.commerce.productMaterial(), 
-            faker.company.bs(), faker.finance.accountName(), faker.animal.type(), faker.commerce.department(), faker.vehicle.vehicle(),
+            faker.finance.accountName(), faker.animal.type(), faker.commerce.department(), faker.vehicle.vehicle(),
             faker.vehicle.manufacturer()
         ];
         var subArr = [
