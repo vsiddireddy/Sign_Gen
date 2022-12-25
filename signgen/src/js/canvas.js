@@ -23,6 +23,7 @@ class canvas {
         var words  = await r.GetRandomWord();
         var font   = await r.ApplyFont();
         var effect = await r.GetRandomTextEffect(colors);
+        var bgEffect = await r.GetRandomBackgound(colors, w, h);
         const url  = r.GetRandomLogo();
         sign.backgroundColor = colors.m1;
 
@@ -45,6 +46,12 @@ class canvas {
                     return false;
                 });
             });
+        }
+
+        //Background Effect
+        if (bgEffect.length !== 0){
+            sign.add(bgEffect[0]);
+            sign.centerObject(bgEffect[0]);
         }
 
         //Words

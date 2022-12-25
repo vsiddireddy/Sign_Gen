@@ -136,4 +136,29 @@ class random {
         return [shadow, stroke];
     }
 
+    async GetRandomBackgound(colors, w, h){
+        var choice = this.getRandomInt(2); //0,1,2
+        var background = [];
+
+        if(colors.h2 !== "")
+        {
+            if(choice == 0){
+                var circle = new fabric.Circle({
+                    radius: w/4,
+                    fill: colors.h2
+                });
+                background.push(circle);
+            } else if (choice == 1){
+                var rect = new fabric.Rect({
+                    width: w,
+                    height: h/1.5,
+                    fill: colors.h2
+                });
+                background.push(rect);
+            }
+        }
+
+        return background;
+    }
+
 }
