@@ -1,3 +1,5 @@
+/* GOOGLE FONTS */
+
 @font-face {
     font-family: AdventPro;
     src: url('../assets/corporate/fonts_corporate/AdventPro/AdventPro-Medium.ttf');
@@ -261,4 +263,103 @@
 @font-face {
     font-family: SpaceMono2;
     src: url('../assets/corporate/fonts_corporate/SpaceMono/SpaceMono-Italic.ttf');
+}
+
+/* SREE FONTS */
+
+@font-face {
+    font-family: AlphaProta;
+    src: url('../assets/corporate/fonts_corporate/AlphaProta/AlphaProta.ttf');
+}
+@font-face {
+    font-family: AntsyPants;
+    src: url('../assets/corporate/fonts_corporate/AntsyPants/AntsyPants.ttf');
+}
+@font-face {
+    font-family: Automania;
+    src: url('../assets/corporate/fonts_corporate/Automania/AUTOMANI.TTF');
+}
+@font-face {
+    font-family: Beware;
+    src: url('../assets/corporate/fonts_corporate/Beware/Beware.ttf');
+}
+@font-face {
+    font-family: Blaec;
+    src: url('../assets/corporate/fonts_corporate/Blaec/Blaec.ttf');
+}
+@font-face {
+    font-family: BoecklinsUniverse;
+    src: url('../assets/corporate/fonts_corporate/BoecklinsUniverse/BoecklinsUniverse.ttf');
+}
+@font-face {
+    font-family: Carbon;
+    src: url('../assets/corporate/fonts_corporate/Carbon/carbon.ttf');
+}
+@font-face {
+    font-family: CrystalRadioKit;
+    src: url('../assets/corporate/fonts_corporate/CrystalRadioKit/CrystalRadioKit.ttf');
+}
+@font-face {
+    font-family: DeftoneStylus;
+    src: url('../assets/corporate/fonts_corporate/DeftoneStylus/deftonestylus.ttf');
+}
+@font-face {
+    font-family: Electroharmonix;
+    src: url('../assets/corporate/fonts_corporate/Electroharmonix/electroharmonix.ttf');
+}
+@font-face {
+    font-family: Fffforwa;
+    src: url('../assets/corporate/fonts_corporate/Fffforwa/FFFFORWA.TTF');
+}
+@font-face {
+    font-family: Halo;
+    src: url('../assets/corporate/fonts_corporate/Halo/HALO____.TTF');
+}
+@font-face {
+    font-family: Hemi-head;
+    src: url('../assets/corporate/fonts_corporate/Hemi-head/hemi-head.ttf');
+}
+@font-face {
+    font-family: Kenyan-coffee;
+    src: url('../assets/corporate/fonts_corporate/Kenyan-coffee/kenyan-coffee.ttf');
+}
+@font-face {
+    font-family: Made-in-china;
+    src: url('../assets/corporate/fonts_corporate/Made-in-china/MadeInChina.ttf');
+}
+@font-face {
+    font-family: Metal-lord;
+    src: url('../assets/corporate/fonts_corporate/Metal-lord/metal-lord.ttf');
+}
+@font-face {
+    font-family: Monoglyceride;
+    src: url('../assets/corporate/fonts_corporate/Monoglyceride/monodb_.ttf');
+}
+@font-face {
+    font-family: Monoton;
+    src: url('../assets/corporate/fonts_corporate/Monoton/Monoton-Regular.ttf');
+}
+@font-face {
+    font-family: Neuropolitical;
+    src: url('../assets/corporate/fonts_corporate/Neuropolitical/neuropolitical.ttf');
+}
+@font-face {
+    font-family: Projects;
+    src: url('../assets/corporate/fonts_corporate/Projects/PROJECTS.TTF');
+}
+@font-face {
+    font-family: Sematary;
+    src: url('../assets/corporate/fonts_corporate/Sematary/Sematary.ttf');
+}
+@font-face {
+    font-family: Stentiga;
+    src: url('../assets/corporate/fonts_corporate/Stentiga/stentiga.ttf');
+}
+@font-face {
+    font-family: Twist-twist-font;
+    src: url('../assets/corporate/fonts_corporate/Twist-twist-font/Twisttwist.ttf');
+}
+@font-face {
+    font-family: World-of-water;
+    src: url('../assets/corporate/fonts_corporate/World-of-water/world-of-water.ttf');
 }

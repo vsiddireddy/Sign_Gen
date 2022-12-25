@@ -31,8 +31,16 @@ class random {
         'NotoSans1', 'NotoSans2', 'Nunito1', 'Nunito2', 'OpenSans1', 'OpenSans2', 'Oswald1', 'Oswald2',
         'PermanentMarker', 'Poppins1', 'Poppins2', 'Prompt1', 'Prompt2', 'ProzaLibre1', 'ProzaLibre2',
         'PTSans1', 'PTSans2', 'Quicksand', 'Raleway1', 'Raleway2', 'Righteous', 'Rubik1', 'Rubik2',
-        'RussoOne', 'Sora1', 'Sora2', 'SourceSansPro1', 'SourceSansPro2', 'SpaceMono1', 'SpaceMono2']
-        return fontArr[this.getRandomInt(66)];
+        'RussoOne', 'Sora1', 'Sora2', 'SourceSansPro1', 'SourceSansPro2', 'SpaceMono1', 'SpaceMono2',
+        'AlphaProta', 'AntsyPants', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
+        'DeftoneStylus', 'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
+        'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Projects', 'Sematary', 'Stentiga', 'Twist-twist-font',
+        'World-of-water'];
+        const fontArrTest = ['AlphaProta', 'AntsyPants', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
+        'DeftoneStylus', 'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
+        'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Projects', 'Sematary', 'Stentiga', 'Twist-twist-font',
+        'World-of-water'];
+        return fontArr[this.getRandomInt(90)];
     }
 
     GetRandomLogo(ctx_a, colors) {
