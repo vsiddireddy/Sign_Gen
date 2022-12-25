@@ -53,7 +53,7 @@ class random {
             faker.commerce.product(), faker.company.companyName(), faker.company.bsNoun(), faker.commerce.productMaterial()
         ];
         var subArr = [
-            faker.commerce.price(), faker.internet.domainName(), faker.address.city(), faker.phone.phoneNumber(), faker.company.companyName(), faker.company.suffixes(),
+            faker.commerce.price(), faker.internet.domainName(), faker.address.city(), faker.phone.phoneNumber(), faker.company.companyName(), 
             faker.address.streetName(),faker.address.streetAddress(), faker.company.companySuffix(), faker.company.bsNoun(), faker.company.bs(), faker.company.catchPhrase()
         ];
 

@@ -85,7 +85,8 @@ class canvas {
                 top += subTop;
             }
             
-            if(words[2] != undefined){
+            if(words[2] !== undefined){
+                console.log(words[2]);
                 var footer = new fabric.Textbox(words[2], {
                     top: top,
                     fontFamily: font,
