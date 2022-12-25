@@ -67,6 +67,7 @@ class canvas {
                 strokeWidth: effect[1]
             });
 
+            var top = mainText.calcTextHeight()
             if(words[1] !== undefined){
                 var subText = new fabric.Textbox(words[1], {
                     top: mainText.calcTextHeight(),
@@ -78,14 +79,10 @@ class canvas {
                     stroke: colors.h1,
                     strokeWidth: effect[1]
                 });
+                top += subText.calcTextHeight()
             }
             
             if(words[2] !== undefined){
-                var top = mainText.calcTextHeight()
-                if(words[1] !== undefined){
-                    top += subText.calcTextHeight();
-                }
-                
                 var footer = new fabric.Textbox(words[2], {
                     top: top,
                     fontFamily: font,
