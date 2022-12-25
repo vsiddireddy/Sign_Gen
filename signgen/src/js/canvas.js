@@ -80,7 +80,23 @@ class canvas {
                 });
 
                 var group = new fabric.Group([ mainText, subText ], {});
-            } else{
+            }
+            if(words[2] !== undefined){
+                var top = mainText.calcTextHeight()
+                var group = new fabric.Group([], {});
+                if(words[1] !== undefined){
+                    top += subText.calcTextHeight();
+                    group.addWithUpdate(subText);
+                }
+                var footer = new fabric.Textbox(words[1], {
+                    top: top,
+                    fontFamily: font,
+                    width: Number(w),
+                    textAlign: "center",
+                    fill: colors.m2,
+                });
+                group.addWithUpdate(footer);
+            } else if(words[1] == undefined && words[2] == undefined){
                 var group = new fabric.Group([ mainText ], {});
             }
             sign.centerObject(group);
@@ -88,8 +104,10 @@ class canvas {
             sign.add(group); 
         });
 
-
-
+        var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "{ W: " + sign.width + " H: " + sign.height + " }   ";
+        consoleText += "WORDS: { " + words[0] + ", " + words[1] + ", " + words[2]  + " }   ";
+        consoleText += "FONT: { " + font + " }   ";
+        document.getElementById('console_text').innerHTML = consoleText;
     }
 
     async clear(){
