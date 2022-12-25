@@ -34,13 +34,13 @@ class random {
         'RussoOne', 'Sora1', 'Sora2', 'SourceSansPro1', 'SourceSansPro2', 'SpaceMono1', 'SpaceMono2',
         'AlphaProta', 'AntsyPants', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
         'DeftoneStylus', 'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
-        'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Projects', 'Sematary', 'Stentiga', 'Twist-twist-font',
+        'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Sematary', 'Stentiga', 'Twist-twist-font',
         'World-of-water'];
         const fontArrTest = ['AlphaProta', 'AntsyPants', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
         'DeftoneStylus', 'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
         'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Projects', 'Sematary', 'Stentiga', 'Twist-twist-font',
         'World-of-water'];
-        return fontArr[this.getRandomInt(90)];
+        return fontArr[this.getRandomInt(fontArr.length)];
     }
 
     GetRandomLogo(ctx_a, colors) {
