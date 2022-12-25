@@ -78,27 +78,28 @@ class canvas {
                     stroke: colors.h1,
                     strokeWidth: effect[1]
                 });
-
-                var group = new fabric.Group([ mainText, subText ], {});
             }
+            
             if(words[2] !== undefined){
                 var top = mainText.calcTextHeight()
-                var group = new fabric.Group([mainText], {});
                 if(words[1] !== undefined){
                     top += subText.calcTextHeight();
-                    group.addWithUpdate(subText);
                 }
+                
                 var footer = new fabric.Textbox(words[2], {
                     top: top,
                     fontFamily: font,
+                    fontSize: mainText.fontSize/2,
                     width: Number(w),
                     textAlign: "center",
                     fill: colors.m2
-                });
-                group.addWithUpdate(footer);
-            } else if(words[1] == undefined && words[2] == undefined){
-                var group = new fabric.Group([ mainText ], {});
-            }
+                });  
+            } 
+
+            var group = new fabric.Group([], {});
+            var wordArr = [mainText, subText, footer];
+            wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)})
+
             sign.centerObject(group);
             sign.moveTo(group, 1); //z-index 1 is top
             sign.add(group); 
