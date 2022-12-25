@@ -116,4 +116,24 @@ class random {
         return [wordArr[0], wordArr[1], sub, false];
     }
 
+    async GetRandomTextEffect(colors){
+        var choice = this.getRandomInt(3); //0,1,2
+        var shadow = 0; //0
+        var stroke = 0; //1
+
+        if(choice == 0){
+            var shadow = new fabric.Shadow({
+                color: colors.h1,
+                blur: 0,    
+                offsetX: 3,
+                offsetY: 3,
+                opacity: 1
+            });
+        }else if (choice == 1){
+            stroke = this.getRandomInt(2) + 2;
+        }
+
+        return [shadow, stroke];
+    }
+
 }

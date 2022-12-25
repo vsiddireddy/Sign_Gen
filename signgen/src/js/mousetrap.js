@@ -3,12 +3,12 @@ Mousetrap.bind(['command+k', 'ctrl+k'], function() {
 });
 
 Mousetrap.bind('q', function() {
-    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    document.getElementById("canvas_back").style.zoom = 1.2 * csize;
+    var csize = getComputedStyle(document.getElementById('mainCanvas')).zoom;
+    document.getElementById("canvas_0").style.zoom = 1.2 * csize;
 
 });
 
 Mousetrap.bind('w', function() {
-    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    document.getElementById("canvas_back").style.zoom = csize / 1.2;
+    var csize = getComputedStyle(document.getElementById('mainCanvas')).zoom;
+    document.getElementById("canvas_0").style.zoom = csize / 1.2;
 });

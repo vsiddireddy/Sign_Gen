@@ -1,6 +1,6 @@
 var FontFaceObserver = require('fontfaceobserver');
 const r = new random();
-var sign = new fabric.Canvas("canvas_back");
+var sign = new fabric.Canvas("canvas_0");
 
 class canvas {
 
@@ -22,7 +22,8 @@ class canvas {
         var colors = await r.ApplyColors();
         var words  = await r.GetRandomWord();
         var font   = await r.ApplyFont();
-        const url = r.GetRandomLogo();
+        var effect = await r.GetRandomTextEffect(colors);
+        const url  = r.GetRandomLogo();
         sign.backgroundColor = colors.m1;
 
         //Logo
@@ -54,15 +55,21 @@ class canvas {
                 width: Number(w),
                 textAlign: "center",
                 fill: colors.m2,
+                shadow: effect[0],
+                stroke: colors.h1,
+                strokeWidth: effect[1]
             });
 
             if(words[1] !== undefined){
                 var subText = new fabric.Textbox(words[1], {
+                    top: mainText.calcTextHeight(),
                     fontFamily: font,
                     width: Number(w),
                     textAlign: "center",
                     fill: colors.m2,
-                    top: h/5
+                    shadow: effect[0],
+                    stroke: colors.h1,
+                    strokeWidth: effect[1]
                 });
 
                 var group = new fabric.Group([ mainText, subText ], {});
@@ -83,3 +90,28 @@ class canvas {
         sign.clear();
     }
 }
+
+
+//console.log(sign_0);
+//var signArr = [sign_0];
+//let canvasDiv = document.getElementById("mainCanvas");
+
+/*
+//Dynamically creating canvases & adding them to array
+for(i = 1; i < 10; i++){
+    var canvas_dynamic = document.createElement('canvas');
+    let id = "canvas_";
+    id += i;
+    canvas_dynamic.id     = id;
+    canvas_dynamic.width  = 633;
+    canvas_dynamic.height = 291;
+    canvasDiv.append(canvas_dynamic);
+
+    var obj = {};
+    var newsign = new fabric.Canvas(canvas_dynamic.id);
+    obj['sign_'+i] = newsign;
+    console.log(newsign);
+    signArr.push(obj);
+
+}
+*/

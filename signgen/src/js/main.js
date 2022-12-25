@@ -1,7 +1,6 @@
 var gen_button = document.getElementById('gen_button');
 
 if(gen_button){
-    //console.log("gen button exists");
     gen_button.addEventListener("click", function(){
         const canvasObject = new canvas();
         canvasObject.generate();
@@ -23,7 +22,7 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     } else {
         link.download = 'sign.jpg';
     }
-    link.href = document.getElementById('canvas_back').toDataURL();
+    link.href = document.getElementById('canvas_0').toDataURL();
     link.click();
 });
 
@@ -33,26 +32,26 @@ document.getElementById("splashGen1").addEventListener("click", function(){
 
 document.getElementById("splashGen2").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
-    document.getElementById("canvas_back").style.opacity = "1";
-    refresh_default("canvas_back", "canvas_text", "canvas_post");
+    document.getElementById("canvas_0").style.opacity = "1";
+    refresh_default("canvas_0", "canvas_text", "canvas_post");
 });
 
 document.getElementById("zmin").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    document.getElementById("canvas_back").style.zoom = 1.2*csize;
+    var csize = getComputedStyle(document.getElementById('canvas_0')).zoom;
+    document.getElementById("canvas_0").style.zoom = 1.2*csize;
 });
 
 document.getElementById("zmout").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementById('canvas_back')).zoom;
-    document.getElementById("canvas_back").style.zoom = csize/1.2;
+    var csize = getComputedStyle(document.getElementById('canvas_0')).zoom;
+    document.getElementById("canvas_0").style.zoom = csize/1.2;
 });
 
 document.getElementById("lm-home").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'block';
-    document.getElementById("canvas_back").style.opacity = "0";
+    document.getElementById("canvas_0").style.opacity = "0";
 });
 
 document.getElementById("lm-refresh").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
-    document.getElementById("canvas_back").style.opacity = "100";
+    document.getElementById("canvas_0").style.opacity = "100";
 });
