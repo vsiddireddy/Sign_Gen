@@ -32,7 +32,7 @@ class random {
         'PermanentMarker', 'Poppins1', 'Poppins2', 'Prompt1', 'Prompt2', 'ProzaLibre1', 'ProzaLibre2',
         'PTSans1', 'PTSans2', 'Quicksand', 'Raleway1', 'Raleway2', 'Righteous', 'Rubik1', 'Rubik2',
         'RussoOne', 'Sora1', 'Sora2', 'SourceSansPro1', 'SourceSansPro2', 'SpaceMono1', 'SpaceMono2',
-        'AlphaProta', 'AntsyPants', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
+        'AlphaProta', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
         'DeftoneStylus', 'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
         'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Sematary', 'Stentiga', 'Twist-twist-font',
         'World-of-water'];
@@ -96,6 +96,14 @@ class random {
         }
         if (randomWords[1] == undefined){
             randomWords[0] = await this.GetOneWord();
+        }
+        console.log(document.getElementById('word1').value);
+        if (document.getElementById('word1').value != '') {
+            randomWords[0] = document.getElementById('word2').value;
+            if (document.getElementById('word2').value != '') {
+                randomWords[1] = document.getElementById('word1').value;
+            }
+            randomWords[2] = undefined;
         }
         return randomWords; //w2, w1, sub
     }
