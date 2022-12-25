@@ -83,17 +83,17 @@ class canvas {
             }
             if(words[2] !== undefined){
                 var top = mainText.calcTextHeight()
-                var group = new fabric.Group([], {});
+                var group = new fabric.Group([mainText], {});
                 if(words[1] !== undefined){
                     top += subText.calcTextHeight();
                     group.addWithUpdate(subText);
                 }
-                var footer = new fabric.Textbox(words[1], {
+                var footer = new fabric.Textbox(words[2], {
                     top: top,
                     fontFamily: font,
                     width: Number(w),
                     textAlign: "center",
-                    fill: colors.m2,
+                    fill: colors.m2
                 });
                 group.addWithUpdate(footer);
             } else if(words[1] == undefined && words[2] == undefined){
