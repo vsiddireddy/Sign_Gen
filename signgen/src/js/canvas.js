@@ -59,6 +59,7 @@ class canvas {
         myfont.load().then(function () {
             var mainText = new fabric.Textbox(words[0], {
                 fontFamily: font,
+                fontSize: w/12,
                 width: Number(w),
                 textAlign: "center",
                 fill: colors.m2,
@@ -70,8 +71,8 @@ class canvas {
             var top = mainText.calcTextHeight()
             if(words[1] !== undefined){
                 var subText = new fabric.Textbox(words[1], {
-                    top: mainText.calcTextHeight(),
                     fontFamily: font,
+                    fontSize: w/12,
                     width: Number(w),
                     textAlign: "center",
                     fill: colors.m2,
@@ -79,14 +80,16 @@ class canvas {
                     stroke: colors.h1,
                     strokeWidth: effect[1]
                 });
-                top += subText.calcTextHeight()
+                var subTop = subText.calcTextHeight();
+                mainText.set({ top: subTop });
+                top += subTop;
             }
             
-            if(words[2] !== undefined){
+            if(words[2] != undefined){
                 var footer = new fabric.Textbox(words[2], {
                     top: top,
                     fontFamily: font,
-                    fontSize: mainText.fontSize/2,
+                    fontSize: mainText.fontSize/2.5,
                     width: Number(w),
                     textAlign: "center",
                     fill: colors.m2
@@ -102,7 +105,7 @@ class canvas {
             sign.add(group); 
         });
 
-        var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "{ W: " + sign.width + " H: " + sign.height + " }   ";
+        var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
         consoleText += "WORDS: { " + words[0] + ", " + words[1] + ", " + words[2]  + " }   ";
         consoleText += "FONT: { " + font + " }   ";
         document.getElementById('console_text').innerHTML = consoleText;

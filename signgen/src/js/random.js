@@ -41,79 +41,70 @@ class random {
         return svgURL;
     }
 
-    async RandomCapitilization(w1, w2, isPrefix) {
-        //console.log(w2 == null);
-        console.log('RandomCapitilization: ' + w1 + " : " + w2);
-        var index = this.getRandomInt(4);
-        if (index == 0) { // all uppercase
-            w1 = w1.toUpperCase();
-        } else if (index == 1) { // all lowercase
-            w1 = w1.toLowerCase();
-        } else if (index == 2) {
-            w1 = w1.replace(/^./, w1[0].toUpperCase());
-        }
-        if (w2 != undefined) {
-            if (index == 0) { // all uppercase
-                w2 = w2.toUpperCase();
-            } else if (index == 1) {
-                w2 = w2.toLowerCase();
-            } else if (index == 2) {
-                w2 = w2.replace(/^./, w2[0].toUpperCase());
-            }
-        }
-        return [w1, w2];
-    }
-
     async GetRandomWord(userInput, category) {
         var w1;
         var w2;
         var sub;
         var oneWordArr = [
-            faker.company.companyName(), faker.company.catchPhrase(), 
-            faker.vehicle.vehicle(), faker.vehicle.manufacturer(), faker.commerce.productName(), faker.commerce.department()
+            faker.commerce.productAdjective(), faker.company.bsAdjective(), faker.company.bsBuzz(), faker.company.catchPhraseAdjective(), faker.address.cardinalDirection(),
+            faker.address.state()
         ];
         var wordArr = [
-            faker.commerce.product(), faker.company.companyName(), faker.database.engine(), faker.address.city(), faker.name.firstName(), 
-            faker.commerce.productAdjective(), faker.commerce.department(), faker.commerce.productName(), faker.commerce.productMaterial(), 
-            faker.finance.accountName(), faker.animal.type(), faker.commerce.department(), faker.vehicle.vehicle(),
-            faker.vehicle.manufacturer()
+            faker.commerce.product(), faker.company.companyName(), faker.company.bsNoun(), faker.commerce.productMaterial()
         ];
         var subArr = [
-            faker.address.latitude(), faker.address.longitude(), faker.address.direction(), faker.commerce.price(), faker.internet.domainName(),
-            faker.address.city(), faker.finance.amount(), faker.phone.phoneNumber(), faker.datatype.uuid(), faker.address.streetName(),
-            faker.address.streetAddress(), faker.company.companySuffix()
+            faker.commerce.price(), faker.internet.domainName(), faker.address.city(), faker.phone.phoneNumber(), faker.company.companyName(), faker.company.suffixes(),
+            faker.address.streetName(),faker.address.streetAddress(), faker.company.companySuffix(), faker.company.bsNoun(), faker.company.bs(), faker.company.catchPhrase()
         ];
-        var oneWordNum = this.getRandomInt(8);
-        var word1Num   = this.getRandomInt(14);
-        var word2Num   = this.getRandomInt(14);
-        while (word1Num == word2Num) {
-            word2Num = this.getRandomInt(14);
+
+        w1 = oneWordArr[this.getRandomInt(oneWordArr.length)]; //decrease to lower possibility of Arr being shown (except for wordArr)
+        w2 = wordArr[this.getRandomInt(wordArr.length)];
+        sub = subArr[this.getRandomInt(subArr.length)];
+        
+
+        var randomCapitalization = this.getRandomInt(3);
+        if (randomCapitalization == 0) {
+            w1 = w1.toLowerCase();
+            w2 = w2.toLowerCase();
+        } else if (randomCapitalization == 1) {
+            w1 = w1.toUpperCase();
+            w2 = w2.toUpperCase();
+        }  else if (randomCapitalization == 2) {
+            w1 = w1.replace(/^./, w1[0].toUpperCase());
+            w2 = w2.replace(/^./, w2[0].toUpperCase());
         }
-        var subNum = this.getRandomInt(12);
-        var choiceNum = this.getRandomInt(2);
-        if (choiceNum == 0) {
-            w1 = oneWordArr[oneWordNum];
-            while (w1 == undefined) {
-                w1 = oneWordArr[this.getRandomInt(2)];
-            }
-        } else if (choiceNum == 1) {
-            w1 = wordArr[word1Num];
-            w2 = wordArr[word2Num];
-            console.log('BEFORE W1/W2: ' + w1 + " : " + w2);
-            while (w1 == undefined) {
-                w1 = wordArr[this.getRandomInt(14)];
-            }
-            while (w2 == undefined) {
-                w2 = wordArr[this.getRandomInt(14)];
-            }
-            console.log('AFTER W1/W2: ' + w1 + " : " + w2);
+
+        //random push
+        var randomWords = [w2];
+        if (this.getRandomInt(2) == 0) {
+            randomWords.push(w1);
         }
         if (this.getRandomInt(2) == 0) {
-            sub = subArr[subNum];
+            if(randomWords[1] !== w1){
+                w1 = undefined;
+                randomWords.push(w1);
+            }
+            randomWords.push(sub);
         }
-        wordArr = await this.RandomCapitilization(w1, w2, false);
-        //console.log("TESTING: " + wordArr);
-        return [wordArr[0], wordArr[1], sub, false];
+        if (randomWords[1] == undefined){
+            randomWords[0] = await this.GetOneWord();
+        }
+        return randomWords; //w2, w1, sub
+    }
+
+    async GetOneWord(){
+        var prefixes = ["nu", "win", "ry", "core", "tech", "sys","pro", "hydro", "west", "nort", "dune", "pop", 
+        "tru", "tele", "real", "snap", "coin", "power", "insta", "net", "dis", "face", "solo", "pay", "ear", "eye",
+        "wal", "tes", "wyn", "flow", "up", "me"];
+        var prefix = prefixes[this.getRandomInt(prefixes.length)];
+
+        var suffixes = ["corp", "tech", "whiz", "nest", "lab",  "cord", "flow", "well", "com", 
+        "shift", "zone", "book", "chat", "gram", "pint", "ton", "mart", "face", "scan", "board", "car", "mobile", "time", "phone", "lock", 
+        "screen", "page", "app", "drive", "gen", "bern", "shop", "bud", "log", "list", "tok"];
+        var suffix = suffixes[this.getRandomInt(suffixes.length)];
+
+        var word = prefix+suffix;
+        return word;
     }
 
     async GetRandomTextEffect(colors){
