@@ -50,22 +50,9 @@ class random {
         }
 
         var variation = this.getRandomInt(5);
-        if(choice == 0){
-            scheme.variation('pastel');
-            console.log("pastel");
-        } else if (choice == 1){
-            scheme.variation('soft');
-            console.log("soft");
-        } else if (choice == 2){
-            scheme.variation('light');
-            console.log("light");
-        } else if (choice == 3){
-            scheme.variation('hard');  
-            console.log("hard");
-        } else if (choice == 4){
-            scheme.variation('pale');  
-            console.log("pale");
-        }
+        var schemesVal = document.getElementById('schemes').value;
+        console.log(schemesVal);
+        scheme.variation(schemesVal);
 
         var colors = scheme.colors();
         for (var i = 0; i < colors.length; i++){
