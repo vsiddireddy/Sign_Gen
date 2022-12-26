@@ -2,7 +2,7 @@ var gen_button = document.getElementById('gen_button');
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
-        const canvasObject = new canvas();
+        const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
         canvasObject.generate();
      });
 }
