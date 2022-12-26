@@ -43,15 +43,14 @@ class random {
             scheme.from_hex(hex).scheme('triade');
             console.log("triade");
         } else if (choice == 2){
-            scheme.from_hex(hex).scheme('tetrade');
-            console.log("tetrade");
-        } else if (choice == 3){
             scheme.from_hex(hex).scheme('analogic');   
             console.log("analogic");
+        } else if (choice == 3){
+            scheme.from_hex(hex).scheme('monochromatic');   
+            console.log("monochromatic");
         }
 
         var schemesVal = document.getElementById('schemes').value;
-        console.log(schemesVal);
         scheme.variation(schemesVal);
 
         var colors = scheme.colors();
@@ -59,6 +58,62 @@ class random {
             colors[i] = '#' + colors[i];
         }
         //colors = this.Shuffle(colors);
+        //m1,m2,h1,h2 = colors[0-3] = bgc, txtc, stroke/shadow, logoc/bgsc
+        
+        /*
+        var seed = this.getRandomInt(3);
+        if(colors.length > 7){
+            if(choice == 0){
+                if(seed == 0){
+                    var oldbg = colors[0];
+                    colors[0] = colors[1];
+                    colors[1] = oldbg;
+                } else if(seed == 1){
+                    colors[1] = colors[4];
+                    colors[2] = colors[5];
+                } else if(seed == 2){
+                    colors[0] = colors[7];
+                    colors[2] = colors[6];
+                }
+            } else if(choice == 1){
+                if(seed == 0){
+                    var oldbg = colors[0];
+                    colors[0] = colors[1];
+                    colors[1] = oldbg;
+                } else if(seed == 1){
+                    colors[2] = colors[4];
+                    colors[3] = colors[5];
+                } else if(seed == 2){
+                    colors[0] = colors[8];
+                    colors[2] = colors[4];
+                }
+            } else if(choice == 2){
+                if(seed == 0){
+                    var oldbg = colors[0];
+                    colors[0] = colors[1];
+                    colors[1] = oldbg;
+                } else if(seed == 1){
+                    colors[1] = colors[4];
+                    colors[2] = colors[5];
+                } else if(seed == 2){
+                    colors[0] = colors[7];
+                    colors[2] = colors[6];
+                }
+            }else if(choice == 3){
+                if(seed == 0){
+                    var oldbg = colors[0];
+                    colors[0] = colors[1];
+                    colors[1] = oldbg;
+                } else if(seed == 1){
+                    colors[1] = colors[4];
+                    colors[2] = colors[5];
+                } else if(seed == 2){
+                    colors[0] = colors[7];
+                    colors[2] = colors[6];
+                }
+            }
+        }
+        */
         return colors;
     }
 
