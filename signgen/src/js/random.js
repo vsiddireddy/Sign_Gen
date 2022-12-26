@@ -1,6 +1,7 @@
 const { shell } = require('electron');
 var Mousetrap = require('mousetrap');
 const faker = require('faker');
+var ColorScheme = require('color-scheme');
 var printDebug = true;
 
 class random {
@@ -20,6 +21,10 @@ class random {
     
         var colors = json.corporateArr[index]; 
         return colors;
+    }
+
+    async GetColorScheme() {
+
     }
 
     async ApplyFont() {

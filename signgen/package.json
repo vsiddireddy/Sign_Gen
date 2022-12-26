@@ -45,6 +45,7 @@
     }
   },
   "dependencies": {
+    "color-scheme": "^1.0.1",
     "electron-squirrel-startup": "^1.0.0",
     "faker": "^5.5.3",
     "fontfaceobserver": "^2.3.0",
