@@ -21,6 +21,7 @@ class canvas {
         }
 
         var colors = await r.ApplyColors();
+        console.log(colors);
         var words  = await r.GetRandomWord();
         var font   = await r.ApplyFont();
         var effect = await r.GetRandomTextEffect(colors);

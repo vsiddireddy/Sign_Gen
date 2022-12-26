@@ -11,20 +11,68 @@ class random {
     }
 
     async ApplyColors() {
-        
         const response = await fetch("../assets/corporate/colors_corporate/color_list_corporate.json");
         const json = await response.json();
     
         var maxIndex = Object.keys(json.corporateArr).length;
         var index = this.getRandomInt(maxIndex);
         //var index = Math.floor(Math.random() * maxIndex);
-    
         var colors = json.corporateArr[index]; 
+
+        var colorScheme = document.getElementById('color1').value
+        if(colorScheme !== ""){
+            var gcs = await this.GetColorScheme(colorScheme);
+            colors.m1 = gcs[0];
+            colors.m2 = gcs[1];
+            colors.h1 = gcs[2];
+            colors.h2 = gcs[3];
+        }
+
         return colors;
     }
 
-    async GetColorScheme() {
+    async GetColorScheme(hex) {
+        var scheme = new ColorScheme;
 
+        var choice = this.getRandomInt(4);
+        if(choice == 0){
+            scheme.from_hex(hex).scheme('contrast');
+            console.log("contrast");
+        } else if (choice == 1){
+            scheme.from_hex(hex).scheme('triade');
+            console.log("triade");
+        } else if (choice == 2){
+            scheme.from_hex(hex).scheme('tetrade');
+            console.log("tetrade");
+        } else if (choice == 3){
+            scheme.from_hex(hex).scheme('analogic');   
+            console.log("analogic");
+        }
+
+        var variation = this.getRandomInt(5);
+        if(choice == 0){
+            scheme.variation('pastel');
+            console.log("pastel");
+        } else if (choice == 1){
+            scheme.variation('soft');
+            console.log("soft");
+        } else if (choice == 2){
+            scheme.variation('light');
+            console.log("light");
+        } else if (choice == 3){
+            scheme.variation('hard');  
+            console.log("hard");
+        } else if (choice == 4){
+            scheme.variation('pale');  
+            console.log("pale");
+        }
+
+        var colors = scheme.colors();
+        for (var i = 0; i < colors.length; i++){
+            colors[i] = '#' + colors[i];
+        }
+        //colors = this.Shuffle(colors);
+        return colors;
     }
 
     async ApplyFont() {
@@ -172,5 +220,18 @@ class random {
 
         return background;
     }
+
+    async Shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+        while (currentIndex != 0) {
+      
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+        return array;
+      }
 
 }
