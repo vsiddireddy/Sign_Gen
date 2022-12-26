@@ -1,6 +1,7 @@
 var FontFaceObserver = require('fontfaceobserver');
 const r = new random();
 var sign = new fabric.Canvas("canvas_0");
+var printDebug = true;
 
 class canvas {
 
@@ -109,7 +110,11 @@ class canvas {
         var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
         consoleText += "WORDS: { " + words[0] + ", " + words[1] + ", " + words[2]  + " }   ";
         consoleText += "FONT: { " + font + " }   ";
-        document.getElementById('console_text').innerHTML = consoleText;
+        if (printDebug) {
+            document.getElementById('console_text').innerHTML = consoleText;
+        } else {
+            document.getElementById('console_text').innerHTML = '';
+        }
     }
 
     async clear(){
@@ -142,3 +147,7 @@ for(i = 1; i < 10; i++){
 
 }
 */
+
+Mousetrap.bind(['command+k', 'ctrl+k'], function() {
+    printDebug = !printDebug;
+});
