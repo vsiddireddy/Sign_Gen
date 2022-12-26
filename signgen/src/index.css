@@ -253,6 +253,12 @@ button {
   color: rgb(86, 89, 93);
 }
 
+.downBtn{
+  background: none;
+  zoom: 1;
+}
+
+
 .mdc-icon-button:hover{
   color: rgb(255, 255, 255);
 }
@@ -300,7 +306,6 @@ button {
 }
 
 #menutext{
-  margin-top: 30px;
   padding-left: 40px;
   font-size: 13px;
   color: #575757;
@@ -309,7 +314,7 @@ button {
 }
 
 #menutext2{
-  margin-top: 10px;
+  margin-top: 0px;
   padding-left: 40px;
   font-size: 7px;
   color: #575757;
@@ -324,20 +329,20 @@ select{
   background-color: #303030; 
   border: none;
   color: white;
-  padding: 5px 72px;
+  padding: 5px 63px;
   border-radius: 8px;
   
   
   text-align: center;
   text-decoration: none;
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   font-family: 'Ubuntu', sans-serif;
 }
 
 select option{
   text-align: center;
-  font-size: 18px;
+  font-size: 13px;
   background-color:#303030;
   font-family: 'Ubuntu', sans-serif;   
 }
@@ -350,15 +355,51 @@ input{
   margin-top: 0px;
   margin-bottom: 10px;
   border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
   background-color: #303030; 
   border: none;
   color: white;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   text-decoration: none;
-  display: block;
-  font-size: 15px;
+  font-size: 13px;
   padding: 5px;
   font-family: 'Ubuntu', sans-serif;
+}
+
+#textDiv > input{
+  display: block;
+}
+
+#whDiv > input{
+  display: block;
+}
+
+#colorDiv{
+  text-align:center;
+  margin-top: -10px;
+}
+
+#colorDiv > input{
+  max-width: 140px;
+}
+
+#colorPicker{
+  background: none;
+  height: 33px;
+  margin: 0px;
+}
+
+#symbolInput{
+  text-align:center;
+}
+
+#toggletext{
+  font-size: 13px;
+  color: #575757;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#toggleLogo{
+  margin-left: 10px;
 }
