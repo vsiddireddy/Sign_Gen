@@ -97,7 +97,7 @@ class random {
         if (randomWords[1] == undefined){
             randomWords[0] = await this.GetOneWord();
         }
-        console.log(document.getElementById('word1').value);
+
         if (document.getElementById('word1').value != '') {
             randomWords[0] = document.getElementById('word2').value;
             if (document.getElementById('word2').value != '') {
