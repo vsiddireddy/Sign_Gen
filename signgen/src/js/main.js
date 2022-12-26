@@ -15,6 +15,17 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
     }
 });
 
+document.getElementById("lm-dl").addEventListener("click", function(){
+    var link = document.createElement('a');
+    if (document.getElementById("filetypeSelect").value == 'PNG') {
+        link.download = 'sign.png';
+    } else {
+        link.download = 'sign.jpg';
+    }
+    link.href = document.getElementById('canvas_0').toDataURL();
+    link.click();
+});
+
 document.getElementById("filetypeBtn").addEventListener("click", function(){
     var link = document.createElement('a');
     if (document.getElementById("filetypeSelect").value == 'PNG') {
