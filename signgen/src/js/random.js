@@ -32,6 +32,7 @@ class random {
     }
 
     async GetColorScheme(hex) {
+        hex = hex.slice(1);
         var scheme = new ColorScheme;
 
         var choice = this.getRandomInt(4);
@@ -49,7 +50,6 @@ class random {
             console.log("analogic");
         }
 
-        var variation = this.getRandomInt(5);
         var schemesVal = document.getElementById('schemes').value;
         console.log(schemesVal);
         scheme.variation(schemesVal);

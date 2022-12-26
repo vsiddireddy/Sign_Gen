@@ -15,6 +15,10 @@ document.getElementById("toggleLogo").addEventListener("change", function (event
     }
 });
 
+document.getElementById("colorPicker").addEventListener('change', event => {
+    document.getElementById("color1").value = document.getElementById("colorPicker").value;
+  });
+
 document.getElementById("lm-dl").addEventListener("click", function(){
     var link = document.createElement('a');
     if (document.getElementById("filetypeSelect").value == 'PNG') {
