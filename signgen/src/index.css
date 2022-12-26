@@ -2,18 +2,23 @@ body { margin: 0; border-radius: 5px;  background-color: #2c2c2c;}
 
 .mainCanvas {
   position: relative;
+  text-align: center;
 }
 
-.mainCanvas > canvas {
-  position: fixed;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);  
+.canvas-container > canvas {
+  position: relative;
+  margin-top: 0 auto;
+  margin-left: 0 auto;
+  transform: translate(-50%, -50%);
+}
+
+.canvas_0 {
+  position: relative;
 }
 
 #container{
   zoom: 1;
-  position:relative;
+  position: relative;
   padding-top: 16%;
   padding-left: 14%
 }

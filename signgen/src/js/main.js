@@ -7,14 +7,6 @@ if(gen_button){
      });
 }
 
-document.getElementById("toggleLogo").addEventListener("change", function (event) {
-    if (event.target.checked) {
-        console.log("Checked");
-    } else {
-        console.log("Not checked");
-    }
-});
-
 document.getElementById("colorPicker").addEventListener('change', event => {
     document.getElementById("color1").value = document.getElementById("colorPicker").value;
   });
@@ -52,13 +44,13 @@ document.getElementById("splashGen2").addEventListener("click", function(){
 });
 
 document.getElementById("zmin").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementById('canvas_0')).zoom;
-    document.getElementById("canvas_0").style.zoom = 1.2*csize;
+    var csize = getComputedStyle(document.getElementsByClassName('canvas-container')[0]).zoom;
+    document.getElementsByClassName("canvas-container")[0].style.zoom = 1.2*csize;
 });
 
 document.getElementById("zmout").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementById('canvas_0')).zoom;
-    document.getElementById("canvas_0").style.zoom = csize/1.2;
+    var csize = getComputedStyle(document.getElementsByClassName('canvas-container')[0]).zoom;
+    document.getElementsByClassName("canvas-container")[0].style.zoom = csize/1.2;
 });
 
 document.getElementById("lm-home").addEventListener("click", function(){
