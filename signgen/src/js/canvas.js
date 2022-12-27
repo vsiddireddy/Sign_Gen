@@ -9,8 +9,12 @@ class canvas {
         this.clear();
 
         //Random/Input Values
-        var w = document.getElementById("CanvasWidth").value;
-        var h = document.getElementById("CanvasHeight").value;
+        if (w == undefined) {
+            var w = document.getElementById("CanvasWidth").value;
+        }
+        if (h == undefined) {
+            var h = document.getElementById("CanvasHeight").value;
+        }
         if (w/h >= 0.25 && w/h <= 4 && h <= 5000 && w <= 5000) {
             sign.setWidth(w);
             sign.setHeight(h);
@@ -20,13 +24,25 @@ class canvas {
             sign.setHeight(291);
         }
 
-        var colors   = await r.ApplyColors();
+        if (colors == undefined) {
+            var colors = await r.ApplyColors();
+        }
         console.log(colors);
-        var words    = await r.GetRandomWord();
-        var font     = await r.ApplyFont();
-        var effect   = await r.GetRandomTextEffect(colors);
-        var bgEffect = await r.GetRandomBackgound(colors, w, h);
-        const url    = r.GetRandomLogo();
+        if (words == undefined) {
+            var words = await r.GetRandomWord();
+        }
+        if (font == undefined) {
+            var font = await r.ApplyFont();
+        }
+        if (effect == undefined) {
+            var effect = await r.GetRandomTextEffect(colors);
+        }
+        if (bgEffect == undefined) {
+            var bgEffect = await r.GetRandomBackgound(colors, w, h);
+        }
+        if (url == undefined) {
+            var url = r.GetRandomLogo();
+        }
         sign.backgroundColor = colors.m1;
 
         //Logo
