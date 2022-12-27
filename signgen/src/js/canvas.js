@@ -5,7 +5,7 @@ var printDebug = true;
 
 class canvas {
 
-    async generate() {
+    async generate(w, h, colors, words, font, effect, bgEffect, url) {
         this.clear();
 
         //Random/Input Values
@@ -20,13 +20,13 @@ class canvas {
             sign.setHeight(291);
         }
 
-        var colors = await r.ApplyColors();
+        var colors   = await r.ApplyColors();
         console.log(colors);
-        var words  = await r.GetRandomWord();
-        var font   = await r.ApplyFont();
-        var effect = await r.GetRandomTextEffect(colors);
+        var words    = await r.GetRandomWord();
+        var font     = await r.ApplyFont();
+        var effect   = await r.GetRandomTextEffect(colors);
         var bgEffect = await r.GetRandomBackgound(colors, w, h);
-        const url  = r.GetRandomLogo();
+        const url    = r.GetRandomLogo();
         sign.backgroundColor = colors.m1;
 
         //Logo
@@ -108,7 +108,12 @@ class canvas {
 
             sign.centerObject(group);
             sign.moveTo(group, 1); //z-index 1 is top
-            sign.add(group); 
+            sign.add(group);
+
+            var objs = sign.getObjects().map(function(o) {
+                return o.set('active', true);
+            });
+            console.log(objs);
         });
 
         var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
