@@ -78,7 +78,7 @@ class canvas {
         //Words
         var myfont = new FontFaceObserver(font);
         myfont.load().then(function () {
-            var mainText = new fabric.Textbox(words[0], {
+            /*var mainText = new fabric.Textbox(words[0], {
                 fontFamily: font,
                 fontSize: w/12,
                 width: Number(w),
@@ -87,6 +87,33 @@ class canvas {
                 shadow: effect[0],
                 stroke: colors.h1,
                 strokeWidth: effect[1]
+            });*/
+
+            var mainText = new fabric.Textbox(words[0], {
+                fontFamily: font,
+                fontSize: w/12,
+                width: Number(w),
+                textAlign: "center",
+                fill: colors.m2,
+                shadow: effect[0],
+                stroke: colors.h1,
+                strokeWidth: effect[1],
+                styles: {
+                    0: {
+                        0: { fill: 'red' },
+                        1: { fill: 'black' },
+                        2: { fill: 'black' },
+                        3: { fill: 'blue' },
+                        4: { fill: 'black' },
+                        5: { fill: 'black' },
+                        6: { fill: 'red' },
+                        7: { fill: 'black' },
+                        8: { fill: 'black' },
+                        9: { fill: 'black' },
+                        10: { fill: 'green' },
+                        11: { fill: 'black' }
+                    }
+                }
             });
 
             var top = mainText.calcTextHeight()
@@ -126,10 +153,12 @@ class canvas {
             sign.moveTo(group, 1); //z-index 1 is top
             sign.add(group);
 
-            var objs = sign.getObjects().map(function(o) {
+            /*var objs = sign.getObjects().map(function(o) {
                 return o.set('active', true);
             });
-            console.log(objs);
+            console.log(objs);*/
+
+
         });
 
         var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
