@@ -97,7 +97,8 @@ class canvas {
                 fill: colors.m2,
                 shadow: effect[0],
                 stroke: colors.h1,
-                strokeWidth: effect[1],
+                strokeWidth: effect[1]
+                /*
                 styles: {
                     0: {
                         0: { fill: 'red' },
@@ -113,7 +114,19 @@ class canvas {
                         10: { fill: 'green' },
                         11: { fill: 'black' }
                     }
+                */
+            });
+
+            var colorArray = ['red'];
+            var str =  {
+                0: {
+                    0: { fill: 'red' }
                 }
+            };
+            
+            var i = 0;
+            mainText.set({
+                styles: str
             });
 
             var top = mainText.calcTextHeight()
