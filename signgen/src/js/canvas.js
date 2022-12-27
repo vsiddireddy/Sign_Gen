@@ -51,9 +51,12 @@ class canvas {
         }
 
         //Background Effect
-        if (bgEffect.length !== 0){
-            sign.add(bgEffect[0]);
-            sign.centerObject(bgEffect[0]);
+        if (document.getElementById('toggleShape').checked) {
+            console.log(bgEffect.length);
+            if (bgEffect.length !== 0) {
+                sign.add(bgEffect[0]);
+                sign.centerObject(bgEffect[0]);
+            }
         }
 
         //Words
