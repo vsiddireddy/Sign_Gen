@@ -57,7 +57,14 @@ class random {
         for (var i = 0; i < colors.length; i++){
             colors[i] = '#' + colors[i];
         }
-        //colors = this.Shuffle(colors);
+
+        //Delete everything w/ newcolors
+        var newcolors = [];
+        for (var j = 0; j < 3; j++){
+            newcolors[j] = colors[j]
+        }
+        colors = this.Shuffle(newcolors);
+        
         //m1,m2,h1,h2 = colors[0-3] = bgc, txtc, stroke/shadow, logoc/bgsc
         
         /*
