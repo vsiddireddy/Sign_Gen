@@ -118,7 +118,7 @@ class canvas {
             });
 
             // unique text coloring TODO: needs to be cleaned up
-            var colorArray = ['red'];
+            var colorArray = ['purple', 'red', 'green', 'blue'];
             var str =  {
                 0: {
                     0: { fill: 'purple' },
@@ -128,20 +128,22 @@ class canvas {
             console.log(str);
             console.log(str[0][1]);
 
-            var json = { 0: {} };
-            for (var k = 0; k < 8; k++) {
+            let count = 0;
+            var styleObject = { 0: {} };
+            for (var k = 0; k < words[0].length; k++) {
+                if (count >= colorArray.length) {
+                    count = 0;
+                }
                 var objName = k;
-                var objValue = 'red';
-                //json.index[objName] = objValue;
-                var temp = {[objName]: {fill: objValue}}
-                //console.log(temp);
-                json[0][objName] = {fill: objValue};
+                var objValue = colorArray[count];
+                styleObject[0][objName] = {fill: objValue};
+                count++;
             }
-            console.log(json);
+            console.log(styleObject);
             
             var i = 0;
             mainText.set({
-                styles: json
+                styles: styleObject
             });
 
             var top = mainText.calcTextHeight()
