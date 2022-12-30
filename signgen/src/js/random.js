@@ -146,7 +146,7 @@ class random {
     }
 
     GetRandomLogo(ctx_a, colors) {
-        var index = this.getRandomInt(200);
+        var index = this.getRandomInt(199) + 1; // goes from (0 to 199) + 1
         var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
         return svgURL;
     }
@@ -205,6 +205,7 @@ class random {
             if (document.getElementById('word2').value != '') {
                 randomWords[1] = document.getElementById('word1').value;
             }
+            randomWords[1] = document.getElementById('word1').value;
             randomWords[2] = undefined;
         }
         return randomWords; //w2, w1, sub
