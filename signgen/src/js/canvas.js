@@ -82,8 +82,8 @@ class canvas {
         }
 
         //Words
-        var myfont = new FontFaceObserver(font);
-        myfont.load().then(function () {
+        var myFont = new FontFaceObserver(font);
+        myFont.load().then(function () {
             /*var mainText = new fabric.Textbox(words[0], {
                 fontFamily: font,
                 fontSize: w/12,
@@ -197,10 +197,113 @@ class canvas {
 
         });
 
-        canvasInstances.forEach(function(canvas) {
-            var Text = new fabric.Textbox('Sample');
+        canvasInstances.forEach(async function(canvas) {
+            canvas.clear();
+            //var Text = new fabric.Textbox('Sample');
+            var colors = await r.ApplyColors();
+            var words = await r.GetRandomWord();
+            var font = await r.ApplyFont();
+            var effect = await r.GetRandomTextEffect(colors);
+            var bgEffect = await r.GetRandomBackgound(colors, w, h);
+            var url = r.GetRandomLogo();
             canvas.backgroundColor = colors.m1;
-            canvas.add(Text);
+            //canvas.add(Text);
+            // Logo
+            if (document.getElementById('toggleLogo').checked) {
+                fabric.loadSVGFromURL(url, function(objects) {
+                    objects.every(function(svg) {
+                        console.log(svg);
+                        svg.set({
+                            originX: 'center',
+                            originY: 'center',
+                            fill: colors.h1
+                        });
+                        svg.scaleToWidth(w/1.75);
+                        svg.scaleToHeight(h/1.75);
+                        canvas.centerObject(svg);
+                        canvas.add(svg);
+                        canvas.moveTo(svg, -1); //z-index -1 is bottom
+                        return false;
+                    });
+                });
+            }
+            // Background Effect
+            if (document.getElementById('toggleShape').checked) {
+                console.log(bgEffect.length);
+                if (bgEffect.length !== 0) {
+                    canvas.add(bgEffect[0]);
+                    canvas.centerObject(bgEffect[0]);
+                }
+            }
+            // Words
+            var myFont = new FontFaceObserver(font);
+            myFont.load().then(function () {
+                var mainText = new fabric.Textbox(words[0], {
+                    fontFamily: font,
+                    fontSize: w/12,
+                    width: Number(w),
+                    textAlign: "center",
+                    fill: colors.m2,
+                    shadow: effect[0],
+                    stroke: colors.h1,
+                    strokeWidth: effect[1]
+                });
+
+                // unique text coloring TODO: needs to be cleaned up
+                var colorArray = ['purple', 'red', 'green', 'blue'];
+
+                let count = 0;
+                var styleObject = { 0: {} };
+                for (var k = 0; k < words[0].length; k++) {
+                    if (count >= colorArray.length) {
+                        count = 0;
+                    }
+                    var objName = k;
+                    var objValue = colorArray[count];
+                    styleObject[0][objName] = {fill: objValue};
+                    count++;
+                }
+                console.log(styleObject);
+                mainText.set({
+                    //styles: styleObject
+                });
+                var top = mainText.calcTextHeight()
+                if(words[1] !== undefined){
+                    var subText = new fabric.Textbox(words[1], {
+                        fontFamily: font,
+                        fontSize: w/12,
+                        width: Number(w),
+                        textAlign: "center",
+                        fill: colors.m2,
+                        shadow: effect[0],
+                        stroke: colors.h1,
+                        strokeWidth: effect[1]
+                    });
+                    var subTop = subText.calcTextHeight();
+                    mainText.set({ top: subTop });
+                    top += subTop;
+                }
+                
+                if(words[2] !== undefined){
+                    console.log(words[2]);
+                    var footer = new fabric.Textbox(words[2], {
+                        top: top,
+                        fontFamily: font,
+                        fontSize: mainText.fontSize/2.5,
+                        width: Number(w),
+                        textAlign: "center",
+                        fill: colors.m2
+                    });  
+                } 
+
+                var group = new fabric.Group([], {});
+                var wordArr = [mainText, subText, footer];
+                wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)})
+
+                canvas.centerObject(group);
+                canvas.moveTo(group, 1); //z-index 1 is top
+                canvas.add(group);
+            });
         });
 
         var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
