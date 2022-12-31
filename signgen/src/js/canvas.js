@@ -7,25 +7,37 @@ var canvasInstances = [];
 class canvas {
 
     createCanvases() {
-        // TODO doesn't work when total signs is used over and over
         var totalSigns = document.getElementById('signTotal').value;
         var currentSigns = document.getElementsByClassName('canvas-container');
-        console.log("currentSigns: " + currentSigns.length);
         console.log("totalSigns: " + totalSigns);
-        if (currentSigns.length > 1) {
-            for (let x = 1; x < currentSigns.length; x++) {
-                //console.log(currentSigns[1]);
-                currentSigns[x].remove();
-            }
+        console.log("currentSigns: " + currentSigns.length);
+        if (totalSigns == currentSigns.length) {
+            return;
         }
-        if (totalSigns > 0) {
-            for (let x = 0; x < totalSigns; x++) {
+        if (currentSigns.length < totalSigns) {
+            console.log('reached less than');
+            for (let x = currentSigns.length; x < totalSigns; x++) {
                 var content = document.getElementById("mainCanvas");
                 var newCanvas = document.createElement("canvas");
                 content.appendChild(newCanvas);
                 var fabricCanvasObj = new fabric.Canvas(newCanvas);
                 canvasInstances.push(fabricCanvasObj);
             }
+            return;
+        }
+        if (totalSigns != '' && currentSigns.length > totalSigns) {
+            console.log('reached greater than');
+            var distance = currentSigns.length - totalSigns;
+            console.log(totalSigns);
+            if (distance == 1) {
+                currentSigns[totalSigns].remove();
+                return;
+            }
+            for (var x = totalSigns; x < currentSigns.length; x++) {
+                currentSigns[x].remove();
+            }
+            currentSigns[totalSigns].remove();
+            return;
         }
     }
 
