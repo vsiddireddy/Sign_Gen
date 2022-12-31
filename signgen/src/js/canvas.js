@@ -2,11 +2,17 @@ var FontFaceObserver = require('fontfaceobserver');
 const r = new random();
 var sign = new fabric.Canvas("canvas_0");
 var printDebug = true;
+var canvasInstances = [];
 
 class canvas {
 
     async generate(w, h, colors, words, font, effect, bgEffect, url) {
         this.clear();
+        var content = document.getElementById("mainCanvas");
+        var newCanvas = document.createElement("canvas");
+        content.appendChild(newCanvas);
+        var fabricCanvasObj = new fabric.Canvas(newCanvas);
+        canvasInstances.push(fabricCanvasObj);
 
         //Random/Input Values
         if (w == undefined) {
@@ -189,6 +195,12 @@ class canvas {
             console.log(objs);*/
 
 
+        });
+
+        canvasInstances.forEach(function(canvas) {
+            var Text = new fabric.Textbox('Sample');
+            canvas.backgroundColor = colors.m1;
+            canvas.add(Text);
         });
 
         var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
