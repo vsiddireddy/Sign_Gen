@@ -200,6 +200,16 @@ class canvas {
         canvasInstances.forEach(async function(canvas) {
             canvas.clear();
             //var Text = new fabric.Textbox('Sample');
+            var w = document.getElementById("CanvasWidth").value;
+            var h = document.getElementById("CanvasHeight").value;
+            if (w/h >= 0.25 && w/h <= 4 && h <= 5000 && w <= 5000) {
+                canvas.setWidth(w);
+                canvas.setHeight(h);
+            } else {
+                w = 633, h = 291
+                canvas.setWidth(633);
+                canvas.setHeight(291);
+            }
             var colors = await r.ApplyColors();
             var words = await r.GetRandomWord();
             var font = await r.ApplyFont();
