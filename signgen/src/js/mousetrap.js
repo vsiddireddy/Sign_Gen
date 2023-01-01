@@ -10,5 +10,6 @@ Mousetrap.bind('w', function() {
 
 Mousetrap.bind('space', function() {
     const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
+    canvasObject.createCanvases();
     canvasObject.generate();
 });

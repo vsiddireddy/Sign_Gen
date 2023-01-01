@@ -9,13 +9,13 @@ class canvas {
     createCanvases() {
         var totalSigns = document.getElementById('signTotal').value;
         var currentSigns = document.getElementsByClassName('canvas-container');
-        console.log("totalSigns: " + totalSigns);
-        console.log("currentSigns: " + currentSigns.length);
+        //console.log("totalSigns: " + totalSigns);
+        //console.log("currentSigns: " + currentSigns.length);
         if (totalSigns == currentSigns.length) {
             return;
         }
         if (currentSigns.length < totalSigns) {
-            console.log('reached less than');
+            //console.log('reached less than');
             for (let x = currentSigns.length; x < totalSigns; x++) {
                 var content = document.getElementById("mainCanvas");
                 var newCanvas = document.createElement("canvas");
@@ -26,9 +26,9 @@ class canvas {
             return;
         }
         if (totalSigns != '' && currentSigns.length > totalSigns) {
-            console.log('reached greater than');
+            //console.log('reached greater than');
             var distance = currentSigns.length - totalSigns;
-            console.log(totalSigns);
+            //console.log(totalSigns);
             if (distance == 1) {
                 currentSigns[totalSigns].remove();
                 return;
@@ -44,7 +44,7 @@ class canvas {
     async generate(w, h, colors, words, font, effect, bgEffect, url) {
         this.clear();
 
-        //Random/Input Values
+        // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
         }
@@ -81,7 +81,7 @@ class canvas {
         }
         sign.backgroundColor = colors.m1;
 
-        //Logo
+        // Logo
         if (document.getElementById('toggleLogo').checked) {
             fabric.loadSVGFromURL(url, function(objects) {
                 objects.every(function(svg) {
@@ -102,7 +102,7 @@ class canvas {
             });
         }
 
-        //Background Effect
+        // Background Effect
         if (document.getElementById('toggleShape').checked) {
             console.log(bgEffect.length);
             if (bgEffect.length !== 0) {
@@ -111,7 +111,7 @@ class canvas {
             }
         }
 
-        //Words
+        // Words
         var myFont = new FontFaceObserver(font);
         myFont.load().then(function () {
             /*var mainText = new fabric.Textbox(words[0], {
@@ -177,9 +177,8 @@ class canvas {
             }
             console.log(styleObject);
             
-            var i = 0;
             mainText.set({
-                styles: styleObject
+                //styles: styleObject
             });
 
             var top = mainText.calcTextHeight()
@@ -200,7 +199,7 @@ class canvas {
             }
             
             if(words[2] !== undefined){
-                console.log(words[2]);
+                //console.log(words[2]);
                 var footer = new fabric.Textbox(words[2], {
                     top: top,
                     fontFamily: font,
