@@ -125,9 +125,25 @@ class canvas {
                 strokeWidth: effect[1]
             });*/
 
+            //words[0] = 'S\na\nm\np\nl\ne\n'; // VERTICAL WORDS
+            //var height = document.getElementById('canvasHeight').value;
+            //var width  = document.getElementById('canvasWidth').value;
+            var fontSize = w / 12;
+            if (h > w && h/w <= 4) {
+                var str = '';
+                var temp = words[0];
+                for (var x = 0; x < words[0].length; x++) {
+                    str += temp[x] + '\n';
+                }
+                //words[0] = 'S\na\nm\np\nl\ne\n'; // VERTICAL WORDS
+                words[0] = str; // VERTICAL WORDS
+                words[1] = undefined;
+                words[2] = undefined;
+                fontSize = w / 4;
+            }
             var mainText = new fabric.Textbox(words[0], {
                 fontFamily: font,
-                fontSize: w/12,
+                fontSize: fontSize,
                 width: Number(w),
                 textAlign: "center",
                 fill: colors.m2,
@@ -223,6 +239,7 @@ class canvas {
             });
             console.log(objs);*/
 
+            console.log(mainText);
 
         });
 
