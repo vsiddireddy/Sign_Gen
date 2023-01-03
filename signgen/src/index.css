@@ -386,6 +386,25 @@ input{
   display: block;
 }
 
+#whDiv{
+  text-align: center;
+  justify-content: center;
+}
+
+#wh{
+  max-width: 200px;
+  margin-left: 50px;
+  display: flex;
+}
+
+#wh > input{
+  max-width: 80px;
+}
+
+.canvaswidth{
+  float: left;
+}
+
 #colorDiv{
   text-align:center;
   margin-top: -10px;
