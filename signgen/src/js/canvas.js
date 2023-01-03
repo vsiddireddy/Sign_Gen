@@ -139,7 +139,7 @@ class canvas {
                 words[0] = str; // VERTICAL WORDS
                 words[1] = undefined;
                 words[2] = undefined;
-                fontSize = w / 4;
+                fontSize = w / (h / 100);
             }
             var mainText = new fabric.Textbox(words[0], {
                 fontFamily: font,

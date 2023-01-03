@@ -1,11 +1,32 @@
+const puppeteer = require('puppeteer');
+const fs = require('fs');
 var gen_button = document.getElementById('gen_button');
 
 if(gen_button){
-    gen_button.addEventListener("click", function(){
+    gen_button.addEventListener("click", async function(){
         const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
         canvasObject.createCanvases();
         canvasObject.generate();
-     });
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto('https://looka.com/business-name-generator/sports');
+        const words = await page.evaluate(() => document.body.innerText);
+        console.log(words);
+        /*
+        fs.writeFile('courses.json', JSON.stringify(words), (err) => {
+            if (err) throw err;
+            console.log('File saved');
+        });
+        */
+        const arr = words.split("\n");
+        console.log(arr);
+        for (var x = 23; x < arr.length; x++) {
+            if (arr[x] != '' && arr[x] != 'Domains available' && arr[x].includes('•') == false && arr[x].includes('Copyright') == false) {
+                console.log(arr[x]);
+            }
+        }
+
+    });
 }
 
 document.getElementById("colorPicker").addEventListener('change', event => {
