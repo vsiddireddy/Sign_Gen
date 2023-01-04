@@ -82,7 +82,7 @@ class canvas {
         sign.backgroundColor = colors.m1;
 
         var top = 0;
-
+        var svgVar;
         // Logo
         if (document.getElementById('toggleLogo').checked) {
             top = h/3;
@@ -91,15 +91,18 @@ class canvas {
                     console.log(svg);
                     svg.set({
                         top: 0,
+                        //originX: center,
                         fill: colors.h1
                     });
                     svg.scaleToWidth(w/3);
                     svg.scaleToHeight(h/3);
                     
                     //sign.centerObject(svg);
-                    sign.add(svg);
-                    svg.centerH();
-                    sign.moveTo(svg, -1); //z-index -1 is bottom
+                    svgVar = svg;
+                    sign.add(svgVar);
+                    svgVar.centerH();
+                    //sign.moveTo(svg, -1); //z-index -1 is bottom
+                    //group.addWithUpdate(svg);
                     return false;
                 });
             });
@@ -203,6 +206,7 @@ class canvas {
             });
 
             top += mainText.calcTextHeight()
+            console.log('before subtext top: ' + top);
             if(words[1] !== undefined){
                 var subText = new fabric.Textbox(words[1], {
                     fontFamily: font,
@@ -229,16 +233,20 @@ class canvas {
                     textAlign: "center",
                     fill: colors.m2
                 });  
+                console.log('after subtext top: ' + top);
             } 
 
             var group = new fabric.Group([], {});
-            var wordArr = [mainText, subText, footer];
+            //group.addWithUpdate(svgVar);
+            var wordArr = [svgVar, mainText, subText, footer];
             wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)})
 
-           // sign.centerObject(group);
+            sign.centerObject(group);
             sign.moveTo(group, 1); //z-index 1 is top
             sign.add(group);
-
+            console.log("group: ");
+            console.log(group);
+            console.log("wordArr: " + wordArr);
             /*var objs = sign.getObjects().map(function(o) {
                 return o.set('active', true);
             });
@@ -248,6 +256,7 @@ class canvas {
 
         });
 
+        /*
         canvasInstances.forEach(async function(canvas) {
             canvas.clear();
             //var Text = new fabric.Textbox('Sample');
@@ -281,9 +290,10 @@ class canvas {
                         });
                         svg.scaleToWidth(w/1.75);
                         svg.scaleToHeight(h/1.75);
-                        canvas.centerObject(svg);
-                        canvas.add(svg);
-                        canvas.moveTo(svg, -1); //z-index -1 is bottom
+                        //canvas.centerObject(svg);
+                        //canvas.add(svg);
+                        //canvas.moveTo(svg, -1); //z-index -1 is bottom
+                        group.addWithUpdate(svg);
                         return false;
                     });
                 });
@@ -366,6 +376,7 @@ class canvas {
                 canvas.add(group);
             });
         });
+        */
 
         var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
         consoleText += "WORDS: { " + words[0] + ", " + words[1] + ", " + words[2]  + " }   ";
