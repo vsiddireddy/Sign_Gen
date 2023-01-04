@@ -81,21 +81,24 @@ class canvas {
         }
         sign.backgroundColor = colors.m1;
 
+        var top = 0;
+
         // Logo
         if (document.getElementById('toggleLogo').checked) {
+            top = h/3;
             fabric.loadSVGFromURL(url, function(objects) {
                 objects.every(function(svg) {
                     console.log(svg);
                     svg.set({
-                        originX: 'center',
-                        originY: 'center',
+                        top: 0,
                         fill: colors.h1
                     });
-                    svg.scaleToWidth(w/1.75);
-                    svg.scaleToHeight(h/1.75);
+                    svg.scaleToWidth(w/3);
+                    svg.scaleToHeight(h/3);
                     
-                    sign.centerObject(svg);
+                    //sign.centerObject(svg);
                     sign.add(svg);
+                    svg.centerH();
                     sign.moveTo(svg, -1); //z-index -1 is bottom
                     return false;
                 });
@@ -141,6 +144,7 @@ class canvas {
                 words[2] = undefined;
                 fontSize = w / (h / 100);
             }
+
             var mainText = new fabric.Textbox(words[0], {
                 fontFamily: font,
                 fontSize: fontSize,
@@ -149,6 +153,7 @@ class canvas {
                 fill: colors.m2,
                 shadow: effect[0],
                 stroke: colors.h1,
+                top: top,
                 strokeWidth: effect[1]
                 /*
                 styles: {
@@ -197,7 +202,7 @@ class canvas {
                 //styles: styleObject
             });
 
-            var top = mainText.calcTextHeight()
+            top += mainText.calcTextHeight()
             if(words[1] !== undefined){
                 var subText = new fabric.Textbox(words[1], {
                     fontFamily: font,
@@ -230,7 +235,7 @@ class canvas {
             var wordArr = [mainText, subText, footer];
             wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)})
 
-            sign.centerObject(group);
+           // sign.centerObject(group);
             sign.moveTo(group, 1); //z-index 1 is top
             sign.add(group);
 
