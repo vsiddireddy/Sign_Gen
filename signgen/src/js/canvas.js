@@ -43,6 +43,7 @@ class canvas {
 
     async generate(w, h, colors, words, font, effect, bgEffect, url) {
         this.clear();
+        console.clear();
 
         // Random/Input Values
         if (w == undefined) {
@@ -83,6 +84,7 @@ class canvas {
 
         var top = 0;
         var svgVar;
+        var group = new fabric.Group([], {});
         // Logo
         if (document.getElementById('toggleLogo').checked) {
             top = h/3;
@@ -101,6 +103,7 @@ class canvas {
                     svgVar = svg;
                     sign.add(svgVar);
                     svgVar.centerH();
+                    group.addWithUpdate(svg);
                     //sign.moveTo(svg, -1); //z-index -1 is bottom
                     //group.addWithUpdate(svg);
                     return false;
@@ -185,8 +188,8 @@ class canvas {
                     1: { fill: 'red' }
                 }
             };
-            console.log(str);
-            console.log(str[0][1]);
+            //console.log(str);
+            //console.log(str[0][1]);
 
             let count = 0;
             var styleObject = { 0: {} };
@@ -236,9 +239,10 @@ class canvas {
                 console.log('after subtext top: ' + top);
             } 
 
-            var group = new fabric.Group([], {});
+            //var group = new fabric.Group([], {});
+            console.log(svgVar);
             //group.addWithUpdate(svgVar);
-            var wordArr = [svgVar, mainText, subText, footer];
+            var wordArr = [/*svgVar, */mainText, subText, footer];
             wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)})
 
             sign.centerObject(group);
