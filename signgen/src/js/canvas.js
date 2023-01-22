@@ -41,6 +41,27 @@ class canvas {
         }
     }
 
+    test(w, h, top, url, colors, svgVar) {
+        top = h/3;
+        fabric.loadSVGFromURL(url, function(objects) {
+            var svg = objects[0];
+            svg.set({
+                top: 0,
+                fill: colors.h1
+            });
+            svg.scaleToWidth(w/3);
+            svg.scaleToHeight(h/3);
+            svgVar = svg;
+            sign.add(svgVar);
+            svgVar.centerH();
+            //group.addWithUpdate(svgVar);
+            console.log(svgVar);
+            return svgVar;
+        });
+        console.log('hello');
+        console.log(svgVar);
+    }
+
     async generate(w, h, colors, words, font, effect, bgEffect, url) {
         this.clear();
         console.clear();
@@ -62,20 +83,20 @@ class canvas {
         }
 
         if (colors == undefined) {
-            var colors = await r.ApplyColors();
+            var colors = r.ApplyColors();
         }
         console.log(colors);
         if (words == undefined) {
-            var words = await r.GetRandomWord();
+            var words = r.GetRandomWord();
         }
         if (font == undefined) {
-            var font = await r.ApplyFont();
+            var font = r.ApplyFont();
         }
         if (effect == undefined) {
-            var effect = await r.GetRandomTextEffect(colors);
+            var effect = r.GetRandomTextEffect(colors);
         }
         if (bgEffect == undefined) {
-            var bgEffect = await r.GetRandomBackgound(colors, w, h);
+            var bgEffect = r.GetRandomBackgound(colors, w, h);
         }
         if (url == undefined) {
             var url = r.GetRandomLogo();
@@ -83,33 +104,14 @@ class canvas {
         sign.backgroundColor = colors.m1;
 
         var top = 0;
-        var svgVar;
         var group = new fabric.Group([], {});
+        var svgVar;
         // Logo
         if (document.getElementById('toggleLogo').checked) {
-            top = h/3;
-            fabric.loadSVGFromURL(url, function(objects) {
-                objects.every(function(svg) {
-                    console.log(svg);
-                    svg.set({
-                        top: 0,
-                        //originX: center,
-                        fill: colors.h1
-                    });
-                    svg.scaleToWidth(w/3);
-                    svg.scaleToHeight(h/3);
-                    
-                    //sign.centerObject(svg);
-                    svgVar = svg;
-                    sign.add(svgVar);
-                    svgVar.centerH();
-                    group.addWithUpdate(svg);
-                    //sign.moveTo(svg, -1); //z-index -1 is bottom
-                    //group.addWithUpdate(svg);
-                    return false;
-                });
-            });
+            svgVar = await this.test(w, h, top, url, colors, svgVar);
+            console.log(svgVar);
         }
+        
 
         // Background Effect
         if (document.getElementById('toggleShape').checked) {
@@ -242,7 +244,7 @@ class canvas {
             //var group = new fabric.Group([], {});
             console.log(svgVar);
             //group.addWithUpdate(svgVar);
-            var wordArr = [/*svgVar, */mainText, subText, footer];
+            var wordArr = [svgVar, mainText, subText, footer];
             wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)})
 
             sign.centerObject(group);
@@ -251,12 +253,12 @@ class canvas {
             console.log("group: ");
             console.log(group);
             console.log("wordArr: " + wordArr);
-            /*var objs = sign.getObjects().map(function(o) {
+            var objs = sign.getObjects().map(function(o) {
                 return o.set('active', true);
             });
-            console.log(objs);*/
+            console.log(objs);
 
-            console.log(mainText);
+            //console.log(mainText);
 
         });
 
@@ -392,7 +394,7 @@ class canvas {
         }
     }
 
-    async clear(){
+    clear(){
         document.getElementById("splashScreen").style.display = 'none';
         sign.clear();
     }

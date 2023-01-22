@@ -10,9 +10,12 @@ class random {
         return Math.floor(Math.random() * max);
     }
 
-    async ApplyColors() {
-        const response = await fetch("../assets/corporate/colors_corporate/color_list_corporate.json");
-        const json = await response.json();
+    ApplyColors() {
+        //const response = await fetch("../assets/corporate/colors_corporate/color_list_corporate.json");
+        //const json = await response.json();
+        const filePath = "../assets/corporate/colors_corporate/color_list_corporate.json";
+        const load = this.loadTextFileAjaxSync(filePath, "application/json");
+        const json = JSON.parse(load);
     
         var maxIndex = Object.keys(json.corporateArr).length;
         var index = this.getRandomInt(maxIndex);
@@ -21,7 +24,7 @@ class random {
 
         var colorScheme = document.getElementById('color1').value
         if(colorScheme !== ""){
-            var gcs = await this.GetColorScheme(colorScheme);
+            var gcs = this.GetColorScheme(colorScheme);
             colors.m1 = gcs[0];
             colors.m2 = gcs[1];
             colors.h1 = gcs[2];
@@ -31,7 +34,26 @@ class random {
         return colors;
     }
 
-    async GetColorScheme(hex) {
+    loadTextFileAjaxSync(filePath, mimeType) {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET", filePath, false);
+        if (mimeType != null) {
+          if (xmlhttp.overrideMimeType) {
+            xmlhttp.overrideMimeType(mimeType);
+          }
+        }
+        xmlhttp.send();
+        if (xmlhttp.status==200 && xmlhttp.readyState == 4 )
+        {
+          return xmlhttp.responseText;
+        }
+        else {
+          // TODO Throw exception
+          return null;
+        }
+    }
+
+    GetColorScheme(hex) {
         hex = hex.slice(1);
         var scheme = new ColorScheme;
 
@@ -124,7 +146,7 @@ class random {
         return colors;
     }
 
-    async ApplyFont() {
+    ApplyFont() {
         const fontArr = ['AdventPro', 'ArchivoBlack', 'Asap1', 'Asap2', 'Audiowide',
         'BioRhyme1', 'BioRhyme2', 'ChakraPetch1', 'ChakraPetch2', 'Comfortaa',
         'ConcertOne', 'FiraSans1', 'FiraSans2', 'FjallaOne', 
@@ -151,7 +173,7 @@ class random {
         return svgURL;
     }
 
-    async GetRandomWord(userInput, category) {
+    GetRandomWord(userInput, category) {
         var w1;
         var w2;
         var sub;
@@ -197,7 +219,7 @@ class random {
             randomWords.push(sub);
         }
         if (randomWords[1] == undefined){
-            randomWords[0] = await this.GetOneWord();
+            randomWords[0] = this.GetOneWord();
         }
 
         if (document.getElementById('word1').value != '') {
@@ -211,7 +233,7 @@ class random {
         return randomWords; //w2, w1, sub
     }
 
-    async GetOneWord(){
+    GetOneWord(){
         var prefixes = ["nu", "win", "ry", "core", "tech", "sys","pro", "hydro", "west", "nort", "dune", "pop", 
         "tru", "tele", "real", "snap", "coin", "power", "insta", "net", "dis", "face", "solo", "pay", "ear", "eye",
         "wal", "tes", "wyn", "flow", "up", "me"];
@@ -226,7 +248,7 @@ class random {
         return word;
     }
 
-    async GetRandomTextEffect(colors){
+    GetRandomTextEffect(colors){
         var choice = this.getRandomInt(3); //0,1,2
         var shadow = 0; //0
         var stroke = 0; //1
@@ -246,7 +268,7 @@ class random {
         return [shadow, stroke];
     }
 
-    async GetRandomBackgound(colors, w, h){
+    GetRandomBackgound(colors, w, h){
         var choice = this.getRandomInt(2); //0,1,2
         var background = [];
 
@@ -267,11 +289,10 @@ class random {
                 background.push(rect);
             }
         }
-
         return background;
     }
 
-    async Shuffle(array) {
+    Shuffle(array) {
         let currentIndex = array.length,  randomIndex;
         while (currentIndex != 0) {
       
@@ -282,6 +303,6 @@ class random {
             array[randomIndex], array[currentIndex]];
         }
         return array;
-      }
+    }
 
 }
