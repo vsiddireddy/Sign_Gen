@@ -43,6 +43,7 @@ class canvas {
 
     test(w, h, top, url, colors, svgVar) {
         top = h/3;
+        /*
         fabric.loadSVGFromURL(url, function(objects) {
             var svg = objects[0];
             svg.set({
@@ -58,8 +59,10 @@ class canvas {
             console.log(svgVar);
             return svgVar;
         });
-        console.log('hello');
-        console.log(svgVar);
+        */
+
+        //console.log('hello');
+        //console.log(svgVar);
     }
 
     async generate(w, h, colors, words, font, effect, bgEffect, url) {
@@ -108,7 +111,19 @@ class canvas {
         var svgVar;
         // Logo
         if (document.getElementById('toggleLogo').checked) {
-            svgVar = await this.test(w, h, top, url, colors, svgVar);
+            //svgVar = this.test(w, h, top, url, colors, svgVar);
+            top += h/3;
+            fabric.loadSVGFromURL(url, function(objects) {
+                svgVar = objects[0].set({
+                    top: 0,
+                    fill: colors.h1
+                });
+                svgVar.scaleToWidth(w/3);
+                svgVar.scaleToHeight(h/3);
+                //svgVar = img;
+                sign.add(svgVar);
+                svgVar.centerH();
+            });
             console.log(svgVar);
         }
         
@@ -210,8 +225,10 @@ class canvas {
                 //styles: styleObject
             });
 
-            top += mainText.calcTextHeight()
-            console.log('before subtext top: ' + top);
+            console.log("h/3: " + h/3);
+            console.log("before maintext top: " + top);
+            top += mainText.calcTextHeight();
+            console.log('before subtext top/after maintext: ' + top);
             if(words[1] !== undefined){
                 var subText = new fabric.Textbox(words[1], {
                     fontFamily: font,
@@ -224,12 +241,12 @@ class canvas {
                     strokeWidth: effect[1]
                 });
                 var subTop = subText.calcTextHeight();
+                console.log('after subTop: ' + subTop);
                 mainText.set({ top: subTop });
                 top += subTop;
             }
             
             if(words[2] !== undefined){
-                //console.log(words[2]);
                 var footer = new fabric.Textbox(words[2], {
                     top: top,
                     fontFamily: font,
@@ -244,8 +261,8 @@ class canvas {
             //var group = new fabric.Group([], {});
             console.log(svgVar);
             //group.addWithUpdate(svgVar);
-            var wordArr = [svgVar, mainText, subText, footer];
-            wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)})
+            var wordArr = [mainText, subText, footer, svgVar];
+            wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
 
             sign.centerObject(group);
             sign.moveTo(group, 1); //z-index 1 is top

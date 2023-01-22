@@ -178,15 +178,15 @@ class random {
         var w2;
         var sub;
         var oneWordArr = [
-            faker.commerce.productAdjective(), faker.company.bsAdjective(), faker.company.bsBuzz(), faker.company.catchPhraseAdjective(), faker.address.cardinalDirection(),
-            faker.address.state()
+            faker.commerce.productAdjective(1,10), faker.company.bsAdjective(1,10), faker.company.bsBuzz(1,10), faker.company.catchPhraseAdjective(1,10), faker.address.cardinalDirection(1,10),
+            faker.address.state(1,10)
         ];
         var wordArr = [
-            faker.commerce.product(), faker.company.companyName(), faker.company.bsNoun(), faker.commerce.productMaterial()
+            faker.commerce.product(1,10), faker.company.companyName(1,10), faker.company.bsNoun(1,10), faker.commerce.productMaterial(1,10)
         ];
         var subArr = [
-            faker.commerce.price(), faker.internet.domainName(), faker.address.city(), faker.phone.phoneNumber(), faker.company.companyName(), 
-            faker.address.streetName(),faker.address.streetAddress(), faker.company.companySuffix(), faker.company.bsNoun(), faker.company.bs(), faker.company.catchPhrase()
+            faker.commerce.price(1,10), faker.internet.domainName(1,10), faker.address.city(1,10), faker.phone.phoneNumber(1,10), faker.company.companyName(1,10), 
+            faker.address.streetName(1,10),faker.address.streetAddress(1,10), faker.company.companySuffix(1,10), faker.company.bsNoun(1,10), faker.company.bs(1, 10), faker.company.catchPhrase(1,10)
         ];
 
         w1 = oneWordArr[this.getRandomInt(oneWordArr.length)]; //decrease to lower possibility of Arr being shown (except for wordArr)
