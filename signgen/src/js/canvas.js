@@ -120,9 +120,8 @@ class canvas {
                 });
                 svgVar.scaleToWidth(w/3);
                 svgVar.scaleToHeight(h/3);
-                //svgVar = img;
-                sign.add(svgVar);
-                svgVar.centerH();
+                //sign.add(svgVar);
+                group.addWithUpdate(svgVar);
             });
             console.log(svgVar);
         }
@@ -261,7 +260,7 @@ class canvas {
             //var group = new fabric.Group([], {});
             console.log(svgVar);
             //group.addWithUpdate(svgVar);
-            var wordArr = [mainText, subText, footer, svgVar];
+            var wordArr = [mainText, subText, footer];
             wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
 
             sign.centerObject(group);
