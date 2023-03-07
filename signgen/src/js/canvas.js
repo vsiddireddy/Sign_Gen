@@ -41,31 +41,7 @@ class canvas {
         }
     }
 
-    test(w, h, top, url, colors, svgVar) {
-        top = h/3;
-        /*
-        fabric.loadSVGFromURL(url, function(objects) {
-            var svg = objects[0];
-            svg.set({
-                top: 0,
-                fill: colors.h1
-            });
-            svg.scaleToWidth(w/3);
-            svg.scaleToHeight(h/3);
-            svgVar = svg;
-            sign.add(svgVar);
-            svgVar.centerH();
-            //group.addWithUpdate(svgVar);
-            console.log(svgVar);
-            return svgVar;
-        });
-        */
-
-        //console.log('hello');
-        //console.log(svgVar);
-    }
-
-    async generate(w, h, colors, words, font, effect, bgEffect, url) {
+    generate(w, h, colors, words, font, effect, bgEffect, url) {
         this.clear();
         console.clear();
 
@@ -108,25 +84,7 @@ class canvas {
 
         var top = 0;
         var group = new fabric.Group([], {});
-        var svgVar;
-        // Logo
-        if (document.getElementById('toggleLogo').checked) {
-            //svgVar = this.test(w, h, top, url, colors, svgVar);
-            top += h/3;
-            fabric.loadSVGFromURL(url, function(objects) {
-                svgVar = objects[0].set({
-                    top: 0,
-                    fill: colors.h1
-                });
-                svgVar.scaleToWidth(w/3);
-                svgVar.scaleToHeight(h/3);
-                //sign.add(svgVar);
-                group.addWithUpdate(svgVar);
-            });
-            console.log(svgVar);
-        }
         
-
         // Background Effect
         if (document.getElementById('toggleShape').checked) {
             console.log(bgEffect.length);
@@ -154,6 +112,7 @@ class canvas {
             //var height = document.getElementById('canvasHeight').value;
             //var width  = document.getElementById('canvasWidth').value;
             var fontSize = w / 12;
+            // VERTICAL SIGNS TODO (VERY RUDIMENTARY)
             if (h > w && h/w <= 4) {
                 var str = '';
                 var temp = words[0];
@@ -204,8 +163,6 @@ class canvas {
                     1: { fill: 'red' }
                 }
             };
-            //console.log(str);
-            //console.log(str[0][1]);
 
             let count = 0;
             var styleObject = { 0: {} };
@@ -218,8 +175,8 @@ class canvas {
                 styleObject[0][objName] = {fill: objValue};
                 count++;
             }
-            console.log(styleObject);
-            
+            //console.log(styleObject);
+            // TODO
             mainText.set({
                 //styles: styleObject
             });
@@ -257,9 +214,6 @@ class canvas {
                 console.log('after subtext top: ' + top);
             } 
 
-            //var group = new fabric.Group([], {});
-            console.log(svgVar);
-            //group.addWithUpdate(svgVar);
             var wordArr = [mainText, subText, footer];
             wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
 
@@ -269,15 +223,10 @@ class canvas {
             console.log("group: ");
             console.log(group);
             console.log("wordArr: " + wordArr);
-            var objs = sign.getObjects().map(function(o) {
-                return o.set('active', true);
-            });
-            console.log(objs);
-
-            //console.log(mainText);
 
         });
 
+        // ALLOWS FOR MULTIPLE SIGNS (NEED TO UPDATE IT)
         /*
         canvasInstances.forEach(async function(canvas) {
             canvas.clear();

@@ -169,7 +169,7 @@ class random {
 
     GetRandomLogo(ctx_a, colors) {
         var index = this.getRandomInt(199) + 1; // goes from (0 to 199) + 1
-        var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + index + '.svg';
+        var svgURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + index + '.png';
         return svgURL;
     }
 
