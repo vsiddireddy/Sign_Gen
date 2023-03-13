@@ -125,70 +125,114 @@ class canvas {
                 words[2] = undefined;
                 fontSize = w / (h / 100);
             }
-
-            var mainText = new fabric.Textbox(words[0], {
-                fontFamily: font,
-                fontSize: fontSize,
-                width: Number(w),
-                textAlign: "center",
-                fill: colors.m2,
-                shadow: effect[0],
-                stroke: colors.h1,
-                top: top,
-                strokeWidth: effect[1]
-                /*
-                styles: {
-                    0: {
-                        0: { fill: 'red' },
-                        1: { fill: 'black' },
-                        2: { fill: 'black' },
-                        3: { fill: 'blue' },
-                        4: { fill: 'black' },
-                        5: { fill: 'black' },
-                        6: { fill: 'red' },
-                        7: { fill: 'black' },
-                        8: { fill: 'black' },
-                        9: { fill: 'black' },
-                        10: { fill: 'green' },
-                        11: { fill: 'black' }
-                    }
-                */
-            });
-
-            // unique text coloring TODO: needs to be cleaned up
-            var colorArray = ['purple', 'red', 'green', 'blue'];
-            var str =  {
-                0: {
-                    0: { fill: 'purple' },
-                    1: { fill: 'red' }
-                }
-            };
-
-            let count = 0;
-            var styleObject = { 0: {} };
-            for (var k = 0; k < words[0].length; k++) {
-                if (count >= colorArray.length) {
-                    count = 0;
-                }
-                var objName = k;
-                var objValue = colorArray[count];
-                styleObject[0][objName] = {fill: objValue};
-                count++;
-            }
-            //console.log(styleObject);
-            // TODO
-            mainText.set({
-                //styles: styleObject
-            });
-
-            console.log("h/3: " + h/3);
-            console.log("before maintext top: " + top);
-            top += mainText.calcTextHeight();
-            console.log('before subtext top/after maintext: ' + top);
-            if(words[1] !== undefined){
-                var subText = new fabric.Textbox(words[1], {
+            if (document.getElementById('toggleLogo').checked == false) {
+                var mainText = new fabric.Textbox(words[0], {
                     fontFamily: font,
-                    fontSize: w/12,
+                    fontSize: fontSize,
+                    width: Number(w),
+                    textAlign: "center",
+                    fill: colors.m2,
+                    shadow: effect[0],
+                    stroke: colors.h1,
+                    top: top,
+                    strokeWidth: effect[1]
+                    /*
+                    styles: {
+                        0: {
+                            0: { fill: 'red' },
+                            1: { fill: 'black' },
+                            2: { fill: 'black' },
+                            3: { fill: 'blue' },
+                            4: { fill: 'black' },
+                            5: { fill: 'black' },
+                            6: { fill: 'red' },
+                            7: { fill: 'black' },
+                            8: { fill: 'black' },
+                            9: { fill: 'black' },
+                            10: { fill: 'green' },
+                            11: { fill: 'black' }
+                        }
+                    */
+                });
+
+                // unique text coloring TODO: needs to be cleaned up
+                var colorArray = ['purple', 'red', 'green', 'blue'];
+                var str =  {
+                    0: {
+                        0: { fill: 'purple' },
+                        1: { fill: 'red' }
+                    }
+                };
+
+                let count = 0;
+                var styleObject = { 0: {} };
+                for (var k = 0; k < words[0].length; k++) {
+                    if (count >= colorArray.length) {
+                        count = 0;
+                    }
+                    var objName = k;
+                    var objValue = colorArray[count];
+                    styleObject[0][objName] = {fill: objValue};
+                    count++;
+                }
+                //console.log(styleObject);
+                // TODO
+                mainText.set({
+                    //styles: styleObject
+                });
+
+                console.log("h/3: " + h/3);
+                console.log("before maintext top: " + top);
+                top += mainText.calcTextHeight();
+                console.log('before subtext top/after maintext: ' + top);
+                if(words[1] !== undefined){
+                    var subText = new fabric.Textbox(words[1], {
+                        fontFamily: font,
+                        fontSize: w/12,
+                        width: Number(w),
+                        textAlign: "center",
+                        fill: colors.m2,
+                        shadow: effect[0],
+                        stroke: colors.h1,
+                        strokeWidth: effect[1]
+                    });
+                    var subTop = subText.calcTextHeight();
+                    console.log('after subTop: ' + subTop);
+                    mainText.set({ top: subTop });
+                    top += subTop;
+                }
+                
+                if(words[2] !== undefined){
+                    var footer = new fabric.Textbox(words[2], {
+                        top: top,
+                        fontFamily: font,
+                        fontSize: mainText.fontSize/2.5,
+                        width: Number(w),
+                        textAlign: "center",
+                        fill: colors.m2
+                    });  
+                    console.log('after subtext top: ' + top);
+                } 
+
+                var wordArr = [mainText, subText, footer];
+                wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
+
+                sign.centerObject(group);
+                sign.moveTo(group, 1); //z-index 1 is top
+                sign.add(group);
+                console.log("group: ");
+                console.log(group);
+                console.log("wordArr: " + wordArr);
+                console.log('logo is NOT toggled')
+            } else { // logo is checked
+                var fontSize = w / 12;
+                console.log(words[0])
+                console.log(words[1])
+
+                //To get value for mainText.height
+                var testText = new fabric.Textbox(words[0], {
+                    fontFamily: font,
+                    fontSize: fontSize,
                     width: Number(w),
                     textAlign: "center",
                     fill: colors.m2,
@@ -196,34 +240,55 @@ class canvas {
                     stroke: colors.h1,
                     strokeWidth: effect[1]
                 });
-                var subTop = subText.calcTextHeight();
-                console.log('after subTop: ' + subTop);
-                mainText.set({ top: subTop });
-                top += subTop;
-            }
-            
-            if(words[2] !== undefined){
-                var footer = new fabric.Textbox(words[2], {
-                    top: top,
+                
+                var vtop = testText.height * 2;
+                var mainText = new fabric.Textbox(words[0], {
+                    top: vtop,
                     fontFamily: font,
-                    fontSize: mainText.fontSize/2.5,
+                    fontSize: fontSize,
                     width: Number(w),
                     textAlign: "center",
-                    fill: colors.m2
-                });  
-                console.log('after subtext top: ' + top);
-            } 
+                    fill: colors.m2,
+                    shadow: effect[0],
+                    stroke: colors.h1,
+                    strokeWidth: effect[1]
+                });
+                
+                vtop += mainText.height;
+                
+                var subText;
+                if (words[1] != undefined) {
+                    subText = new fabric.Textbox(words[1], {
+                        top: vtop,
+                        fontFamily: font,
+                        fontSize: fontSize/2,
+                        width: Number(w),
+                        textAlign: "center",
+                        fill: colors.m2,
+                        shadow: effect[0],
+                        stroke: colors.h1,
+                        strokeWidth: effect[1]
+                    });
+                }
+                
+                //var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
+                fabric.Image.fromURL(url, function(img) {
+                    img.scaleToHeight(mainText.height * 2);
+                    img.scaleToWidth(mainText.height  * 2);
+                    sign.viewportCenterObjectH(img);
+                    img.set({
+                      top:  0,
+                    });
+                    var group = new fabric.Group([], {});
+                    var wordArr = [mainText, subText, img];
+                    wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
 
-            var wordArr = [mainText, subText, footer];
-            wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
-
-            sign.centerObject(group);
-            sign.moveTo(group, 1); //z-index 1 is top
-            sign.add(group);
-            console.log("group: ");
-            console.log(group);
-            console.log("wordArr: " + wordArr);
-
+                    //var group = new fabric.Group([mainText, subText, img], {});
+                    sign.viewportCenterObjectV(group);
+                    sign.add(group);
+                });
+                console.log('logo IS toggled')
+            }
         });
 
         // ALLOWS FOR MULTIPLE SIGNS (NEED TO UPDATE IT)
