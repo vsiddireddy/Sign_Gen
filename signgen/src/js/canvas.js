@@ -270,9 +270,26 @@ class canvas {
                         strokeWidth: effect[1]
                     });
                 }
+
+                /*var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.svg';
+                fabric.loadSVGFromURL(svgURL, function(objects, options) {
+                    var img = objects[0];
+                    img.scaleToHeight(mainText.height * 2);
+                    img.scaleToWidth(mainText.height  * 2);
+                    sign.viewportCenterObjectH(img);
+                    img.set({
+                      top:  0,
+                    });
+                    var group = new fabric.Group([], {});
+                    var wordArr = [mainText, subText, img];
+                    wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
+                    sign.viewportCenterObjectV(group);
+                    sign.add(group);
+                });*/
                 
-                //var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_1.png';
-                fabric.Image.fromURL(url, function(img) {
+                
+                var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.png';
+                fabric.Image.fromURL(pngURL, function(img) {
                     img.scaleToHeight(mainText.height * 2);
                     img.scaleToWidth(mainText.height  * 2);
                     sign.viewportCenterObjectH(img);
@@ -287,7 +304,6 @@ class canvas {
                     sign.viewportCenterObjectV(group);
                     sign.add(group);
                 });
-                console.log('logo IS toggled')
             }
         });
 
