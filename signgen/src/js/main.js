@@ -1,10 +1,11 @@
 const puppeteer = require('puppeteer');
 //const fs = require('fs');
 var gen_button = document.getElementById('gen_button');
+var mod_button = document.getElementById('mod_button');
+const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
-        const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
         canvasObject.createCanvases();
         canvasObject.generate();
         /*
@@ -26,6 +27,21 @@ if(gen_button){
         }
         await browser.close();
         */
+    });
+}
+
+if (mod_button) {
+    mod_button.addEventListener("click", function() {
+        var word1 = document.getElementById("modifyWord1").value;
+        var word2 = document.getElementById("modifyWord2").value;
+        var subtext = document.getElementById("modifySubtext").value;
+        word1 = (word1 == '') ? undefined : word1;
+        word2 = (word2 == '') ? undefined : word2;
+        subtext = (subtext == '') ? undefined : subtext;
+
+        const retrievedData = canvasObject.getGlobalVar();
+        console.log(retrievedData);
+        //canvasObject.generate(retrievedData[0], retrievedData[1], retrievedData[2], [word1, word2, subtext], retrievedData[4], retrievedData[5], retrievedData[6], retrievedData[7]);
     });
 }
 

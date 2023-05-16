@@ -5,6 +5,11 @@ var printDebug = true;
 var canvasInstances = [];
 
 class canvas {
+    static globalVar;
+
+    getGlobalVar() {
+        return canvas.globalVar;
+    }
 
     createCanvases() {
         var totalSigns = document.getElementById('signTotal').value;
@@ -41,7 +46,7 @@ class canvas {
         }
     }
 
-    signGen(sign,w,h,colors,words,font,effect,bgEffect,url) {
+    signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL) {
         // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
@@ -62,6 +67,10 @@ class canvas {
             var colors = r.ApplyColors();
         }
         console.log(colors);
+        // m1 - background color
+        // m2 - text color
+        // m3 - shadow color
+        // m4 - stroke color
         if (words == undefined) {
             var words = r.GetRandomWord();
         }
@@ -74,8 +83,8 @@ class canvas {
         if (bgEffect == undefined) {
             var bgEffect = r.GetRandomBackgound(colors, w, h);
         }
-        if (url == undefined) {
-            var url = r.GetRandomLogo();
+        if (pngURL == undefined) {
+            var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.png';
         }
         sign.backgroundColor = colors.m1;
 
@@ -285,7 +294,7 @@ class canvas {
                 });*/
                 
                 
-                var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.png';
+                //var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.png';
                 fabric.Image.fromURL(pngURL, function(img) {
                     img.scaleToHeight(mainText.height * 2);
                     img.scaleToWidth(mainText.height  * 2);
@@ -312,25 +321,23 @@ class canvas {
         } else {
             document.getElementById('console_text').innerHTML = '';
         }
+        canvas.globalVar = [w, h, colors, words, font, effect, bgEffect, pngURL];
     }
 
-    generate(w, h, colors, words, font, effect, bgEffect, url) {
+    generate(w, h, colors, words, font, effect, bgEffect, pngURL) {
         this.clear();
-        console.clear();
-
-        this.signGen(sign,w,h,colors,words,font,effect,bgEffect,url);
-
-        // ALLOWS FOR MULTIPLE SIGNS (NEED TO UPDATE IT)
-        
+        this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
+        // ALLOWS FOR MULTIPLE SIGNS
         canvasInstances.forEach((sign) => {
             sign.clear();
-            this.signGen(sign,w,h,colors,words,font,effect,bgEffect,url);
+            this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
         });
     }
 
     clear(){
         document.getElementById("splashScreen").style.display = 'none';
         sign.clear();
+        console.clear();
     }
 }
 
