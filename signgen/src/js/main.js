@@ -35,13 +35,27 @@ if (mod_button) {
         var word1 = document.getElementById("modifyWord1").value;
         var word2 = document.getElementById("modifyWord2").value;
         var subtext = document.getElementById("modifySubtext").value;
+        var color1 = document.getElementById("modifyColor1").value;
+        var color2 = document.getElementById("modifyColor2").value;
+        var color3 = document.getElementById("modifyColor3").value;
+        var color4 = document.getElementById("modifyColor4").value;
         word1 = (word1 == '') ? undefined : word1;
         word2 = (word2 == '') ? undefined : word2;
         subtext = (subtext == '') ? undefined : subtext;
+        color1 = (color1 == '') ? undefined : color1;
+        color2 = (color2 == '') ? undefined : color2;
+        color3 = (color3 == '') ? undefined : color3;
+        color4 = (color4 == '') ? undefined : color4;
 
-        const retrievedData = canvasObject.getGlobalVar();
+        var colors = {
+            m1: color1,
+            m2: color2,
+            h1: color3,
+            h2: color4
+        };
+        const retrievedData = canvasObject.getGlobalVar(); // CONTAINS CURRENT SIGN DATA
         console.log(retrievedData);
-        //canvasObject.generate(retrievedData[0], retrievedData[1], retrievedData[2], [word1, word2, subtext], retrievedData[4], retrievedData[5], retrievedData[6], retrievedData[7]);
+        canvasObject.generate(retrievedData[0], retrievedData[1], colors, [word1, word2, subtext], retrievedData[4], retrievedData[5], retrievedData[6], retrievedData[7]);
     });
 }
 
