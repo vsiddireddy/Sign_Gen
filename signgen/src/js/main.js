@@ -32,9 +32,28 @@ if(gen_button){
 
 if (mod_button) {
     mod_button.addEventListener("click", function() {
-        const retrievedData = canvasObject.getGlobalVar(); // CONTAINS CURRENT SIGN DATA
+        const retrievedData = canvasObject.getSignList(); // CONTAINS CURRENT SIGN DATA
         console.log(retrievedData);
+        var totalSigns = document.getElementById('signTotal').value;
+        console.log(totalSigns);
+        var startingSignPos = retrievedData.length - totalSigns;
+        var newList = [];
+        for (var x = startingSignPos; x < retrievedData.length; x++) {
+            newList.push(retrievedData[x]);
+        }
+        console.log(newList);
+        var signNumValue = document.getElementById("signNum").value - 1;
+        var customSign = newList[signNumValue];
+        console.log(customSign);
+        var canvasInstances = canvasObject.getCanvasInstances();
+        var fabricCanvas = undefined;
+        if (signNumValue > 0) {
+            fabricCanvas = canvasInstances[signNumValue - 1];
+        }
+        console.log(fabricCanvas);
+        
 
+        // Modify sign fields
         var word1 = document.getElementById("modifyWord1").value;
         var word2 = document.getElementById("modifyWord2").value;
         var subtext = document.getElementById("modifySubtext").value;
@@ -42,14 +61,19 @@ if (mod_button) {
         var color2 = document.getElementById("modifyColor2").value;
         var color3 = document.getElementById("modifyColor3").value;
         var color4 = document.getElementById("modifyColor4").value;
-        word1 = (word1 == '') ? retrievedData[3][0] : word1;
-        word2 = (word2 == '') ? retrievedData[3][1] : word2;
-        subtext = (subtext == '') ? retrievedData[3][2] : subtext;
-        color1 = (color1 == '') ? retrievedData[2].m1 : color1;
-        color2 = (color2 == '') ? retrievedData[2].m2 : color2;
-        color3 = (color3 == '') ? retrievedData[2].h1 : color3;
-        color4 = (color4 == '') ? retrievedData[2].h2 : color4;
+        word1 = (word1 == '') ? customSign[3][0] : word1;
+        word2 = (word2 == '') ? customSign[3][1] : word2;
+        subtext = (subtext == '') ? customSign[3][2] : subtext;
+        color1 = (color1 == '') ? customSign[2].m1 : color1;
+        color2 = (color2 == '') ? customSign[2].m2 : color2;
+        color3 = (color3 == '') ? customSign[2].h1 : color3;
+        color4 = (color4 == '') ? customSign[2].h2 : color4;
+        
 
+        // m1 - background color
+        // m2 - text color
+        // m3 - shadow color
+        // m4 - stroke color
         var colors = {
             m1: color1,
             m2: color2,
@@ -57,7 +81,8 @@ if (mod_button) {
             h2: color4
         };
        
-        canvasObject.generate(retrievedData[0], retrievedData[1], colors, [word1, word2, subtext], retrievedData[4], retrievedData[5], retrievedData[6], retrievedData[7]);
+        // generate removes print statements. comment out to see debugging.
+        canvasObject.generate(fabricCanvas, customSign[0], customSign[1], colors, [word1, word2, subtext], customSign[4], customSign[5], customSign[6], customSign[7], true);
     });
 }
 

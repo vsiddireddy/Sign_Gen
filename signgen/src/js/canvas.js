@@ -5,10 +5,14 @@ var printDebug = true;
 var canvasInstances = [];
 
 class canvas {
-    static globalVar;
+    static signList = [];
 
-    getGlobalVar() {
-        return canvas.globalVar;
+    getSignList() {
+        return canvas.signList;
+    }
+
+    getCanvasInstances() {
+        return canvasInstances;
     }
 
     createCanvases() {
@@ -67,10 +71,6 @@ class canvas {
             var colors = r.ApplyColors();
         }
         console.log(colors);
-        // m1 - background color
-        // m2 - text color
-        // m3 - shadow color
-        // m4 - stroke color
         if (words == undefined) {
             var words = r.GetRandomWord();
         }
@@ -321,23 +321,31 @@ class canvas {
         } else {
             document.getElementById('console_text').innerHTML = '';
         }
-        canvas.globalVar = [w, h, colors, words, font, effect, bgEffect, pngURL];
+        canvas.signList.push([w, h, colors, words, font, effect, bgEffect, pngURL]);
+        canvas.signCount += 1;
     }
 
-    generate(w, h, colors, words, font, effect, bgEffect, pngURL) {
+    generate(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL, isMod) {
         this.clear();
+        if (fabricCanvas != undefined) {
+            //sign = fabricCanvas;
+        }
+        console.log(sign);
         this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
         // ALLOWS FOR MULTIPLE SIGNS
-        canvasInstances.forEach((sign) => {
-            sign.clear();
-            this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
-        });
+        if (isMod != true) {
+            canvasInstances.forEach((sign) => {
+                sign.clear();
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
+            });
+        }
+        console.log(canvasInstances);
     }
 
     clear(){
         document.getElementById("splashScreen").style.display = 'none';
         sign.clear();
-        console.clear();
+        //console.clear();
     }
 }
 
