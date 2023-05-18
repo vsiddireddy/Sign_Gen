@@ -3,16 +3,17 @@ const r = new random();
 var sign = new fabric.Canvas("canvas_0");
 var printDebug = true;
 var canvasInstances = [];
+var signList = [];
 
 class canvas {
-    static signList = [];
+    
 
     getSign() {
         return sign;
     }
 
     getSignList() {
-        return canvas.signList;
+        return signList;
     }
 
     getCanvasInstances() {
@@ -57,7 +58,7 @@ class canvas {
         }
     }
 
-    signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL) {
+    signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, isModifying) {
         // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
@@ -194,10 +195,10 @@ class canvas {
                     //styles: styleObject
                 });
 
-                console.log("h/3: " + h/3);
-                console.log("before maintext top: " + top);
+                //console.log("h/3: " + h/3);
+                //console.log("before maintext top: " + top);
                 top += mainText.calcTextHeight();
-                console.log('before subtext top/after maintext: ' + top);
+                //console.log('before subtext top/after maintext: ' + top);
                 if(words[1] !== undefined){
                     var subText = new fabric.Textbox(words[1], {
                         fontFamily: font,
@@ -210,7 +211,7 @@ class canvas {
                         strokeWidth: effect[1]
                     });
                     var subTop = subText.calcTextHeight();
-                    console.log('after subTop: ' + subTop);
+                    //console.log('after subTop: ' + subTop);
                     mainText.set({ top: subTop });
                     top += subTop;
                 }
@@ -224,7 +225,7 @@ class canvas {
                         textAlign: "center",
                         fill: colors.m2
                     });  
-                    console.log('after subtext top: ' + top);
+                    //console.log('after subtext top: ' + top);
                 } 
 
                 var wordArr = [mainText, subText, footer];
@@ -233,10 +234,10 @@ class canvas {
                 sign.centerObject(group);
                 sign.moveTo(group, 1); //z-index 1 is top
                 sign.add(group);
-                console.log("group: ");
-                console.log(group);
-                console.log("wordArr: " + wordArr);
-                console.log('logo is NOT toggled')
+                //console.log("group: ");
+                //console.log(group);
+                //console.log("wordArr: " + wordArr);
+                //console.log('logo is NOT toggled')
             } else { // logo is checked
                 var fontSize = w / 12;
                 console.log(words[0])
@@ -328,38 +329,36 @@ class canvas {
         } else {
             document.getElementById('console_text').innerHTML = '';
         }
-        canvas.signList.push([w, h, colors, words, font, effect, bgEffect, pngURL]);
-        canvas.signCount += 1;
+        if (isModifying == false) {
+            signList.push([w, h, colors, words, font, effect, bgEffect, pngURL]);
+        }
     }
 
     generate(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL, isMod) {
         this.clear();
-        if (fabricCanvas != undefined) {
-            //sign = fabricCanvas;
-        }
-        console.log(sign);
-        this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
+        this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, false);
         // ALLOWS FOR MULTIPLE SIGNS
         if (isMod != true) {
             canvasInstances.forEach((sign) => {
                 sign.clear();
-                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, false);
             });
         }
         console.log(canvasInstances);
     }
 
-    modify(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL, isMod) {
+    modify(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL) {
+        //console.log(fabricCanvas);
         if (sign == fabricCanvas) {
             this.clear();
-            this.signGen(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL);
+            this.signGen(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL, true);
             console.log("reached if statement!")
             return;
         }
         canvasInstances.forEach((sign) => {
             if (sign == fabricCanvas) {
                 sign.clear();
-                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, true);
                 console.log("reached for loop if statement!")
                 return;
             }
