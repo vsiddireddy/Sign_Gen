@@ -7,6 +7,10 @@ var canvasInstances = [];
 class canvas {
     static signList = [];
 
+    getSign() {
+        return sign;
+    }
+
     getSignList() {
         return canvas.signList;
     }
@@ -16,6 +20,7 @@ class canvas {
     }
 
     createCanvases() {
+        var index = 1;
         var totalSigns = document.getElementById('signTotal').value;
         var currentSigns = document.getElementsByClassName('canvas-container');
         //console.log("totalSigns: " + totalSigns);
@@ -28,9 +33,11 @@ class canvas {
             for (let x = currentSigns.length; x < totalSigns; x++) {
                 var content = document.getElementById("mainCanvas");
                 var newCanvas = document.createElement("canvas");
+                newCanvas.id = "canvas_" + index;
                 content.appendChild(newCanvas);
                 var fabricCanvasObj = new fabric.Canvas(newCanvas);
                 canvasInstances.push(fabricCanvasObj);
+                index++;
             }
             return;
         }
@@ -340,6 +347,23 @@ class canvas {
             });
         }
         console.log(canvasInstances);
+    }
+
+    modify(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL, isMod) {
+        if (sign == fabricCanvas) {
+            this.clear();
+            this.signGen(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL);
+            console.log("reached if statement!")
+            return;
+        }
+        canvasInstances.forEach((sign) => {
+            if (sign == fabricCanvas) {
+                sign.clear();
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL);
+                console.log("reached for loop if statement!")
+                return;
+            }
+        });
     }
 
     clear(){

@@ -49,6 +49,8 @@ if (mod_button) {
         var fabricCanvas = undefined;
         if (signNumValue > 0) {
             fabricCanvas = canvasInstances[signNumValue - 1];
+        } else {
+            fabricCanvas = canvasObject.getSign(); // TODO initialize canvas to first sign by default instead of undefined
         }
         console.log(fabricCanvas);
         
@@ -82,7 +84,7 @@ if (mod_button) {
         };
        
         // generate removes print statements. comment out to see debugging.
-        canvasObject.generate(fabricCanvas, customSign[0], customSign[1], colors, [word1, word2, subtext], customSign[4], customSign[5], customSign[6], customSign[7], true);
+        canvasObject.modify(fabricCanvas, customSign[0], customSign[1], colors, [word1, word2, subtext], customSign[4], customSign[5], customSign[6], customSign[7], true);
     });
 }
 
