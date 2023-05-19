@@ -89,30 +89,36 @@ if (mod_button) {
     });
 }
 
-document.getElementById("colorPicker").addEventListener('change', event => {
-    document.getElementById("color1").value = document.getElementById("colorPicker").value;
-  });
-
-document.getElementById("lm-dl").addEventListener("click", function(){
+function downloadSVG() {
     var link = document.createElement('a');
     if (document.getElementById("filetypeSelect").value == 'PNG') {
         link.download = 'sign.png';
-    } else {
+    } else if (document.getElementById("filetypeSelect").value == 'JPG') {
         link.download = 'sign.jpg';
+    } else {
+        var sign = canvasObject.getSign();
+        var svg = sign.toSVG();
+        var blob = new Blob([svg], {type: 'image/svg+xml'});
+        var url = URL.createObjectURL(blob);
+        link.download = 'canvas.svg'; // name of the downloaded file
+        link.href = url; // creating an url
+        link.click();
+        return;
     }
     link.href = document.getElementById('canvas_0').toDataURL();
     link.click();
+}
+
+document.getElementById("colorPicker").addEventListener('change', event => {
+    document.getElementById("color1").value = document.getElementById("colorPicker").value;
+});
+
+document.getElementById("lm-dl").addEventListener("click", function(){
+    downloadSVG();
 });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
-    var link = document.createElement('a');
-    if (document.getElementById("filetypeSelect").value == 'PNG') {
-        link.download = 'sign.png';
-    } else {
-        link.download = 'sign.jpg';
-    }
-    link.href = document.getElementById('canvas_0').toDataURL();
-    link.click();
+    downloadSVG();
 });
 
 document.getElementById("splashGen1").addEventListener("click", function(){
