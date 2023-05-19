@@ -58,7 +58,7 @@ class canvas {
         }
     }
 
-    signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, isModifying) {
+    signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, isModifying) {
         // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
@@ -91,8 +91,8 @@ class canvas {
         if (bgEffect == undefined) {
             var bgEffect = r.GetRandomBackgound(colors, w, h);
         }
-        if (pngURL == undefined) {
-            var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.png';
+        if (svgURL == undefined) {
+            var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.svg';
         }
         sign.backgroundColor = colors.m1;
 
@@ -285,7 +285,7 @@ class canvas {
                     });
                 }
 
-                /*var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.svg';
+                //var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.svg';
                 fabric.loadSVGFromURL(svgURL, function(objects, options) {
                     var img = objects[0];
                     img.scaleToHeight(mainText.height * 2);
@@ -293,15 +293,16 @@ class canvas {
                     sign.viewportCenterObjectH(img);
                     img.set({
                       top:  0,
+                      fill: colors.m2
                     });
                     var group = new fabric.Group([], {});
                     var wordArr = [mainText, subText, img];
                     wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
                     sign.viewportCenterObjectV(group);
                     sign.add(group);
-                });*/
+                });
                 
-                
+                /*
                 //var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.png';
                 fabric.Image.fromURL(pngURL, function(img) {
                     img.scaleToHeight(mainText.height * 2);
@@ -318,6 +319,7 @@ class canvas {
                     sign.viewportCenterObjectV(group);
                     sign.add(group);
                 });
+                */
             }
         });
 
@@ -330,35 +332,35 @@ class canvas {
             document.getElementById('console_text').innerHTML = '';
         }
         if (isModifying == false) {
-            signList.push([w, h, colors, words, font, effect, bgEffect, pngURL]);
+            signList.push([w, h, colors, words, font, effect, bgEffect, svgURL]);
         }
     }
 
-    generate(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL, isMod) {
+    generate(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL, isMod) {
         this.clear();
-        this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, false);
+        this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, false);
         // ALLOWS FOR MULTIPLE SIGNS
         if (isMod != true) {
             canvasInstances.forEach((sign) => {
                 sign.clear();
-                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, false);
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, false);
             });
         }
         console.log(canvasInstances);
     }
 
-    modify(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL) {
+    modify(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL) {
         //console.log(fabricCanvas);
         if (sign == fabricCanvas) {
             this.clear();
-            this.signGen(fabricCanvas, w, h, colors, words, font, effect, bgEffect, pngURL, true);
+            this.signGen(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL, true);
             console.log("reached if statement!")
             return;
         }
         canvasInstances.forEach((sign) => {
             if (sign == fabricCanvas) {
                 sign.clear();
-                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, pngURL, true);
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, true);
                 console.log("reached for loop if statement!")
                 return;
             }
