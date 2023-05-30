@@ -1,5 +1,5 @@
-const puppeteer = require('puppeteer');
-//const fs = require('fs');
+const { TextServiceClient } = require("@google-ai/generativelanguage").v1beta2;
+const { GoogleAuth } = require("google-auth-library");
 var gen_button = document.getElementById('gen_button');
 var mod_button = document.getElementById('mod_button');
 const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
@@ -8,26 +8,30 @@ if(gen_button){
     gen_button.addEventListener("click", function(){
         canvasObject.createCanvases();
         canvasObject.generate();
-        /*
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.goto('https://looka.com/business-name-generator/sports');
-        const words = await page.evaluate(() => document.body.innerText);
-        //console.log(words);
-        fs.writeFile('courses.json', JSON.stringify(words), (err) => {
-            if (err) throw err;
-            console.log('File saved');
-        });
-        const arr = words.split("\n");
-        //console.log(arr);
-        for (var x = 23; x < arr.length; x++) {
-            if (arr[x] != '' && arr[x] != 'Domains available' && arr[x].includes('•') == false && arr[x].includes('Copyright') == false) {
-                console.log(arr[x]);
-            }
-        }
-        await browser.close();
-        */
+        //APIcall();
     });
+}
+
+function APIcall() {
+    const MODEL_NAME = "models/text-bison-001";
+    const API_KEY = "AIzaSyDBZ2Wi5aLD9eX7O4wdl8N08dEBcV3griw";
+    
+    const client = new TextServiceClient({
+        authClient: new GoogleAuth().fromAPIKey(API_KEY),
+    });
+    
+    const prompt = "Can you give me ideas for my IT consulting business name,";
+    
+    client
+        .generateText({
+        model: MODEL_NAME,
+        prompt: {
+            text: prompt,
+        },
+        })
+        .then((result) => {
+        console.log(JSON.stringify(result));
+        });
 }
 
 if (mod_button) {
