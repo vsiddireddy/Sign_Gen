@@ -4,6 +4,7 @@ var sign = new fabric.Canvas("canvas_0");
 var printDebug = true;
 var canvasInstances = [];
 var signList = [];
+var usingOverlay = true;
 
 class canvas {
     
@@ -285,6 +286,8 @@ class canvas {
                     });
                 }
 
+                
+
                 //var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.svg';
                 fabric.loadSVGFromURL(svgURL, function(objects, options) {
                     var img = objects[0];
@@ -320,6 +323,18 @@ class canvas {
                     sign.add(group);
                 });
                 */
+            }
+
+            // Overlay Texture
+            if (usingOverlay == true) {
+                fabric.Image.fromURL('js/my_image.jpg', function(oImg) {
+            
+                    oImg.scaleToWidth(sign.width);
+                    oImg.globalCompositeOperation = 'multiply';
+            
+                    sign.add(oImg);
+                    sign.renderAll();
+                }, {crossOrigin: ''});
             }
         });
 
