@@ -5,6 +5,12 @@ body {
   /* overflow: hidden; */
 }
 
+.contextMenu {
+  position: fixed;
+  /* Additional styling */
+}
+
+
 .mainCanvas {
   position: relative;
   margin-top: 14%;

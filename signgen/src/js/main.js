@@ -2,7 +2,10 @@ const { TextServiceClient } = require("@google-ai/generativelanguage").v1beta2;
 const { GoogleAuth } = require("google-auth-library");
 var gen_button = document.getElementById('gen_button');
 var mod_button = document.getElementById('mod_button');
+const contextMenu = document.getElementById('contextMenu');
+contextMenu.style.display = 'none';
 const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
+var canvasID = undefined;
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
@@ -10,6 +13,44 @@ if(gen_button){
         canvasObject.generate();
         //APIcall();
     });
+}
+
+document.addEventListener("contextmenu", event => {
+    event.preventDefault();
+    console.log("reached!");
+    var canvasStr = event.target.parentNode.childNodes[0];
+    canvasID = canvasStr.id;
+    console.log(canvasStr);
+    if (canvasStr.id.includes("canvas") == true) {
+        console.log("is a canvas");
+        const x = event.clientX;
+        const y = event.clientY;
+        contextMenu.style.left = `${x}px`;
+        contextMenu.style.top = `${y}px`;
+        contextMenu.style.display = 'block';
+        disableScroll()
+    }
+});
+
+function disableScroll() {
+    // Get the current page scroll position
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+
+        // if any scroll is attempted, set this to the previous value
+        window.onscroll = function() {
+            window.scrollTo(scrollLeft, scrollTop);
+        };
+}
+
+document.addEventListener('click', function() {
+    // Hide the context menu when a click event occurs outside the menu
+    contextMenu.style.display = 'none';
+    enableScroll();
+});
+
+function enableScroll() {
+    window.onscroll = function() {};
 }
 
 function APIcall() {
@@ -115,6 +156,20 @@ function downloadSVG() {
 
 document.getElementById("colorPicker").addEventListener('change', event => {
     document.getElementById("color1").value = document.getElementById("colorPicker").value;
+});
+
+document.getElementById("contextDownloadPNG").addEventListener("click", function(){
+    var link = document.createElement('a');
+    link.download = 'sign.png';
+    link.href = document.getElementById(canvasID).toDataURL();
+    link.click();
+});
+
+document.getElementById("contextDownloadJPG").addEventListener("click", function(){
+    var link = document.createElement('a');
+    link.download = 'sign.jpg';
+    link.href = document.getElementById(canvasID).toDataURL();
+    link.click();
 });
 
 document.getElementById("lm-dl").addEventListener("click", function(){
