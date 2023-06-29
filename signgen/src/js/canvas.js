@@ -5,6 +5,7 @@ var printDebug = true;
 var canvasInstances = [];
 var signList = [];
 var usingOverlay = true;
+var usingGradient = true;
 
 class canvas {
     
@@ -327,10 +328,10 @@ class canvas {
 
             // Overlay Texture
             if (usingOverlay == true) {
-                fabric.Image.fromURL('js/my_image.jpg', function(oImg) {
+                fabric.Image.fromURL('../assets/overlays/overlay_'+ Math.floor(Math.random() * 23) + '.jpg', function(oImg) {
             
                     oImg.scaleToWidth(sign.width);
-                    oImg.globalCompositeOperation = 'multiply';
+                    oImg.globalCompositeOperation = 'overlay';
             
                     sign.add(oImg);
                     sign.renderAll();
