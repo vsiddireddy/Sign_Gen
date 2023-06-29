@@ -5,7 +5,7 @@ var printDebug = true;
 var canvasInstances = [];
 var signList = [];
 var usingOverlay = true;
-var usingGradient = true;
+var usingBorder = true;
 
 class canvas {
     
@@ -97,6 +97,19 @@ class canvas {
             var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.svg';
         }
         sign.backgroundColor = colors.m1;
+
+        if(usingBorder == true){
+            var strokeWidth = 20; // width of the border
+            var border = new fabric.Rect({
+                width: w - strokeWidth,
+                height: h - strokeWidth,
+                stroke: colors.m2,  // color of the border
+                strokeWidth: strokeWidth,
+                fill: 'rgba(0,0,0,0)'  // the inside of the rectangle is transparent
+            });
+            sign.add(border);
+        }
+        
 
         var top = 0;
         var group = new fabric.Group([], {});
