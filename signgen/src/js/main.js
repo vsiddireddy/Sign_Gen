@@ -17,18 +17,18 @@ if(gen_button){
 
 document.addEventListener("contextmenu", event => {
     event.preventDefault();
-    console.log("reached!");
+    //console.log("reached!");
     var canvasStr = event.target.parentNode.childNodes[0];
     canvasID = canvasStr.id;
-    console.log(canvasStr);
+    //console.log(canvasStr);
     if (canvasStr.id.includes("canvas") == true) {
-        console.log("is a canvas");
+        //console.log("is a canvas");
         const x = event.clientX;
         const y = event.clientY;
         contextMenu.style.left = `${x}px`;
         contextMenu.style.top = `${y}px`;
         contextMenu.style.display = 'block';
-        disableScroll()
+        disableScroll();
     }
 });
 
@@ -134,7 +134,7 @@ if (mod_button) {
     });
 }
 
-function downloadSVG() {
+function download() {
     var link = document.createElement('a');
     if (document.getElementById("filetypeSelect").value == 'PNG') {
         link.download = 'sign.png';
@@ -173,11 +173,11 @@ document.getElementById("contextDownloadJPG").addEventListener("click", function
 });
 
 document.getElementById("lm-dl").addEventListener("click", function(){
-    downloadSVG();
+    download();
 });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
-    downloadSVG();
+    download();
 });
 
 document.getElementById("splashGen1").addEventListener("click", function(){
@@ -191,13 +191,23 @@ document.getElementById("splashGen2").addEventListener("click", function(){
 });
 
 document.getElementById("zmin").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementsByClassName('canvas-container')[0]).zoom;
-    document.getElementsByClassName("canvas-container")[0].style.zoom = 1.2*csize;
+    var elements = document.getElementsByClassName('canvas-container');
+    var csize = getComputedStyle(elements[0]).zoom;
+    elements[0].style.zoom = csize * 1.2;
+    for (var x = 1; x < elements.length; x++) {
+        console.log(elements[x]);
+        elements[x].style.zoom = csize * 1.2;
+    }
 });
 
 document.getElementById("zmout").addEventListener("click", function(){
-    var csize = getComputedStyle(document.getElementsByClassName('canvas-container')[0]).zoom;
-    document.getElementsByClassName("canvas-container")[0].style.zoom = csize/1.2;
+    var elements = document.getElementsByClassName('canvas-container');
+    var csize = getComputedStyle(elements[0]).zoom;
+    elements[0].style.zoom = csize / 1.2;
+    for (var x = 1; x < elements.length; x++) {
+        console.log(elements[x]);
+        elements[x].style.zoom = csize / 1.2;
+    }
 });
 
 document.getElementById("lm-home").addEventListener("click", function(){
