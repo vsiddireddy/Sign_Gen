@@ -15,6 +15,50 @@ if(gen_button){
     });
 }
 
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+var collapsibleButtons = document.getElementsByClassName('collapsible');
+var contents = document.getElementsByClassName('content');
+var activeIndex = -1; // Tracks the index of the currently active menu
+
+// Add event listeners to each collapsible button
+for (var i = 0; i < collapsibleButtons.length; i++) {
+  collapsibleButtons[i].addEventListener('click', toggleMenu.bind(null, i));
+}
+
+// Function to toggle the menu
+function toggleMenu(index) {
+  if (index === activeIndex) {
+    // Clicked menu is already active, close it
+    contents[index].style.display = 'none';
+    collapsibleButtons[index].classList.remove('active');
+    activeIndex = -1;
+  } else {
+    // Clicked menu is not active, close any open menu and open the clicked menu
+    if (activeIndex !== -1) {
+      contents[activeIndex].style.display = 'none';
+      collapsibleButtons[activeIndex].classList.remove('active');
+    }
+
+    contents[index].style.display = 'block';
+    collapsibleButtons[index].classList.add('active');
+    activeIndex = index;
+  }
+}
+
 document.addEventListener("contextmenu", event => {
     event.preventDefault();
     //console.log("reached!");

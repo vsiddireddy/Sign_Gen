@@ -5,6 +5,78 @@ body {
   /* overflow: hidden; */
 }
 
+.collapsible {
+  background: none;
+  border-radius: 0;
+  margin-top: 0;
+  color: #7e7e7e;
+  cursor: pointer;
+  padding: 23px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #7e7e7e;
+  position: relative; /* Add relative positioning */
+}
+
+.active, .collapsible:hover {
+  background-color: rgb(63, 63, 63);
+  border-bottom: none;
+}
+
+.collapsible.active + .content {
+  display: block;
+}
+
+.collapsible.active{
+  background: none;
+}
+
+
+.collapsible::after {
+  content: '\203A'; /* Downward arrow character */
+  font-size: 27px;
+  font-weight: normal; /* Set the font weight to normal */
+  position: absolute;
+  top: 50%;
+  right: 30px; /* Adjust the spacing as needed */
+  transform: translateY(-50%) rotate(0deg); /* Initially pointing down */
+  transition: transform 0.2s ease;
+}
+
+.collapsible.active::after {
+  transform: translateY(-50%) rotate(90deg); /* Rotate the arrow when active */
+}
+
+.content {
+  padding: 10px;
+  display: none;
+  overflow: hidden;
+  background-color: #202020;
+  border-bottom: 1px solid #7e7e7e;
+  text-align: left;
+  padding-left: 40px;
+  /* Adjust the color and thickness as desired */
+}
+
+#right_menu {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#generate_menu {
+  height: calc(100% - 220px); 
+  overflow-y: auto;
+}
+
+.bottom_menu {
+  border-top: 1px solid #7e7e7e;
+}
+
+
 .contextMenu {
   position: fixed;
   background-color: #353535;
@@ -44,7 +116,7 @@ body {
   zoom: 1;
   position: relative;
   padding-top: 16%;
-  padding-left: 14%
+  padding-left: 15%
 }
 
 #splashScreen{
@@ -174,7 +246,7 @@ body {
 #right_menu{
   border-radius: 15px;
   height: 100%;
-  width: 300px; 
+  width: 275px; 
   position: fixed;
   z-index: 1; 
   top: 0;
@@ -243,14 +315,14 @@ button {
   background: none;
   position: fixed;
   top: 30px;
-  right: 200px;
+  right: 190px;
 }
 
 #zmout{
   background: none;
   position: fixed;
   top: 65px;
-  right: 200px;
+  right: 190px;
 }
 
 #UpdateCanvas{
@@ -263,7 +335,7 @@ button {
 
 #gen_button, #mod_button, #signNum{
   font-size: 18px;
-  padding: 6px 60px;
+  padding: 6px 77px;
   background-color: #222222;
 }
 
@@ -314,12 +386,12 @@ button {
 #quick_export{
   padding-top: 0%;
   margin-top: 0%;
-  padding-left: 40px;
+  padding-left: 20px;
   
 }
 
 #filetypeBtn{
-  margin: none;
+  margin-left: 10px;
   margin-top: 0;
   border: none;
   float: left;
@@ -335,26 +407,18 @@ button {
 }
 
 #menutext{
-  padding-left: 40px;
-  font-size: 13px;
-  color: #575757;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #7e7e7e;
   font-family: 'Ubuntu', sans-serif;
   font-weight:700;
 }
 
-#menutext2{
-  margin-top: 0px;
-  padding-left: 40px;
-  font-size: 7px;
-  color: #575757;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight:700;
-}
 
 select{
-  margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
+  margin-bottom: 10px;
   background-color: #303030; 
   border: none;
   color: white;
@@ -388,7 +452,6 @@ input{
   border: none;
   color: white;
   text-align: center;
-  margin-left: auto;
   margin-right: auto;
   text-decoration: none;
   font-size: 13px;
@@ -411,7 +474,6 @@ input{
 
 #wh{
   max-width: 200px;
-  margin-left: 50px;
   display: flex;
 }
 
@@ -424,7 +486,6 @@ input{
 }
 
 #colorDiv{
-  text-align:center;
   margin-top: -10px;
 }
 

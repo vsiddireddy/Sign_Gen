@@ -73,60 +73,76 @@
 
               <div id="generate_menu">
 
-                <div id="Themes">
-                    <p id="menutext">Theme</p>
-                    <select name="Themes" id="themes">
+                <div>
+                  <button class="collapsible" id="menutext">Theme</button>
+                  <div class="content">
+                    <div id="Themes">
+                      <select name="Themes" id="themes">
                         <option value="Default">Default</option>
                         <option value="Neon">Neon</option>
                         <option value="Market">Market</option>
                         <option value="Retro">Retro</option>
-                    </select>
-                </div>
-
-                <p id="menutext">Canvas Settings</p>
-                <div id="whDiv">
-                  <div id="wh">
-                    <input type="text" id="CanvasWidth" class="canvaswidth" name="CanvasWidth" placeholder="Width">
-                    <input type="text" id="CanvasHeight" name="CanvasHeight" placeholder="Height">
+                      </select>
+                    </div>
                   </div>
-                  <input type="text" id="signTotal" name="signTotal" placeholder="Total Signs">
-                </div>
-
-                <p id="menutext">Text</p>
-                <div id="textDiv">
-                  <input type="text" id="word1" name="word1" placeholder="First Word">
-                  <input type="text" id="word2" name="word2" placeholder="Second Word">
-                </div>
-
-                <p id="menutext">Colors</p>
-                <div id="colorDiv">
-                  <input type="color" id="colorPicker">
-                  <input type="text" id="color1" name="color1" placeholder="Main Color">
-                </div>
-
-                <select name="schemes" id="schemes">
-                  <option value="default">Default</option>
-                  <option value="pastel">Pastel</option>
-                  <option value="soft">Soft</option>
-                  <option value="light">Light</option>
-                  <option value="hard">Hard</option>
-                  <option value="pale">Pale</option>
-                </select>
                 
+                  <button class="collapsible" id="menutext">Canvas Settings</button>
+                  <div class="content">
+                    <div id="whDiv">
+                      <div id="wh">
+                        <input type="text" id="CanvasWidth" class="canvaswidth" name="CanvasWidth" placeholder="Width">
+                        <input type="text" id="CanvasHeight" name="CanvasHeight" placeholder="Height">
+                      </div>
+                      <input type="text" id="signTotal" name="signTotal" placeholder="Total Signs">
+                    </div>
+                  </div>
+                
+                  <button class="collapsible" id="menutext">Text</button>
+                  <div class="content">
+                    <div id="textDiv">
+                      <input type="text" id="word1" name="word1" placeholder="First Word">
+                      <input type="text" id="word2" name="word2" placeholder="Second Word">
+                    </div>
+                  </div>
+                
+                  <button class="collapsible" id="menutext">Colors</button>
+                  <div class="content">
+                    <div id="colorDiv">
+                      <input type="color" id="colorPicker">
+                      <input type="text" id="color1" name="color1" placeholder="Main Color">
+                
+                      <select name="schemes" id="schemes">
+                        <option value="default">Default</option>
+                        <option value="pastel">Pastel</option>
+                        <option value="soft">Soft</option>
+                        <option value="light">Light</option>
+                        <option value="hard">Hard</option>
+                        <option value="pale">Pale</option>
+                      </select>
+                    </div>
+                  </div>
+                
+                  <button class="collapsible" id="menutext">Customize</button>
+                  <div class="content">
+                    <div id="customizeDiv">
+                      <form class="switch" id="symbolInput">
+                        <input type="checkbox" id="toggleShape" value="false">
+                        <label for="toggleShape" id="toggletext"> Shapes </label>
+                
+                        <input type="checkbox" id="toggleLogo" value="false">
+                        <label for="toggleLogo" id="toggletext"> Logos </label><br>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              
 
-                <p id="menutext">Symbols</p>
-                <form class="switch" id="symbolInput">
-                  <input type="checkbox" id="toggleShape" value="false">
-                  <label for="toggleShape" id="toggletext"> Shapes </label>
 
-                  <input type="checkbox" id="toggleLogo" value="false">
-                  <label for="toggleLogo" id="toggletext"> Logos </label><br>
-                </form>
+              </div>
 
-
-                <p id="menutext2">_____________________________________________________________</p>
+              <div class="bottom_menu">
                 <button id="gen_button">Generate</button>
-                
+              
                 <p id="menutext">Quick Export</p>
                 <div id="quick_export">
                     <select name="filetype" id="filetypeSelect">
@@ -139,7 +155,6 @@
                     file_download
                   </button>
                 </div>
-
               </div>
 
               <div id="modify_menu">
