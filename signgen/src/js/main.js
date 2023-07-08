@@ -59,6 +59,12 @@ function toggleMenu(index) {
   }
 }
 
+document.getElementById('lm-modify').addEventListener('click', function(event) {
+    var obj = canvasObject.getCanvasInstances()[0];
+    //console.log(obj.item(0));
+    //console.log(obj.item(1));
+});
+
 document.addEventListener("contextmenu", event => {
     event.preventDefault();
     //console.log("reached!");
@@ -87,10 +93,37 @@ function disableScroll() {
         };
 }
 
-document.addEventListener('click', function() {
+document.addEventListener('click', function(event) {
     // Hide the context menu when a click event occurs outside the menu
-    contextMenu.style.display = 'none';
-    enableScroll();
+    if (contextMenu.style.display != 'none') {
+        contextMenu.style.display = 'none';
+        enableScroll();
+    } else {
+        if (event.target.parentNode.className != "canvas-container") {
+            return;
+        }
+        var canvasStr = event.target.parentNode.childNodes[0];
+        canvasID = canvasStr.id;
+        if (canvasStr.id.includes("canvas") == true) {
+            //console.log(canvasID);
+            var canvasNum = parseInt(canvasID.split("_")[1]);
+            //console.log(canvasNum);
+            const retrievedData = canvasObject.getSignList();
+            var totalSigns = document.getElementById('signTotal').value;
+            var startingSignPos = retrievedData.length - totalSigns;
+            var newList = [];
+            for (var x = startingSignPos; x < retrievedData.length; x++) {
+                newList.push(retrievedData[x]);
+            }
+            var signArr = newList[canvasNum];
+            //console.log(signArr);
+            var consoleText = " COLORS: { " + signArr[2].m1 + ", " + signArr[2].m2 + ", " + signArr[2].h1 + " }   " + "W: {" + signArr[0] + "} H: {" + signArr[1] + " }   ";
+            consoleText += "WORDS: { " + signArr[3][0] + ", " + signArr[3][1] + ", " + signArr[3][2]  + " }   ";
+            consoleText += "FONT: { " + signArr[4] + " }   ";
+            document.getElementById('console_text').innerHTML = consoleText;
+        }
+    }
+    
 });
 
 function enableScroll() {

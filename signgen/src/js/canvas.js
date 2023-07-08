@@ -4,11 +4,8 @@ var sign = new fabric.Canvas("canvas_0");
 var printDebug = true;
 var canvasInstances = [];
 var signList = [];
-var usingOverlay = true;
-var usingBorder = true;
 
 class canvas {
-    
 
     getSign() {
         return sign;
@@ -98,7 +95,7 @@ class canvas {
         }
         sign.backgroundColor = colors.m1;
 
-        if(usingBorder == true){
+        if(document.getElementById("toggleBorder").checked){
             var strokeWidth = 20; // width of the border
             var border = new fabric.Rect({
                 width: w - strokeWidth,
@@ -107,6 +104,13 @@ class canvas {
                 strokeWidth: strokeWidth,
                 fill: 'rgba(0,0,0,0)'  // the inside of the rectangle is transparent
             });
+            if (document.getElementById('modify_menu').style.display == 'block') {
+                border.selectable = true; // TODO
+                console.log(1)
+            } else {
+                border.selectable = false;
+                console.log(2)
+            }
             sign.add(border);
         }
         
@@ -121,6 +125,7 @@ class canvas {
                 sign.add(bgEffect[0]);
                 sign.centerObject(bgEffect[0]);
             }
+            //bgEffect[0].selectable = false; // TODO
         }
 
         // Words
@@ -249,6 +254,11 @@ class canvas {
                 sign.centerObject(group);
                 sign.moveTo(group, 1); //z-index 1 is top
                 sign.add(group);
+                if (document.getElementById('modify_menu').style.display == 'block') {
+                    group.selectable = true;
+                } else {
+                    group.selectable = false; // TODO
+                }
                 //console.log("group: ");
                 //console.log(group);
                 //console.log("wordArr: " + wordArr);
@@ -317,6 +327,11 @@ class canvas {
                     wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
                     sign.viewportCenterObjectV(group);
                     sign.add(group);
+                    if (document.getElementById('modify_menu').style.display == 'block') {
+                        group.selectable = true;
+                    } else {
+                        group.selectable = false; // TODO
+                    }
                 });
                 
                 /*
@@ -340,12 +355,16 @@ class canvas {
             }
 
             // Overlay Texture
-            if (usingOverlay == true) {
+            if (document.getElementById("toggleOverlay").checked) {
                 fabric.Image.fromURL('../assets/overlays/overlay_'+ Math.floor(Math.random() * 23) + '.jpg', function(oImg) {
             
                     oImg.scaleToWidth(sign.width);
                     oImg.globalCompositeOperation = 'overlay';
-            
+                    if (document.getElementById('modify_menu').style.display == 'block') {
+                        oImg.selectable = true;
+                    } else {
+                        oImg.selectable = false; // TODO
+                    }
                     sign.add(oImg);
                     sign.renderAll();
                 }, {crossOrigin: ''});
