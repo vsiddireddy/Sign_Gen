@@ -6,6 +6,7 @@ const contextMenu = document.getElementById('contextMenu');
 contextMenu.style.display = 'none';
 const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
 var canvasID = undefined;
+var signToModify = undefined;
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
@@ -59,12 +60,6 @@ function toggleMenu(index) {
   }
 }
 
-document.getElementById('lm-modify').addEventListener('click', function(event) {
-    var obj = canvasObject.getCanvasInstances()[0];
-    //console.log(obj.item(0));
-    //console.log(obj.item(1));
-});
-
 document.addEventListener("contextmenu", event => {
     event.preventDefault();
     //console.log("reached!");
@@ -110,17 +105,24 @@ document.addEventListener('click', function(event) {
             //console.log(canvasNum);
             const retrievedData = canvasObject.getSignList();
             var totalSigns = document.getElementById('signTotal').value;
+            if (totalSigns == '') {
+                //console.log(totalSigns + ".problem here!");
+                totalSigns = 1;
+            }
             var startingSignPos = retrievedData.length - totalSigns;
             var newList = [];
             for (var x = startingSignPos; x < retrievedData.length; x++) {
                 newList.push(retrievedData[x]);
             }
             var signArr = newList[canvasNum];
+            console.log(canvasNum + " canvasNum")
             //console.log(signArr);
             var consoleText = " COLORS: { " + signArr[2].m1 + ", " + signArr[2].m2 + ", " + signArr[2].h1 + " }   " + "W: {" + signArr[0] + "} H: {" + signArr[1] + " }   ";
             consoleText += "WORDS: { " + signArr[3][0] + ", " + signArr[3][1] + ", " + signArr[3][2]  + " }   ";
             consoleText += "FONT: { " + signArr[4] + " }   ";
             document.getElementById('console_text').innerHTML = consoleText;
+            signToModify = canvasNum;
+            console.log(signToModify)
         }
     }
     
@@ -157,6 +159,9 @@ if (mod_button) {
         const retrievedData = canvasObject.getSignList(); // CONTAINS CURRENT SIGN DATA
         console.log(retrievedData);
         var totalSigns = document.getElementById('signTotal').value;
+        if (totalSigns == '') {
+            totalSigns = 1;
+        }
         console.log(totalSigns);
         var startingSignPos = retrievedData.length - totalSigns;
         var newList = [];
@@ -164,13 +169,13 @@ if (mod_button) {
             newList.push(retrievedData[x]);
         }
         console.log(newList);
-        var signNumValue = document.getElementById("signNum").value - 1;
-        var customSign = newList[signNumValue];
+        //var signNumValue = document.getElementById("signNum").value - 1;
+        var customSign = newList[signToModify];
         console.log(customSign);
         var canvasInstances = canvasObject.getCanvasInstances();
         var fabricCanvas = undefined;
-        if (signNumValue > 0) {
-            fabricCanvas = canvasInstances[signNumValue - 1];
+        if (signToModify > 0) {
+            fabricCanvas = canvasInstances[signToModify - 1];
         } else {
             fabricCanvas = canvasObject.getSign(); // TODO initialize canvas to first sign by default instead of undefined
         }
