@@ -57,7 +57,7 @@ class canvas {
         }
     }
 
-    signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, isModifying) {
+    signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, isModifying) {
         // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
@@ -92,6 +92,9 @@ class canvas {
         }
         if (svgURL == undefined) {
             var svgURL = '../assets/corporate/logos/SVG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.svg';
+        }
+        if (overlayURL == undefined) {
+            var overlayURL = '../assets/overlays/overlay_'+ Math.floor(Math.random() * 23) + '.jpg';
         }
         sign.backgroundColor = colors.m1;
 
@@ -355,8 +358,9 @@ class canvas {
             }
 
             // Overlay Texture
+            //var overlayURL = '../assets/overlays/overlay_'+ Math.floor(Math.random() * 23) + '.jpg';
             if (document.getElementById("toggleOverlay").checked) {
-                fabric.Image.fromURL('../assets/overlays/overlay_'+ Math.floor(Math.random() * 23) + '.jpg', function(oImg) {
+                fabric.Image.fromURL(overlayURL, function(oImg) {
             
                     oImg.scaleToWidth(sign.width);
                     oImg.globalCompositeOperation = 'overlay';
@@ -380,35 +384,35 @@ class canvas {
             document.getElementById('console_text').innerHTML = '';
         }
         if (isModifying == false) {
-            signList.push([w, h, colors, words, font, effect, bgEffect, svgURL]);
+            signList.push([w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL]);
         }
     }
 
-    generate(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL, isMod) {
+    generate(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, isMod) {
         this.clear();
-        this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, false);
+        this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, false);
         // ALLOWS FOR MULTIPLE SIGNS
         if (isMod != true) {
             canvasInstances.forEach((sign) => {
                 sign.clear();
-                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, false);
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, false);
             });
         }
         console.log(canvasInstances);
     }
 
-    modify(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL) {
+    modify(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL) {
         //console.log(fabricCanvas);
         if (sign == fabricCanvas) {
             this.clear();
-            this.signGen(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL, true);
+            this.signGen(fabricCanvas, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, true);
             console.log("reached if statement!")
             return;
         }
         canvasInstances.forEach((sign) => {
             if (sign == fabricCanvas) {
                 sign.clear();
-                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, true);
+                this.signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, true);
                 console.log("reached for loop if statement!")
                 return;
             }

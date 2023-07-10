@@ -171,6 +171,9 @@ if (mod_button) {
         console.log(newList);
         //var signNumValue = document.getElementById("signNum").value - 1;
         var customSign = newList[signToModify];
+        if (customSign == undefined) { // in case user doesn't click on sign to modify, prevents undefined error
+            customSign = newList[0];
+        }
         console.log(customSign);
         var canvasInstances = canvasObject.getCanvasInstances();
         var fabricCanvas = undefined;
@@ -211,7 +214,7 @@ if (mod_button) {
         };
        
         // generate removes print statements. comment out to see debugging.
-        canvasObject.modify(fabricCanvas, customSign[0], customSign[1], colors, [word1, word2, subtext], customSign[4], customSign[5], customSign[6], customSign[7]);
+        canvasObject.modify(fabricCanvas, customSign[0], customSign[1], colors, [word1, word2, subtext], customSign[4], customSign[5], customSign[6], customSign[7], customSign[8]);
         console.log("--------------------");
     });
 }
