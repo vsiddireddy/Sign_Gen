@@ -22,7 +22,16 @@ class random {
         //var index = Math.floor(Math.random() * maxIndex);
         var colors = json.corporateArr[index]; 
 
-        var colorScheme = document.getElementById('color1').value
+        var colorScheme = ""
+        var m1 = document.getElementById('color1').value
+        var m2 = document.getElementById('color2').value
+        var h1 = document.getElementById('color3').value
+        var h2 = document.getElementById('color4').value
+        colors.m1 = m1;
+        colors.m2 = m2;
+        colors.h1 = h1;
+        colors.h2 = h2;
+
         if(colorScheme !== ""){
             var gcs = this.GetColorScheme(colorScheme);
             colors.m1 = gcs[0];
