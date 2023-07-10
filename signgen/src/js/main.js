@@ -240,19 +240,6 @@ document.getElementById("colorPicker").addEventListener('change', event => {
     document.getElementById("color1").value = document.getElementById("colorPicker").value;
 });
 
-document.getElementById("colorPicker2").addEventListener('change', event => {
-    document.getElementById("color2").value = document.getElementById("colorPicker2").value;
-});
-
-document.getElementById("colorPicker3").addEventListener('change', event => {
-    document.getElementById("color3").value = document.getElementById("colorPicker3").value;
-});
-
-document.getElementById("colorPicker4").addEventListener('change', event => {
-    document.getElementById("color4").value = document.getElementById("colorPicker4").value;
-});
-
-
 document.getElementById("contextDownloadPNG").addEventListener("click", function(){
     var link = document.createElement('a');
     link.download = 'sign.png';

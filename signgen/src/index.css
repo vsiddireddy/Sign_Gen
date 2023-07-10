@@ -11,9 +11,7 @@ body {
   margin-top: 0;
   color: #7e7e7e;
   cursor: pointer;
-  padding-bottom: 15px;
-  padding-top: 23px;
-  padding-left: 23px;
+  padding: 23px;
   width: 100%;
   border: none;
   text-align: left;
@@ -290,7 +288,7 @@ body {
 
 
 #bottom_left{
-  padding-top: 295px;
+  padding-top: 240px;
 }
 
 button {
@@ -492,29 +490,10 @@ input{
 }
 
 #colorDiv > input{
-  max-width: 110px;
+  max-width: 140px;
 }
 
 #colorPicker{
-  background: none;
-  height: 33px;
-  margin: 0px;
-}
-
-
-#colorPicker2{
-  background: none;
-  height: 33px;
-  margin: 0px;
-}
-
-#colorPicker3{
-  background: none;
-  height: 33px;
-  margin: 0px;
-}
-
-#colorPicker4{
   background: none;
   height: 33px;
   margin: 0px;
