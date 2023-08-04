@@ -142,13 +142,12 @@
                     </div>
                   </div>
                 </div>
-              
-
 
               </div>
 
+
               <div class="bottom_menu">
-                <button id="gen_button">Generate</button>
+                <button class="gen_button "id="gen_button">Generate</button>
               
                 <p id="menutext">Quick Export</p>
                 <div id="quick_export">
@@ -166,29 +165,36 @@
 
               <div id="modify_menu">
 
-                <p id="menutext">Words</p>
-                <div id="textDiv">
-                  <input type="text" id="modifyWord1" name="word1" placeholder="First Word">
-                  <input type="text" id="modifyWord2" name="word2" placeholder="Second Word">
-                  <input type="text" id="modifySubtext" name="word3" placeholder="Subtext">
+                <button class="collapsible" id="menutext">Words</button>
+                <div class="content">
+                  <div id="textDiv">
+
+                    <input type="text" id="modifyWord1" name="word1" placeholder="First Word">
+                    <input type="text" id="modifyWord2" name="word2" placeholder="Second Word">
+                    <input type="text" id="modifySubtext" name="word3" placeholder="Subtext">
+                  </div>
                 </div>
 
-                <p id="menutext">Colors</p>
-                <div id="colorDiv">
-                  <input type="color" id="colorPicker">
-                  <input type="text" id="modifyColor1" name="color1" placeholder="Primary Color">
-                  <input type="color" id="colorPicker2">
-                  <input type="text" id="modifyColor2" name="color2" placeholder="Secondary Color">
-                  <input type="color" id="colorPicker3">
-                  <input type="text" id="modifyColor3" name="color3" placeholder="Primary Highlights">
-                  <input type="color" id="colorPicker4">
-                  <input type="text" id="modifyColor4" name="color4" placeholder="Secondary Highlights">
+                <button class="collapsible" id="menutext">Colors</button>
+                <div class="content">
+                  <div id="colorDiv">
+                    <input type="color" id="colorPicker">
+                    <input type="text" id="modifyColor1" name="color1" placeholder="Primary Color">
+                    <input type="color" id="colorPicker2">
+                    <input type="text" id="modifyColor2" name="color2" placeholder="Secondary Color">
+                    <input type="color" id="colorPicker3">
+                    <input type="text" id="modifyColor3" name="color3" placeholder="Primary Highlights">
+                    <input type="color" id="colorPicker4">
+                    <input type="text" id="modifyColor4" name="color4" placeholder="Secondary Highlights">
+                  </div>
                 </div>
-                <!-- <input type="text" id="signNum" name="SignNumber" placeholder="Sign Number"> -->
+                  <!-- <input type="text" id="signNum" name="SignNumber" placeholder="Sign Number"> -->
 
                 <button id="mod_button">Modify</button>
                 <style> #modify_menu {display:none;} </style>
               </div>
+
+
 
         
               

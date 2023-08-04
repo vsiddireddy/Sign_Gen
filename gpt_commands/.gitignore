@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
 # Dependency directories
 node_modules/
 jspm_packages/
+=======
+# Ignore node_modules directory
+node_modules/
+
+# Ignore .env file
+.env
+>>>>>>> Stashed changes

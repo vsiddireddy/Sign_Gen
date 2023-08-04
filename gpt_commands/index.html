@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot</title>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input type="text" id="theme-input" placeholder="Theme">
+      <input type="number" id="signs-input" placeholder="# of Schemes">
+      <button type="button" onclick="sendMessage()">Generate</button>
+    </form>
+    <button type="button" onclick="exportColorSchemes()">Export Color Schemes</button>
+  </div>
+
+  <script>
+    const themeInput = document.getElementById('theme-input');
+    const signsInput = document.getElementById('signs-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const exportButton = document.querySelector('button[type="button"]');
+
+    let colorSchemes = [];
+
+    async function sendMessage() {
+      const theme = themeInput.value.trim();
+      const signs = signsInput.value.trim();
+      if (theme !== '' && signs !== '') {
+        const message = `Generate ${signs} schemes on the theme: ${theme}`;
+        appendMessage('You', message, 'user');
+
+        // Add loading message
+        appendMessage('', 'Loading...', 'loading');
+
+        try {
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message }),
+          });
+
+          if (response.ok) {
+            const { reply } = await response.json();
+            // Remove loading message
+            removeMessage('loading');
+            appendMessage('', reply, 'assistant');
+            addColorSchemes(reply);
+          } else {
+            console.error('Error:', response.statusText);
+            // Remove loading message
+            removeMessage('loading');
+            appendMessage('', 'Error occurred. Please try again.', 'assistant');
+          }
+        } catch (error) {
+          console.error('Error:', error.message);
+          // Remove loading message
+          removeMessage('loading');
+          appendMessage('', 'Error occurred. Please try again.', 'assistant');
+        }
+
+        themeInput.value = '';
+        signsInput.value = '';
+      }
+    }
+
+    function appendMessage(sender, content, role) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message', role);
+      if (sender !== '') {
+        messageElement.innerHTML = `<strong>${sender}:</strong> ${content}`;
+      } else {
+        messageElement.innerHTML = content;
+      }
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeMessage(role) {
+      const loadingMessage = chatMessages.querySelector(`.message.${role}`);
+      if (loadingMessage) {
+        chatMessages.removeChild(loadingMessage);
+      }
+    }
+
+    function addColorSchemes(response) {
+      try {
+        const newColorSchemes = JSON.parse(response);
+        colorSchemes = colorSchemes.concat(newColorSchemes);
+        displayColorSchemes();
+      } catch (error) {
+        console.error('Error parsing color schemes:', error);
+      }
+    }
+
+    function removeColorScheme(index) {
+      colorSchemes.splice(index, 1);
+      displayColorSchemes();
+    }
+
+    function displayColorSchemes() {
+      chatMessages.innerHTML = ''; // Clear the previous color schemes
+
+      colorSchemes.forEach((colorScheme, index) => {
+        const colorSchemeElement = document.createElement('div');
+        colorSchemeElement.classList.add('color-scheme');
+
+        for (const key in colorScheme) {
+          const colorValue = colorScheme[key];
+          const colorElement = document.createElement('div');
+          colorElement.style.backgroundColor = colorValue;
+          colorElement.title = colorValue; // Set the hex value as the tooltip
+          colorSchemeElement.appendChild(colorElement);
+        }
+
+        const removeButton = document.createElement('button');
+        removeButton.innerHTML = 'Remove';
+        removeButton.addEventListener('click', () => {
+          removeColorScheme(index);
+        });
+        colorSchemeElement.appendChild(removeButton);
+
+        chatMessages.appendChild(colorSchemeElement);
+      });
+
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function exportColorSchemes() {
+      const colorArr = JSON.stringify(colorSchemes, null, 4);
+      const jsonData = `{
+  "colorArr": ${colorArr}
+}`;
+
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'color_schemes.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+  <style>
+    .message {
+      margin-bottom: 8px;
+    }
+
+    .user {
+      color: blue;
+    }
+
+    .assistant {
+      color: red;
+    }
+
+    .loading {
+      color: gray;
+    }
+
+    .color-scheme {
+      display: flex;
+      margin-bottom: 16px;
+    }
+
+    .color-scheme div {
+      width: 100px;
+      height: 100px;
+      margin-right: 8px;
+      position: relative;
+    }
+
+    .color-scheme div::before {
+      content: attr(title);
+      position: absolute;
+      top: -20px;
+      left: 0;
+      display: none;
+      background-color: #fff;
+      padding: 4px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .color-scheme div:hover::before {
+      display: block;
+    }
+
+    .color-scheme button {
+      margin-left: 8px;
+    }
+  </style>
+</body>
+</html>
