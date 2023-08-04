@@ -216,7 +216,7 @@
                   </button>
     
                   <div id="bottom_left">
-                    <button class="mdc-icon-button material-icons">
+                    <button class="mdc-icon-button material-icons" id="help-modal">
                         <div class="mdc-icon-button__ripple"></div>
                         help
                       </button>
@@ -234,7 +234,20 @@
             
         </div>
 
-        
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h1 id="KeyboardShortcuts">Keyboard Shortcuts</h1>
+            <p>Show/Hide Keyboard Shortcuts Modal - SHIFT+/</p>
+            <p>Show/Hide Sign Information - COMMAND+k (Mac), CTRL+k (Windows)</p>
+            <p>Zoom in - q</p>
+            <p>Zoom out - w</p>
+            <p>Generate Sign(s) - SPACE</p>
+          </div>
+
+        </div>
     
     </body>
     <script src="js/main.js"></script>

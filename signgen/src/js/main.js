@@ -7,6 +7,8 @@ contextMenu.style.display = 'none';
 const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
 var canvasID = undefined;
 var signToModify = undefined;
+var modal = document.getElementById("myModal");
+modal.style.display = "none";
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
@@ -265,6 +267,14 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     download();
 });
 
+document.getElementById("help-modal").addEventListener("click", function() {
+    modal.style.display = "block";
+});
+
+document.getElementById("close-modal").addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
 document.getElementById("splashGen1").addEventListener("click", function(){
     shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
 });
@@ -303,4 +313,12 @@ document.getElementById("lm-home").addEventListener("click", function(){
 document.getElementById("lm-refresh").addEventListener("click", function(){
     document.getElementById("splashScreen").style.display = 'none';
     document.getElementById("canvas_0").style.opacity = "100";
+});
+
+Mousetrap.bind(['shift+/'], function() {
+    if (modal.style.display == "none") {
+        modal.style.display = "block";
+    } else {
+        modal.style.display = "none";
+    }
 });
