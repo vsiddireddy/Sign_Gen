@@ -48,7 +48,7 @@ class canvas {
             for (let x = currentSigns.length; x < totalSigns; x++) {
                 var content = document.getElementById("mainCanvas");
                 var newCanvas = document.createElement("canvas");
-                newCanvas.id = "canvas_" + index;
+                newCanvas.id = "canvas_" + x;
                 content.appendChild(newCanvas);
                 var fabricCanvasObj = new fabric.Canvas(newCanvas);
                 canvasInstances.push(fabricCanvasObj);
