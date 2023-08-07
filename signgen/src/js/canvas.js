@@ -20,16 +20,31 @@ class canvas {
     }
 
     createCanvases() {
+        let canvasElements = document.querySelectorAll('.canvas-container > canvas');
+        if (document.getElementById('signTotal').value == 1 || document.getElementById('signTotal').value.trim() === '') {
+            canvasElements.forEach(function(canvas) {
+                canvas.style.transform = 'translate(-50%, -50%)';
+                console.log(canvas.style.transform);
+            });
+        } else {
+            canvasElements.forEach(function(canvas) {
+                canvas.style.transform = 'translate(-100%, -100%)';
+                console.log(canvas.style.transform);
+            });
+        }
+        
+
         var index = 1;
         var totalSigns = document.getElementById('signTotal').value;
         var currentSigns = document.getElementsByClassName('canvas-container');
         //console.log("totalSigns: " + totalSigns);
         //console.log("currentSigns: " + currentSigns.length);
         if (totalSigns == currentSigns.length) {
+            console.log("reached equal");
             return;
         }
         if (currentSigns.length < totalSigns) {
-            //console.log('reached less than');
+            console.log('reached less than');
             for (let x = currentSigns.length; x < totalSigns; x++) {
                 var content = document.getElementById("mainCanvas");
                 var newCanvas = document.createElement("canvas");
@@ -42,17 +57,30 @@ class canvas {
             return;
         }
         if (totalSigns != '' && currentSigns.length > totalSigns) {
-            //console.log('reached greater than');
+            console.log('reached greater than');
             var distance = currentSigns.length - totalSigns;
-            //console.log(totalSigns);
+
+            console.log("totalSigns: " + totalSigns);
+            console.log("currentSigns: " + currentSigns.length);
+            console.log("distance: " + distance);
+
             if (distance == 1) {
                 currentSigns[totalSigns].remove();
                 return;
             }
+            /*
             for (var x = totalSigns; x < currentSigns.length; x++) {
+                console.log("x: " + x);
                 currentSigns[x].remove();
             }
             currentSigns[totalSigns].remove();
+            */
+
+            for (var i = 0; i < distance; i++) {
+                currentSigns[currentSigns.length - 1].remove();
+            }
+
+
             return;
         }
     }
@@ -77,7 +105,7 @@ class canvas {
         if (colors == undefined) {
             var colors = r.ApplyColors();
         }
-        console.log(colors);
+        //console.log(colors);
         if (words == undefined) {
             var words = r.GetRandomWord();
         }

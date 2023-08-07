@@ -9,12 +9,13 @@ var canvasID = undefined;
 var signToModify = undefined;
 var modal = document.getElementById("myModal");
 modal.style.display = "none";
+var boolean = false;
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
         canvasObject.createCanvases();
         canvasObject.generate();
-        //APIcall();
+        zoomGen();
     });
 }
 
@@ -286,22 +287,22 @@ document.getElementById("splashGen2").addEventListener("click", function(){
 });
 
 document.getElementById("zmin").addEventListener("click", function(){
-    var element = document.getElementById('mainCanvas');
-    var csize = getComputedStyle(element).zoom;
-    element.style.zoom = csize * 1.2;
-    for (var x = 1; x < 1; x++) {
-       //console.log(elements[x]);
-        //element.style.zoom = csize * 1.2;
+    var elements = document.getElementsByClassName('canvas-container');
+    var csize = getComputedStyle(elements[0]).zoom;
+    elements[0].style.zoom = csize * 1.2;
+    for (var x = 1; x < elements.length; x++) {
+        //console.log(elements[x]);
+        elements[x].style.zoom = csize * 1.2;
     }
 });
 
 document.getElementById("zmout").addEventListener("click", function(){
-    var element = document.getElementById('mainCanvas');
-    var csize = getComputedStyle(element).zoom;
-    element.style.zoom = csize / 1.2;
-    for (var x = 1; x < 1; x++) {
+    var elements = document.getElementsByClassName('canvas-container');
+    var csize = getComputedStyle(elements[0]).zoom;
+    elements[0].style.zoom = csize / 1.2;
+    for (var x = 1; x < elements.length; x++) {
         //console.log(elements[x]);
-        //elements[x].style.zoom = csize / 1.2;
+        elements[x].style.zoom = csize / 1.2;
     }
 });
 
@@ -322,3 +323,19 @@ Mousetrap.bind(['shift+/'], function() {
         modal.style.display = "none";
     }
 });
+
+function zoomGen() {
+    var elements = document.getElementsByClassName('canvas-container');
+    if (boolean) {
+        var csize = getComputedStyle(elements[0]).zoom;
+        elements[0].style.zoom = csize;
+        for (var x = 1; x < elements.length; x++)
+            elements[x].style.zoom = csize;
+    } else {
+        var csize = getComputedStyle(elements[0]).zoom;
+        elements[0].style.zoom = csize;
+        for (var x = 1; x < elements.length; x++)
+            elements[x].style.zoom = csize;
+    }
+    boolean = !boolean;
+}

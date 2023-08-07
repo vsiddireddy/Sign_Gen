@@ -3,7 +3,7 @@ Mousetrap.bind('q', function() {
     var csize = getComputedStyle(elements[0]).zoom;
     elements[0].style.zoom = csize * 1.2;
     for (var x = 1; x < elements.length; x++) {
-        console.log(elements[x]);
+        //console.log(elements[x]);
         elements[x].style.zoom = csize * 1.2;
     }
 });
@@ -13,7 +13,7 @@ Mousetrap.bind('w', function() {
     var csize = getComputedStyle(elements[0]).zoom;
     elements[0].style.zoom = csize / 1.2;
     for (var x = 1; x < elements.length; x++) {
-        console.log(elements[x]);
+        //console.log(elements[x]);
         elements[x].style.zoom = csize / 1.2;
     }
 });
