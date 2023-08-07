@@ -99,13 +99,16 @@ body {
   position: relative;
   margin-top: 14%;
   margin-left: 30%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* This creates a two-column grid */
+  gap: 1px; /* This adds some space between your canvases */
 }
 
 .canvas-container > canvas {
   position: relative;
   margin-top: 0 auto;
   margin-left: 0 auto;
-  transform: translate(-50%, -50%);
+  transform: translate(-100%, -100%); /* need to change these values (make them lower) */
 }
 
 .canvas_0 {
