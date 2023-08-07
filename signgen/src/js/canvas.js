@@ -124,7 +124,24 @@ class canvas {
         if (overlayURL == undefined) {
             var overlayURL = '../assets/overlays/overlay_'+ Math.floor(Math.random() * 23) + '.jpg';
         }
-        sign.backgroundColor = colors.m1;
+
+        if(document.getElementById("toggleGradient").checked){
+            sign.set('backgroundColor', new fabric.Gradient({
+                //gradient options
+                type: 'linear',
+                gradientUnits: 'pixels', // or 'percentage'
+                coords: { x1: 0, y1: 0, x2: sign.width, y2: sign.height},
+                colorStops:[
+                  { offset: 0, color: colors.h1 },
+                  { offset: 1, color: colors.m1 }
+                ]
+              }));
+        } else {
+            sign.backgroundColor = colors.m1;
+        }
+
+
+        
 
         if(document.getElementById("toggleBorder").checked){
             var strokeWidth = Math.floor(Math.random() * 30) + 10; // width of the border
@@ -158,6 +175,8 @@ class canvas {
             }
             //bgEffect[0].selectable = false; // TODO
         }
+
+
 
         // Words
         var myFont = new FontFaceObserver(font);
