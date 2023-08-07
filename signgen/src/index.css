@@ -100,7 +100,8 @@ body {
   margin-top: 14%;
   margin-left: 30%;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* This creates a two-column grid */
+  /*grid-template-columns: 1fr 1fr; /* This creates a two-column grid */
+  grid-template-columns: min-content auto;
   gap: 1px; /* This adds some space between your canvases */
 }
 

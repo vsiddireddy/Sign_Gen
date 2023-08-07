@@ -99,7 +99,7 @@ class canvas {
         sign.backgroundColor = colors.m1;
 
         if(document.getElementById("toggleBorder").checked){
-            var strokeWidth = 20; // width of the border
+            var strokeWidth = Math.floor(Math.random() * 30) + 10; // width of the border
             var border = new fabric.Rect({
                 width: w - strokeWidth,
                 height: h - strokeWidth,
