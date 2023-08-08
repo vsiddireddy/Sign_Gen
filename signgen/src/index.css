@@ -537,29 +537,66 @@ input{
 
 /* The Modal (background) */
 .modal {
-  
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  /* overflow: auto;  Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
 }
 
-/* Modal Content/Box */
 .modal-content {
   border-radius: 15px;
   background-color: #3d3d3d;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
   padding: 20px;
-  /* border: 1px solid #888; */
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
   font-family: 'Ubuntu', sans-serif;
+  color: #ffffff; /* Making text white for better contrast against dark background */
 }
+
+/* Table styles */
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-content th, .modal-content td {
+  border: 1px solid #555555; /* Adding a slight border to table headers and cells */
+  padding: 10px 20px; /* Adding some padding for better aesthetics */
+  text-align: left;
+}
+
+.modal-content th {
+  background-color: #4a4a4a; /* Slightly different background for the header */
+  color: #eaeaea;
+}
+
+.modal-content tr:nth-child(odd) {
+  background-color: #424242; /* Adding zebra-striping for better readability */
+}
+
+.modal-content h1 {
+  color: #eaeaea; /* Making the heading slightly lighter than the text for emphasis */
+  margin-top: 0; /* Remove top margin for better alignment */
+}
+
+.modal-content .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close:hover, .modal-content .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 /* The Close Button */
 .close {
