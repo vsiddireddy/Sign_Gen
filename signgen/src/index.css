@@ -102,7 +102,6 @@ body {
   display: grid;
   /*grid-template-columns: 1fr 1fr; /* This creates a two-column grid */
   grid-template-columns: min-content auto;
-  gap: 1px; /* This adds some space between your canvases */
 }
 
 .canvas-container > canvas {
@@ -337,14 +336,28 @@ button {
   background-color: #3a3a3a; 
 }
 
-#gen_button, #mod_button, #signNum{
-  font-size: 18px;
-  padding: 6px 77px;
-  background-color: #222222;
+.modify_bottom{
+  width: 100%;
+  position: absolute;
+  bottom: 90px;
+  border-top: 1px solid #7e7e7e;
 }
 
-#gen_button, #mod_button:hover{
-  background-color: #2c2c2c;
+#mod_button{
+  bottom: 50px;
+  font-size: 18px;
+  padding: 6px 85px;
+  background-color: #292929;
+}
+
+#gen_button, #signNum{
+  font-size: 18px;
+  padding: 6px 77px;
+  background-color: #292929;
+}
+
+#gen_button:hover, #mod_button:hover{
+  background-color: #313131;
 }
 
 
@@ -368,9 +381,6 @@ button {
   color: rgb(255, 255, 255);
 }
 
-.mdc-icon-button:focus{
-  color: rgb(255, 255, 255) !important;
-}
 
 .mdc-icon-button:visited{
   color: rgb(86, 89, 93) !important;

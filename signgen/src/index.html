@@ -149,7 +149,7 @@
               </div>
 
 
-              <div class="bottom_menu">
+              <div id="bottom_menu" class="bottom_menu">
                 <button class="gen_button "id="gen_button">Generate</button>
               
                 <p id="menutext">Quick Export</p>
@@ -168,7 +168,7 @@
 
               <div id="modify_menu">
 
-                <button class="collapsible" id="menutext">Words</button>
+                <button class="collapsible" id="menutext">Text</button>
                 <div class="content">
                   <div id="textDiv">
 
@@ -193,8 +193,24 @@
                 </div>
                   <!-- <input type="text" id="signNum" name="SignNumber" placeholder="Sign Number"> -->
 
-                <button id="mod_button">Modify</button>
-                <style> #modify_menu {display:none;} </style>
+                <div id="modify_bottom" class="modify_bottom">
+                  <button id="mod_button">Modify</button>
+                  <style> #modify_menu {display:none;} </style>
+                  <p id="menutext">Quick Export</p>
+                  <div id="quick_export">
+                      <select name="filetype" id="filetypeSelect">
+                          <option value="PNG">PNG</option>
+                          <option value="JPG">JPG</option>
+                          <option value="SVG">SVG</option>
+                      </select>
+                      <button id="filetypeBtn" class="mdc-icon-button material-icons downBtn" this.style.color='#000000'" />
+                      <div class="mdc-icon-button__ripple"></div>
+                      file_download
+                    </button>
+                  </div>
+                </div>
+
+
               </div>
 
 
