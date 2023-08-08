@@ -265,7 +265,52 @@ document.getElementById("lm-dl").addEventListener("click", function(){
 });
 
 document.getElementById("filetypeBtn").addEventListener("click", function(){
-    download();
+    var content = document.getElementById("container");
+    var newCanvas = document.createElement("canvas");
+    newCanvas.id = "bigCanvas";
+    newCanvas.width = document.getElementById("canvas_0").width;
+    var totalSigns = document.getElementById('signTotal').value;
+    if (totalSigns.trim() == '' || totalSigns == 1) {
+        totalSigns = 1;
+    } else {
+        totalSigns = totalSigns / 2;
+        newCanvas.width = newCanvas.width * 2;
+    }
+    newCanvas.height = document.getElementById("canvas_0").height * totalSigns;
+
+    //var firstCanvas = document.getElementById('canvas_0'); // is sourceCanvas (GPT)
+    //var sourceCtx = firstCanvas.getContext('2d');
+    //var destinationCtx = newCanvas.getContext('2d');
+
+    //var imageData = sourceCtx.getImageData(0, 0, firstCanvas.width, firstCanvas.height);
+    //destinationCtx.putImageData(imageData, 0, 0);
+
+    //console.log(canvasInstances.length);
+
+    var leftToRight = 0;
+    var currHeight = 0;
+    for (var x = 0; x < canvasInstances.length + 1; x++) {
+        var currCanvas = document.getElementById('canvas_' + x);
+        var sourceCtx = currCanvas.getContext('2d', { willReadFrequently: true });
+        var destinationCtx = newCanvas.getContext('2d', { willReadFrequently: true });
+    
+        var destX = (leftToRight == 1) ? currCanvas.width : 0; // decide destination x-coord
+    
+        var imageData = sourceCtx.getImageData(0, 0, currCanvas.width, currCanvas.height);
+        destinationCtx.putImageData(imageData, destX, currHeight);
+    
+        if (leftToRight == 1) {
+            currHeight += currCanvas.height;
+        }
+        leftToRight = 1 - leftToRight; // toggle leftToRight
+    }
+    
+    
+    content.append(newCanvas);
+    var link = document.createElement('a');
+    link.download = 'signsheet.png';
+    link.href = document.getElementById('bigCanvas').toDataURL();
+    link.click();
 });
 
 document.getElementById("help-modal").addEventListener("click", function() {
