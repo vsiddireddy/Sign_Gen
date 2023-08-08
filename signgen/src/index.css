@@ -259,6 +259,14 @@ body {
   padding-top: 45px;
 }
 
+.button-active {
+  color: white;
+}
+
+.button-inactive {
+  color: rgb(86, 89, 93);
+}
+
 #left_menu{
   border-radius: 15px;
   height: 100%;
