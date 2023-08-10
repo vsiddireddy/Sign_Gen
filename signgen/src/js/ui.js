@@ -64,6 +64,10 @@ function switchToGenerate() {
 function switchToModify() {
   console.log("modifymenu");
   if(!modify_menu) return;
+
+  document.getElementById("canvas_0").style.opacity = "100";
+  document.getElementById("splashScreen").style.display = 'none';
+
   if (getComputedStyle(modify_menu).display == 'none') {
     modify_menu.style.display = 'block';
     generate_menu.style.display = 'none';
