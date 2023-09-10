@@ -3,6 +3,7 @@ var Mousetrap = require('mousetrap');
 const faker = require('faker');
 var ColorScheme = require('color-scheme');
 var printDebug = true;
+var count = 0;
 
 class random {
 
@@ -147,24 +148,42 @@ class random {
     }
 
     ApplyFont() {
-        const fontArr = ['AdventPro', 'ArchivoBlack', 'Asap1', 'Asap2', 'Audiowide',
+        const fontArr = ['ArchivoBlack', 'Asap1', 'Asap2', 'Audiowide', 'Bricemont', 'Blazma', 'Santello', 'Francode', 'Zyxali', 'Ronaldson', 'Guti',
         'BioRhyme1', 'BioRhyme2', 'ChakraPetch1', 'ChakraPetch2', 'Comfortaa',
-        'ConcertOne', 'FiraSans1', 'FiraSans2', 'FjallaOne', 
-        'Inconsolata1', 'Inconsolata2', 'InknutAntiqua1', 'InknutAntiqua2',
-        'Inter1', 'Inter2', 'JetBrainsMono1', 'JetBrainsMono2', 'Manrope1', 'Manrope2',
-        'Nunito1', 'Nunito2', 'OpenSans1', 'OpenSans2', 'Oswald1', 'Oswald2',
+        'ConcertOne', 'FiraSans2', 'FjallaOne', 'Huelic',
+        'Inconsolata1', 'Inconsolata2',
+        'Inter1', 'Inter2', 'JetBrainsMono1', 'JetBrainsMono2', 'Manrope1',
+        'Nunito1', 'Nunito2', 'OpenSans1', 'Oswald1',
         'Poppins1', 'Poppins2', 'Prompt1', 'Prompt2', 'ProzaLibre1', 'ProzaLibre2',
         'Quicksand', 'Raleway1', 'Raleway2', 'Righteous', 'Rubik1', 'Rubik2',
         'RussoOne', 'Sora1', 'Sora2', 'SpaceMono1', 'SpaceMono2',
         'AlphaProta', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
-        'DeftoneStylus', 'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
-        'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Sematary', 'Stentiga', 'Twist-twist-font',
+        'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
+        'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Stentiga',
         'World-of-water'];
         const fontArrTest = ['AlphaProta', 'AntsyPants', 'Automania', 'Beware', 'Blaec', 'BoecklinsUniverse', 'Carbon', 'CrystalRadioKit',
         'DeftoneStylus', 'Electroharmonix', 'Fffforwa', 'Halo', 'Hemi-head', 'Kenyan-coffee', 'Made-in-china',
         'Metal-lord', 'Monoglyceride', 'Monoton', 'Neuropolitical', 'Projects', 'Sematary', 'Stentiga', 'Twist-twist-font',
         'World-of-water'];
-        return fontArr[this.getRandomInt(fontArr.length)];
+        console.log(count)
+        var temp = count
+        count++
+        console.log(fontArr[temp])
+        //return fontArr[temp]; // used for checking each font
+        return fontArr[this.getRandomInt(fontArr.length)]; //This picks the font randomly
+        /* 
+            Fonts to Delete: 
+            AdventPro
+            FiraSans1
+            InknutAntiqua1
+            InknutAntiqua2
+            Manrope2
+            OpenSans2
+            Oswald2
+            DeftoneStylus
+            Sematary
+            Twist-twist-font
+        */
     }
 
     GetRandomLogo(ctx_a, colors) {

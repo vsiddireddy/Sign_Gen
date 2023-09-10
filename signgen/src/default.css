@@ -363,3 +363,44 @@
     font-family: World-of-water;
     src: url('../assets/corporate/fonts_corporate/World-of-water/world-of-water.ttf');
 }
+
+@font-face {
+    font-family: Huelic;
+    src: url('../assets/corporate/fonts_corporate/Huelic/huelic.ttf');
+}
+
+@font-face {
+    font-family: Bricemont;
+    src: url('../assets/corporate/fonts_corporate/Bricemont/bricemont-book.ttf');
+}
+
+@font-face {
+    font-family: Blazma;
+    src: url('../assets/corporate/fonts_corporate/Blazma/blazma-regular.ttf');
+}
+
+@font-face {
+    font-family: Santello;
+    src: url('../assets/corporate/fonts_corporate/Santello/santello-regular.ttf');
+}
+
+@font-face {
+    font-family: Francode;
+    src: url('../assets/corporate/fonts_corporate/Francode/francode-book.ttf');
+}
+
+@font-face {
+    font-family: Zyxali;
+    src: url('../assets/corporate/fonts_corporate/Zyxali/zyxali-regular.ttf');
+}
+
+@font-face {
+    font-family: Ronaldson;
+    src: url('../assets/corporate/fonts_corporate/Ronaldson/ronaldson.ttf');
+}
+
+@font-face {
+    font-family: Guti;
+    src: url('../assets/corporate/fonts_corporate/Guti/guti.otf');
+}
+
