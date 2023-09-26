@@ -1,5 +1,6 @@
 var FontFaceObserver = require('fontfaceobserver');
 const r = new random();
+const ai = new gpt();
 var sign = new fabric.Canvas("canvas_0");
 var printDebug = true;
 var canvasInstances = [];
@@ -21,7 +22,7 @@ class canvas {
 
     createCanvases() {
         let canvasElements = document.querySelectorAll('.canvas-container > canvas');
-        if (document.getElementById('signTotal').value == 1 || document.getElementById('signTotal').value.trim() === '') {
+        if (document.getElementById('signTotal').value == 1 || document.getElementById('signTotal').value.trim() === '' || isNaN(document.getElementById('signTotal').value)) {
             canvasElements.forEach(function(canvas) {
                 canvas.style.transform = 'translate(-50%, -50%)';
                 console.log(canvas.style.transform);
@@ -85,7 +86,7 @@ class canvas {
         }
     }
 
-    signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, isModifying) {
+    async signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, isModifying) {
         // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
@@ -101,6 +102,12 @@ class canvas {
             sign.setWidth(633);
             sign.setHeight(291);
         }
+        if (isNaN(w)) {
+            sign.setWidth(633);
+        }
+        if (isNaN(h)) {
+            sign.setHeight(291);
+        }
 
         if (colors == undefined) {
             var colors = r.ApplyColors();
@@ -108,6 +115,12 @@ class canvas {
         //console.log(colors);
         if (words == undefined) {
             var words = r.GetRandomWord();
+            if (document.getElementById('aiPrompt').value.trim() != '') {
+                words = await ai.gptApi();
+                var word1 = words[0];
+                words[0] = words[1];
+                words[1] = word1;
+            }
         }
         if (font == undefined) {
             var font = r.ApplyFont();

@@ -108,10 +108,22 @@ document.addEventListener('click', function(event) {
             //console.log(canvasNum);
             const retrievedData = canvasObject.getSignList();
             var totalSigns = document.getElementById('signTotal').value;
-            if (totalSigns == '') {
+            if (totalSigns == '' || isNaN(totalSigns)) {
                 //console.log(totalSigns + ".problem here!");
                 totalSigns = 1;
             }
+
+            //canvasStr.style.border = "5px solid yellow";
+            document.getElementById('canvas_0').style.border = 'none';
+            var listOfSigns = canvasObject.getCanvasInstances();
+            for (var x = 0; x < listOfSigns.length; x++) {
+                var signId = listOfSigns[x].lowerCanvasEl.id;
+                var sign = document.getElementById(signId);
+                sign.style.border = "none";
+            }
+            canvasStr.style.border = "3px solid yellow";
+
+
             var startingSignPos = retrievedData.length - totalSigns;
             var newList = [];
             for (var x = startingSignPos; x < retrievedData.length; x++) {
@@ -162,7 +174,7 @@ if (mod_button) {
         const retrievedData = canvasObject.getSignList(); // CONTAINS CURRENT SIGN DATA
         console.log(retrievedData);
         var totalSigns = document.getElementById('signTotal').value;
-        if (totalSigns == '') {
+        if (totalSigns == '' || isNaN(totalSigns)) {
             totalSigns = 1;
         }
         console.log(totalSigns);
@@ -270,7 +282,7 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     newCanvas.id = "bigCanvas";
     newCanvas.width = document.getElementById("canvas_0").width;
     var totalSigns = document.getElementById('signTotal').value;
-    if (totalSigns.trim() == '' || totalSigns == 1) {
+    if (totalSigns.trim() == '' || totalSigns == 1 || isNaN(totalSigns)) {
         totalSigns = 1;
     } else {
         totalSigns = totalSigns / 2;
