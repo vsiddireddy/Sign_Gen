@@ -15,6 +15,7 @@ if(gen_button){
     gen_button.addEventListener("click", function(){
         canvasObject.createCanvases();
         canvasObject.generate();
+        removeHighlightBorder();
         zoomGen();
     });
 }
@@ -113,14 +114,7 @@ document.addEventListener('click', function(event) {
                 totalSigns = 1;
             }
 
-            //canvasStr.style.border = "5px solid yellow";
-            document.getElementById('canvas_0').style.border = 'none';
-            var listOfSigns = canvasObject.getCanvasInstances();
-            for (var x = 0; x < listOfSigns.length; x++) {
-                var signId = listOfSigns[x].lowerCanvasEl.id;
-                var sign = document.getElementById(signId);
-                sign.style.border = "none";
-            }
+            removeHighlightBorder();
             canvasStr.style.border = "3px solid yellow";
 
 
@@ -301,7 +295,7 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
 
     var leftToRight = 0;
     var currHeight = 0;
-    for (var x = 0; x < canvasInstances.length + 1; x++) {
+    for (var x = 0; x < canvasObject.getCanvasInstances().length + 1; x++) {
         var currCanvas = document.getElementById('canvas_' + x);
         var sourceCtx = currCanvas.getContext('2d', { willReadFrequently: true });
         var destinationCtx = newCanvas.getContext('2d', { willReadFrequently: true });
@@ -323,6 +317,7 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     link.download = 'signsheet.png';
     link.href = document.getElementById('bigCanvas').toDataURL();
     link.click();
+    newCanvas.remove();
 });
 
 
@@ -398,4 +393,14 @@ function zoomGen() {
             elements[x].style.zoom = csize;
     }
     boolean = !boolean;
+}
+
+function removeHighlightBorder() {
+    document.getElementById('canvas_0').style.border = 'none';
+    var listOfSigns = canvasObject.getCanvasInstances();
+    for (var x = 0; x < listOfSigns.length; x++) {
+        var signId = listOfSigns[x].lowerCanvasEl.id;
+        var sign = document.getElementById(signId);
+        sign.style.border = "none";
+    }
 }
