@@ -1,5 +1,6 @@
 const { TextServiceClient } = require("@google-ai/generativelanguage").v1beta2;
 const { GoogleAuth } = require("google-auth-library");
+
 var gen_button = document.getElementById('gen_button');
 var mod_button = document.getElementById('mod_button');
 const contextMenu = document.getElementById('contextMenu');
@@ -8,8 +9,11 @@ const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
 var canvasID = undefined;
 var signToModify = undefined;
 var modal = document.getElementById("myModal");
+var settingsModal = document.getElementById("settingsModal");
 modal.style.display = "none";
+settingsModal.style.display = "none";
 var boolean = false;
+var gptAPIKey = null;
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
@@ -332,6 +336,10 @@ document.getElementById("zmin").addEventListener("click", function(){
     }
 });
 
+document.getElementById("settings-modal").addEventListener("click", function() {
+    settingsModal.style.display = "block";
+  });
+
 document.getElementById("help-modal").addEventListener("click", function() {
     modal.style.display = "block";
   });
@@ -369,6 +377,24 @@ document.getElementById("zmout").addEventListener("click", function(){
         elements[x].style.zoom = csize / 1.2;
     }
 });
+
+
+document.getElementById("SaveKeyButton")?.addEventListener("click", function() {
+    console.log("console.log(I MADE IT!!!!!)");
+        gptAPIKey = document.getElementById("gptApiKey").value;
+        fs.writeFile('gpt.txt', gptAPIKey, (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('File written successfully.');
+            }
+        });
+});
+
+
+document.getElementById("close-settings-modal").addEventListener("click", function() {
+    settingsModal.style.display = "none";
+  });
 
 
 Mousetrap.bind(['shift+/'], function() {

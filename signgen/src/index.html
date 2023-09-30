@@ -247,7 +247,7 @@
                         <div class="mdc-icon-button__ripple"></div>
                         help
                       </button>
-                    <button class="mdc-icon-button material-icons">
+                    <button class="mdc-icon-button material-icons" id="settings-modal">
                         <div class="mdc-icon-button__ripple"></div>
                         settings
                       </button>
@@ -299,8 +299,29 @@
               </table>
           </div>
       </div>
+
+      <div id="settingsModal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="close-settings-modal">&times;</span>
+          <h1 id="settingsH1">Settings</h1>
+          <input type="text" placeholder="GPT API Key" id="gptApiKey"/>
+          <button id="saveKeyButton" onclick="saveKey()">Save</button>
+        </div>
+      </div>
       
     
     </body>
     <script src="js/main.js"></script>
+    <script>
+        function saveKey() {
+          const gptApiKeyElement = document.getElementById('gptApiKey').value;
+          fs.writeFile('gpt.txt', gptApiKeyElement, (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('File written successfully.');
+            }
+          });
+        }
+    </script>
 </html>

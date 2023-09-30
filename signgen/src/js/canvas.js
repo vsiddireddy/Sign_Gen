@@ -1,6 +1,6 @@
 var FontFaceObserver = require('fontfaceobserver');
 const r = new random();
-const ai = new gpt();
+var ai = new gpt();
 var sign = new fabric.Canvas("canvas_0");
 var printDebug = true;
 var canvasInstances = [];
@@ -87,6 +87,7 @@ class canvas {
     }
 
     async signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, isModifying) {
+        ai = new gpt();
         // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
@@ -117,9 +118,10 @@ class canvas {
             var words = r.GetRandomWord();
             if (document.getElementById('aiPrompt').value.trim() != '') {
                 words = await ai.gptApi();
-                var word1 = words[0];
-                words[0] = words[1];
-                words[1] = word1;
+                console.log(words)
+                //var word1 = words[0];
+                //words[0] = words[1];
+                //words[1] = word1;
             }
         }
         if (font == undefined) {
