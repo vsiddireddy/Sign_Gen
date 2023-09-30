@@ -401,6 +401,8 @@ function removeHighlightBorder() {
     for (var x = 0; x < listOfSigns.length; x++) {
         var signId = listOfSigns[x].lowerCanvasEl.id;
         var sign = document.getElementById(signId);
-        sign.style.border = "none";
+        if (sign != null) {
+            sign.style.border = "none";
+        }
     }
 }
