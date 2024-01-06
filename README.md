@@ -36,8 +36,5 @@ Welcome to SignGen, an open-source project by Sree Gajula and Vishal Siddireddy.
 
  - Various npm packages including Faker, Mousetrap, Fabric, Electron, Font Face Observer, Color Scheme, and Puppeteer.
 
-
+# 
 For more information, visit signgen.net or check out our GitHub repository. Feel free to contribute to the project and join our community!
-
-
-
