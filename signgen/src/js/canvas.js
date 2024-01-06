@@ -2,7 +2,6 @@ var FontFaceObserver = require('fontfaceobserver');
 const r = new random();
 var ai = new gpt();
 var sign = new fabric.Canvas("canvas_0");
-var printDebug = true;
 var canvasInstances = [];
 var signList = [];
 
@@ -440,11 +439,9 @@ class canvas {
         var consoleText = " COLORS: { " + colors.m1 + ", " + colors.m2 + ", " + colors.h1 + " }   " + "W: {" + sign.width + "} H: {" + sign.height + " }   ";
         consoleText += "WORDS: { " + words[0] + ", " + words[1] + ", " + words[2]  + " }   ";
         consoleText += "FONT: { " + font + " }   ";
-        if (printDebug) {
-            document.getElementById('console_text').innerHTML = consoleText;
-        } else {
-            document.getElementById('console_text').innerHTML = '';
-        }
+
+        document.getElementById('console_text').innerHTML = consoleText;
+
         if (isModifying == false) {
             signList.push([w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL]);
         }
@@ -489,6 +486,7 @@ class canvas {
 }
 
 
+
 //console.log(sign_0);
 //var signArr = [sign_0];
 //let canvasDiv = document.getElementById("mainCanvas");
@@ -513,6 +511,3 @@ for(i = 1; i < 10; i++){
 }
 */
 
-Mousetrap.bind(['command+k', 'ctrl+k'], function() {
-    printDebug = !printDebug;
-});

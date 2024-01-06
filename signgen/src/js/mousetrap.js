@@ -51,6 +51,18 @@ Mousetrap.bind('space', function() {
     canvasObject.generate();
 });
 
+Mousetrap.bind(['shift+k'], function() {
+
+    var elements = document.getElementById('console_text');
+    if (elements.style.display == 'none'){
+        elements.style.display = 'block'
+    } else{
+        elements.style.display = 'none'
+    }
+
+
+});
+
 document.addEventListener('keydown', function(e) {
     // Check if the spacebar was pressed
     if (e.keyCode === 32 && document.activeElement.tagName === 'BUTTON') {

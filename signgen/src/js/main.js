@@ -9,9 +9,7 @@ const canvasObject = new canvas(); // CANVAS CLASS NOT FABRIC
 var canvasID = undefined;
 var signToModify = undefined;
 var modal = document.getElementById("myModal");
-var settingsModal = document.getElementById("settingsModal");
 modal.style.display = "none";
-settingsModal.style.display = "none";
 var boolean = false;
 var gptAPIKey = null;
 
@@ -238,16 +236,7 @@ function download() {
         link.download = 'sign.png';
     } else if (document.getElementById("filetypeSelect").value == 'JPG') {
         link.download = 'sign.jpg';
-    } else {
-        var sign = canvasObject.getSign();
-        var svg = sign.toSVG();
-        var blob = new Blob([svg], {type: 'image/svg+xml'});
-        var url = URL.createObjectURL(blob);
-        link.download = 'canvas.svg'; // name of the downloaded file
-        link.href = url; // creating an url
-        link.click();
-        return;
-    }
+    } 
     link.href = document.getElementById('canvas_0').toDataURL();
     link.click();
 }
@@ -336,9 +325,6 @@ document.getElementById("zmin").addEventListener("click", function(){
     }
 });
 
-document.getElementById("settings-modal").addEventListener("click", function() {
-    settingsModal.style.display = "block";
-  });
 
 document.getElementById("help-modal").addEventListener("click", function() {
     modal.style.display = "block";
@@ -391,10 +377,6 @@ document.getElementById("SaveKeyButton")?.addEventListener("click", function() {
         });
 });
 
-
-document.getElementById("close-settings-modal").addEventListener("click", function() {
-    settingsModal.style.display = "none";
-  });
 
 
 Mousetrap.bind(['shift+/'], function() {
