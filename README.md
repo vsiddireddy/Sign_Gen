@@ -19,6 +19,11 @@ Welcome to SignGen, an open-source project by Sree Gajula and Vishal Siddireddy.
  - Integration of Fabric.JS
  - Additional Features: Patterned/Gradient Backgrounds, Simple Logos
 
+## Future Milestones
+ - SVG Support
+ - More Sign Themes (Sci-Fi, Pixel, etc)
+ - Sign Templates
+
 # Resources and Assets
 
 ## Fonts
