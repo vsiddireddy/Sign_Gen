@@ -174,8 +174,8 @@ if (mod_button) {
         
 
         // Modify sign fields
-        var word1 = document.getElementById("modifyWord1").value;
-        var word2 = document.getElementById("modifyWord2").value;
+        var word1 = document.getElementById("modifyWord2").value;
+        var word2 = document.getElementById("modifyWord1").value;
         var subtext = document.getElementById("modifySubtext").value;
         var color1 = document.getElementById("modifyColor1").value;
         var color2 = document.getElementById("modifyColor2").value;
