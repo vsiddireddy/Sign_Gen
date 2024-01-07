@@ -11,6 +11,46 @@ Welcome to SignGen, an open-source project by Sree Gajula and Vishal Siddireddy.
  - Randomize Button: Instantly generate new sign sets, with options to create as many signs as you want.
  - Export Features: Save your creations in various formats like .png and .jpg. You can save individual signs or a full sheet.
 
+# Download
+
+### 1. Clone the Repository
+
+First, clone the repository to your local machine. Open your terminal or command prompt and run:
+
+git clone https://github.com/vsiddireddy/Sign_Gen.git
+
+This command creates a folder named `Sign_Gen` containing the project files.
+
+### 2. Navigate to the Project Folder
+
+Change your current working directory to the `signgen` folder:
+
+cd signgen
+
+### 3. Install Dependencies
+
+Before running the package command, you need to install the project dependencies. Run:
+
+npm install
+
+This command will download and install necessary dependencies for the project.
+
+### 4. Package the Application
+
+To package the application, run:
+
+npm run package
+
+This script bundles the application and creates an output directory.
+
+### 5. Access the Packaged Application
+
+After the packaging process completes, navigate to the output directory:
+
+cd out
+
+In this directory, you'll find the packaged application ready for use.
+
 # Product Roadmap
 
 ## Completed Milestones
