@@ -40,7 +40,7 @@ Welcome to SignGen, an open-source project by Sree Gajula and Vishal Siddireddy.
  - Color-Scheme.js for generating color sets.
  - Font Face Observer (Modular) for web font loading.
 
- - Various npm packages including Faker, Mousetrap, Fabric, Electron, Font Face Observer, Color Scheme, and Puppeteer.
+ - Various npm packages including Faker, Mousetrap, Fabric, Electron, Font Face Observer, and Color-Scheme.
 
 # 
-For more information, visit signgen.net or check out our GitHub repository. Feel free to contribute to the project and join our community!
+For more information, check out our GitHub repository. Feel free to contribute to the project and join our community!
