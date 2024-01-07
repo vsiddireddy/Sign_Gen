@@ -364,21 +364,6 @@ document.getElementById("zmout").addEventListener("click", function(){
     }
 });
 
-
-document.getElementById("SaveKeyButton")?.addEventListener("click", function() {
-    console.log("console.log(I MADE IT!!!!!)");
-        gptAPIKey = document.getElementById("gptApiKey").value;
-        fs.writeFile('gpt.txt', gptAPIKey, (err) => {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log('File written successfully.');
-            }
-        });
-});
-
-
-
 Mousetrap.bind(['shift+/'], function() {
     if (modal.style.display == "none") {
         modal.style.display = "block";
