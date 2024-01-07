@@ -70,7 +70,7 @@ In this directory, you'll find the packaged application ready for use.
 ## Fonts
  - All fonts are under open source licenses like CC-0, MIT, or SIL Open Font.
  - Compatible with Google Fonts, Apple Font Book Fonts, and Microsoft 365 Fonts (with subscription).
- - An internal spreadsheet with licensing information for all included fonts is maintained.
+ - [An internal spreadsheet with licensing information for all included fonts is maintained.](https://www.docs.google.com/spreadsheets/d/1VGY3ajwdsdhbOzJ1BieLLtEo7k9Rn6GUsGWnX1vpXCE/edit?usp=sharing)
 
 ## Library Dependencies (npm packages)
  - Electron.js for the main framework.
