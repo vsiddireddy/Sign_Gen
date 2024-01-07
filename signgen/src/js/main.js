@@ -335,7 +335,7 @@ document.getElementById("help-modal").addEventListener("click", function() {
   });
   
   document.getElementById("splashGen1").addEventListener("click", function(){
-    shell.openExternal("https://docs.google.com/document/d/1yORIs_1CAE534QA2mogvGaLYn0Flw3iG3eOR9wnLhyk/edit?usp=sharing")
+    shell.openExternal("https://github.com/vsiddireddy/Sign_Gen/")
   });
   
   document.getElementById("splashGen2").addEventListener("click", function(){
