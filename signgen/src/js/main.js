@@ -11,7 +11,6 @@ var signToModify = undefined;
 var modal = document.getElementById("myModal");
 modal.style.display = "none";
 var boolean = false;
-var gptAPIKey = null;
 
 if(gen_button){
     gen_button.addEventListener("click", function(){
@@ -141,28 +140,6 @@ document.addEventListener('click', function(event) {
 
 function enableScroll() {
     window.onscroll = function() {};
-}
-
-function APIcall() {
-    const MODEL_NAME = "models/text-bison-001";
-    const API_KEY = "AIzaSyDBZ2Wi5aLD9eX7O4wdl8N08dEBcV3griw";
-    
-    const client = new TextServiceClient({
-        authClient: new GoogleAuth().fromAPIKey(API_KEY),
-    });
-    
-    const prompt = "Can you give me ideas for my IT consulting business name,";
-    
-    client
-        .generateText({
-        model: MODEL_NAME,
-        prompt: {
-            text: prompt,
-        },
-        })
-        .then((result) => {
-        console.log(JSON.stringify(result));
-        });
 }
 
 if (mod_button) {

@@ -1,6 +1,5 @@
 var FontFaceObserver = require('fontfaceobserver');
 const r = new random();
-var ai = new gpt();
 var sign = new fabric.Canvas("canvas_0");
 var canvasInstances = [];
 var signList = [];
@@ -37,8 +36,6 @@ class canvas {
         var index = 1;
         var totalSigns = document.getElementById('signTotal').value;
         var currentSigns = document.getElementsByClassName('canvas-container');
-        //console.log("totalSigns: " + totalSigns);
-        //console.log("currentSigns: " + currentSigns.length);
         if (totalSigns == currentSigns.length) {
             console.log("reached equal");
             return;
@@ -68,13 +65,6 @@ class canvas {
                 currentSigns[totalSigns].remove();
                 return;
             }
-            /*
-            for (var x = totalSigns; x < currentSigns.length; x++) {
-                console.log("x: " + x);
-                currentSigns[x].remove();
-            }
-            currentSigns[totalSigns].remove();
-            */
 
             for (var i = 0; i < distance; i++) {
                 currentSigns[currentSigns.length - 1].remove();
@@ -86,7 +76,6 @@ class canvas {
     }
 
     async signGen(sign, w, h, colors, words, font, effect, bgEffect, svgURL, overlayURL, isModifying) {
-        ai = new gpt();
         // Random/Input Values
         if (w == undefined) {
             var w = document.getElementById("CanvasWidth").value;
@@ -112,16 +101,8 @@ class canvas {
         if (colors == undefined) {
             var colors = r.ApplyColors();
         }
-        //console.log(colors);
         if (words == undefined) {
             var words = r.GetRandomWord();
-            if (document.getElementById('aiPrompt').value.trim() != '') {
-                words = await ai.gptApi();
-                console.log(words)
-                //var word1 = words[0];
-                //words[0] = words[1];
-                //words[1] = word1;
-            }
         }
         if (font == undefined) {
             var font = r.ApplyFont();
@@ -234,26 +215,9 @@ class canvas {
                     stroke: colors.h1,
                     top: top,
                     strokeWidth: effect[1]
-                    /*
-                    styles: {
-                        0: {
-                            0: { fill: 'red' },
-                            1: { fill: 'black' },
-                            2: { fill: 'black' },
-                            3: { fill: 'blue' },
-                            4: { fill: 'black' },
-                            5: { fill: 'black' },
-                            6: { fill: 'red' },
-                            7: { fill: 'black' },
-                            8: { fill: 'black' },
-                            9: { fill: 'black' },
-                            10: { fill: 'green' },
-                            11: { fill: 'black' }
-                        }
-                    */
+
                 });
 
-                // unique text coloring TODO: needs to be cleaned up
                 var colorArray = ['purple', 'red', 'green', 'blue'];
                 var str =  {
                     0: {
@@ -398,28 +362,9 @@ class canvas {
                     }
                 });
                 
-                /*
-                //var pngURL = '../assets/corporate/logos/PNG/JRO_D_Basic_' + Math.floor(Math.random() * 200) + '.png';
-                fabric.Image.fromURL(pngURL, function(img) {
-                    img.scaleToHeight(mainText.height * 2);
-                    img.scaleToWidth(mainText.height  * 2);
-                    sign.viewportCenterObjectH(img);
-                    img.set({
-                      top:  0,
-                    });
-                    var group = new fabric.Group([], {});
-                    var wordArr = [mainText, subText, img];
-                    wordArr.filter(item => typeof item !== undefined).forEach(item => {group.addWithUpdate(item)});
-
-                    //var group = new fabric.Group([mainText, subText, img], {});
-                    sign.viewportCenterObjectV(group);
-                    sign.add(group);
-                });
-                */
             }
 
             // Overlay Texture
-            //var overlayURL = '../assets/overlays/overlay_'+ Math.floor(Math.random() * 23) + '.jpg';
             if (document.getElementById("toggleOverlay").checked) {
                 fabric.Image.fromURL(overlayURL, function(oImg) {
             
@@ -484,30 +429,4 @@ class canvas {
         //console.clear();
     }
 }
-
-
-
-//console.log(sign_0);
-//var signArr = [sign_0];
-//let canvasDiv = document.getElementById("mainCanvas");
-
-/*
-//Dynamically creating canvases & adding them to array
-for(i = 1; i < 10; i++){
-    var canvas_dynamic = document.createElement('canvas');
-    let id = "canvas_";
-    id += i;
-    canvas_dynamic.id     = id;
-    canvas_dynamic.width  = 633;
-    canvas_dynamic.height = 291;
-    canvasDiv.append(canvas_dynamic);
-
-    var obj = {};
-    var newsign = new fabric.Canvas(canvas_dynamic.id);
-    obj['sign_'+i] = newsign;
-    console.log(newsign);
-    signArr.push(obj);
-
-}
-*/
 
