@@ -254,15 +254,6 @@ document.getElementById("filetypeBtn").addEventListener("click", function(){
     }
     newCanvas.height = document.getElementById("canvas_0").height * totalSigns;
 
-    //var firstCanvas = document.getElementById('canvas_0'); // is sourceCanvas (GPT)
-    //var sourceCtx = firstCanvas.getContext('2d');
-    //var destinationCtx = newCanvas.getContext('2d');
-
-    //var imageData = sourceCtx.getImageData(0, 0, firstCanvas.width, firstCanvas.height);
-    //destinationCtx.putImageData(imageData, 0, 0);
-
-    //console.log(canvasInstances.length);
-
     var leftToRight = 0;
     var currHeight = 0;
     for (var x = 0; x < canvasObject.getCanvasInstances().length + 1; x++) {
