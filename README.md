@@ -4,6 +4,8 @@
 
 Welcome to SignGen, an open-source project by Sree Gajula and Vishal Siddireddy. SignGen is a dynamic and versatile sign generator designed for animation, video games, concept art, and more. With customizable themes, canvas settings, and text options, SignGen allows creators to easily generate unique signs, stickers, and billboards.
 
+https://github.com/vsiddireddy/Sign_Gen/assets/43098613/9d995e34-e50f-4e8e-8542-6904fd0317a7
+
 # Core Features
  - Desktop App/Installer: Built with Electron.js, ensuring smooth installation and performance.
  - Customizable Text: Add your text to personalize signs.
