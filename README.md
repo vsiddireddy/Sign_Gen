@@ -85,4 +85,4 @@ In this directory, you'll find the packaged application ready for use.
  - Various npm packages including Faker, Mousetrap, Fabric, Electron, Font Face Observer, and Color-Scheme.
 
 # 
-For more information, check out our GitHub repository. Feel free to contribute to the project and join our community!
+For more information, check out our GitHub repository. Feel free to contribute to the project and join our community! For more information on contributing, please read CONTRIBUTING.md
