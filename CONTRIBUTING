@@ -1,8 +1,8 @@
-# Contributing
+Contributing
 
 We warmly welcome contributions to SignGen Whether it's submitting bug reports, proposing new features, improving documentation, or contributing code, all contributions are greatly appreciated.
 
-## How to Contribute
+How to Contribute
 1. Fork the Repository: Start by forking the project repository. This creates your own copy of the project where you can make your changes.
 2. Clone the Fork: Clone your forked repository to your local machine, so you can work on the changes.
 3. Create a Branch: Create a new branch for your changes. Naming the branch as per the changes you are making is recommended, such as fix-bug-xyz or add-feature-abc.
@@ -12,12 +12,12 @@ We warmly welcome contributions to SignGen Whether it's submitting bug reports, 
 7. Push to Your Fork: Push the changes to your forked repository.
 8. Submit a Pull Request (PR): Go to the original repository and submit a pull request. In the PR description, clearly describe the changes and link any related issues.
 
-## Best Practices
+Best Practices
  - Ensure that your code follows the project's coding standards and style guide.
  - Include documentation with your changes, if applicable.
  - Engage in a respectful and constructive code review process if requested.
 
-## Reporting Issues
+Reporting Issues
 If you find an issue but are not ready to contribute a fix, you can still help by submitting an issue report. Please include as much detail as possible, such as:
 
  - A clear title and description of the issue.
@@ -25,5 +25,5 @@ If you find an issue but are not ready to contribute a fix, you can still help b
  - Expected behavior vs actual behavior.
  - Screenshots or logs if applicable.
 
-## Questions or Suggestions?
+Questions or Suggestions?
 Feel free to open an issue for any questions or suggestions you might have. We're always looking to improve and value your input!
